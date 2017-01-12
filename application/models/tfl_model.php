@@ -48,9 +48,41 @@ class Tfl_model extends CI_Model
 		
 		return $query->result();
 	}
+	function frontpage_slider()
+	{
+		$query = $this->db->select('*')
+						  ->order_by('id', 'asc')
+						  ->limit(10)
+						  ->get('frontpage_slider');
 
+						  //var_dump($query->result());
+		
+		return $query->result();
+	}
 
+	function footer_socialshare()
+	{
+		$query = $this->db->select('*')
+						  ->order_by('id', 'asc')
+						  ->limit(5)
+						  ->get('footer_social_share');
 
+						  //var_dump($query->result());
+		
+		return $query->result();
+	}
+
+	function frontpage_client_icon()
+	{
+		$query = $this->db->select('*')
+						  ->order_by('id', 'asc')
+						  ->limit(20)
+						  ->get('frontpage_clienticon');
+
+						  //var_dump($query->result());
+		
+		return $query->result();
+	}
 
 
 

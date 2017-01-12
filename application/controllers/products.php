@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Home extends My_Controller {
+class Products extends My_Controller {
 
 	function __construct()
 	{
@@ -35,9 +35,9 @@ class Home extends My_Controller {
 		$this->data['message'] = $this->session->flashdata('message');
 		$this->load->view($this->template_dir.'home', $this->data);
 	}
-	public function contact()
+	public function home()
 	{
-		$page = 'Contacts';
+		$page = 'Home';
 		$this->set_activepage($page);
 
 		$this->data['whatwedo'] = $this->tfl_model->frontpage_what_we_do();
@@ -47,14 +47,35 @@ class Home extends My_Controller {
 		$this->data['clienticon'] = $this->tfl_model->frontpage_client_icon();
 		//var_dump($this->data);
 		$this->data['message'] = $this->session->flashdata('message');
-		$this->load->view($this->template_dir.'contacts', $this->data);
+		$this->load->view($this->template_dir.'home', $this->data);
 	}
-	public function error()
+	public function industry()
 	{
-		$page = 'Error';
+		$page = 'Home';
 		$this->set_activepage($page);
 
+		$this->data['whatwedo'] = $this->tfl_model->frontpage_what_we_do();
+		$this->data['whoweare'] = $this->tfl_model->frontpage_who_we_are();
+		$this->data['whyus'] = $this->tfl_model->frontpage_why_us();
+		$this->data['slider'] = $this->tfl_model->frontpage_slider();
+		$this->data['clienticon'] = $this->tfl_model->frontpage_client_icon();
+		//var_dump($this->data);
 		$this->data['message'] = $this->session->flashdata('message');
-		$this->load->view($this->template_dir.'error_404', $this->data);
+		$this->load->view($this->template_dir.'home', $this->data);
 	}
+	public function technology()
+	{
+		$page = 'Home';
+		$this->set_activepage($page);
+
+		$this->data['whatwedo'] = $this->tfl_model->frontpage_what_we_do();
+		$this->data['whoweare'] = $this->tfl_model->frontpage_who_we_are();
+		$this->data['whyus'] = $this->tfl_model->frontpage_why_us();
+		$this->data['slider'] = $this->tfl_model->frontpage_slider();
+		$this->data['clienticon'] = $this->tfl_model->frontpage_client_icon();
+		//var_dump($this->data);
+		$this->data['message'] = $this->session->flashdata('message');
+		$this->load->view($this->template_dir.'home', $this->data);
+	}
+
 }

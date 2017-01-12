@@ -35,7 +35,12 @@ public $data = array();
 		$this->output->unset_template('oliver');
 					
 	}
-
+	function get_header_footer()
+	{
+		
+		$this->data['socialshare'] = $this->tfl_model->footer_socialshare();
+					
+	}
 	function get_blog_cat_tag()
 	{
 
@@ -81,6 +86,8 @@ public $data = array();
 			return $clientdata = NULL; 
 		}
 	}
+
+	
 	
 	
 	

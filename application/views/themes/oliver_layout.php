@@ -193,6 +193,25 @@
 <?php echo $output;?>
 
 
+<!-- Social wrap -->
+<div class="social">
+   <div class="container">
+      <div class="row">
+         <div class="col-md-4">
+            <p>Stay connected with our social network</p>
+         </div>
+
+         <div class="col-md-8">
+            <ul class="social-info">
+               <?php foreach ($socialshare as $print): ?>
+                  <li><a href="<?php echo $print->href; ?>"><span><i class="<?php echo $print->class_ref; ?>"></i></span><?php echo $print->title; ?></a></li>
+               <?php endforeach; ?>        
+            </ul>
+         </div>
+      </div>
+   </div>
+</div>
+<!-- Social wrap -->
 <!-- Footer -->
 <footer>
 	<div class="container">
@@ -201,35 +220,28 @@
 
 				<!-- Footer - About -->
 				<div class="col-md-3 footer-widget">
-					<h6><span>About Oliver</span></h6>
+					<h6><span>Newsletter/Subscription</span></h6>
 					<p>Lorem ipsum dolor slo onsec  tueraliquet Morbi nec In Curabitur lreaoreet nisl lorem in pellente e vidicus pannel</p>
 					<div class="newsletter">
 						<form>
 							<div class="input-group">
 								<input type="text" class="form-control" placeholder="Email goes here..."/>
 								<span class="input-group-btn">
-									<button class="btn btn-default" type="button">Send</button>
+									<button class="btn btn-default" type="button">Subscribe</button>
 								</span>
 							</div>
 						</form>
 					</div>
-				</div>
-
-				<!-- Footer - Tags -->
-				<div class="col-md-3 footer-widget">
-					<h6><span>Oliver Tags</span></h6>
-
-					<ul class="tags-list">
-						<li><a href="#">Web Design</a></li>
-						<li><a href="#">Print</a></li>
-						<li><a href="#">Agency</a></li>
-						<li><a href="#">HTML/Css</a></li>
-						<li><a href="#">Ui</a></li>
-						<li><a href="#">Architecture</a></li>
-						<li><a href="#">Movie llustrations</a></li>
-						<li><a href="#">Photography</a></li>
-					</ul>
-		
+               <div class="newsletter" align="center">
+                  <form>
+                     <div class="input-group">
+                        
+                        <span class="input-group-btn">
+                           <button class="btn btn-default" type="button">Signup Now</button>
+                        </span>
+                     </div>
+                  </form>
+               </div>
 				</div>
 
 				<!-- Footer - Recent Tweets -->
@@ -237,9 +249,26 @@
 					<h6><span>Recent Twittes</span></h6> <div id="tweets" class="tweet"></div>
 				</div>
 
+            <!-- Footer - Tags -->
+            <div class="col-md-3 footer-widget">
+               <h6><span>Top Links</span></h6>
+
+               <ul class="tags-list">
+                  <li><a href="#">Web Design</a></li>
+                  <li><a href="#">Print</a></li>
+                  <li><a href="#">Agency</a></li>
+                  <li><a href="#">HTML/Css</a></li>
+                  <li><a href="#">Ui</a></li>
+                  <li><a href="#">Architecture</a></li>
+                  <li><a href="#">Movie llustrations</a></li>
+                  <li><a href="#">Photography</a></li>
+               </ul>
+      
+            </div>
+
 				<!-- Footer - Flickrfeed -->
 				<div class="col-md-3 footer-widget">
-					<h6><span>Flickr</span></h6>
+					<h6><span>Contacts</span></h6>
 					<ul id="flickr" class="thumbs"></ul>
 				</div>
 			</div>
