@@ -23,31 +23,23 @@ class Products extends My_Controller {
 
 	public function index()
 	{
-		$page = 'Home';
+		$page = 'Products';
 		$this->set_activepage($page);
 
-		$this->data['whatwedo'] = $this->tfl_model->frontpage_what_we_do();
-		$this->data['whoweare'] = $this->tfl_model->frontpage_who_we_are();
-		$this->data['whyus'] = $this->tfl_model->frontpage_why_us();
-		$this->data['slider'] = $this->tfl_model->frontpage_slider();
 		$this->data['clienticon'] = $this->tfl_model->frontpage_client_icon();
 		//var_dump($this->data);
 		$this->data['message'] = $this->session->flashdata('message');
-		$this->load->view($this->template_dir.'home', $this->data);
+		$this->load->view($this->template_dir.'products_main.php', $this->data);
 	}
 	public function home()
 	{
-		$page = 'Home';
+		$page = 'Products';
 		$this->set_activepage($page);
 
-		$this->data['whatwedo'] = $this->tfl_model->frontpage_what_we_do();
-		$this->data['whoweare'] = $this->tfl_model->frontpage_who_we_are();
-		$this->data['whyus'] = $this->tfl_model->frontpage_why_us();
-		$this->data['slider'] = $this->tfl_model->frontpage_slider();
 		$this->data['clienticon'] = $this->tfl_model->frontpage_client_icon();
 		//var_dump($this->data);
 		$this->data['message'] = $this->session->flashdata('message');
-		$this->load->view($this->template_dir.'home', $this->data);
+		$this->load->view($this->template_dir.'products_main.php', $this->data);
 	}
 	public function industry()
 	{

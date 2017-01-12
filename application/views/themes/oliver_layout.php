@@ -39,7 +39,7 @@
 
 	<!-- Theme Styles CSS-->
 	<link href="<?php echo base_url(); ?>assets/tfl1/css/styles.css" rel="stylesheet">
-	<link href="<?php echo base_url(); ?>assets/tfl1/css/accordion.css" rel="stylesheet">
+   <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/tfl1/css/accordion.css">
 	<link href="<?php echo base_url(); ?>assets/tfl1/js/owl-carousel/owl.carousel.css" rel="stylesheet">
 	<link href="<?php echo base_url(); ?>assets/tfl1/js/owl-carousel/owl.theme.css" rel="stylesheet">
 	<link href="<?php echo base_url(); ?>assets/tfl1/js/rs-plugin/css/settings.css" rel="stylesheet" />
@@ -126,7 +126,7 @@
                         </li>
                         <li class="col-md-3">
                            <ul>
-                              <div class="col-lg-12 no-padding clearfix media ">
+                              <div class="col-lg-12 no-padding clearfix media" Style="padding-left: 10px;">
                                  <img class="pull-left" src="<?php echo base_url(); ?>assets/tfl1/images/menug.png" alt=""/>
                                  <p>Since the beginning, we’ve focused on providing the best user experience possible. Whether we’re designing a new Internet browser or a new tweak to the look of the homepage, we take great care to ensure that they will ultimately serve you, rather than our own internal goal or bottom line.</p>
                               </div>

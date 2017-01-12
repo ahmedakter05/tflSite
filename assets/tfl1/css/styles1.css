@@ -182,14 +182,14 @@ p {
     font-family:Roboto;
     line-height:46px;
     border-right:1px solid #d5e1ea;
-    color:#20affe; /*#7588ab;*/
+    color:#7588ab;
 }
 
 .top-language {
     position:absolute;
     top:0px;
     height:46px;
-    right:410px;
+    right:157px;
     padding:0 27px;
     font-family:Roboto;
     line-height:46px;
@@ -362,7 +362,7 @@ p {
     z-index: 999 ;
     position: absolute !important;
     left: auto !important;
-    right: -505px !important;
+    right: -130px !important;
     display: table;
     padding:25px 0px 25px !important;
 }

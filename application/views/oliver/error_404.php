@@ -1,3 +1,23 @@
+<!-- Page-head -->
+<div class="page-head">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h3>Error: Not Found</h3>
+            </div>
+            <div class="col-md-6">
+                <ol class="breadcrumb">
+                    <li>You are here:</li>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Features</a></li>
+                    <li class="active">Portfolio</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Page-head -->
+<div class="space80"></div>
 <!-- 404 Content -->
   <div class="container">
       <div class="row">
