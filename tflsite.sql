@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 11, 2017 at 12:08 PM
+-- Generation Time: Jan 12, 2017 at 11:56 AM
 -- Server version: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -9014,6 +9014,82 @@ INSERT INTO `film_category` (`film_id`, `category_id`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `footer_social_share`
+--
+
+CREATE TABLE `footer_social_share` (
+  `id` int(11) NOT NULL,
+  `title` varchar(128) NOT NULL,
+  `href` text NOT NULL,
+  `class_ref` varchar(56) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `footer_social_share`
+--
+
+INSERT INTO `footer_social_share` (`id`, `title`, `href`, `class_ref`) VALUES
+(1, 'Twitter', '#ngenit', 'fa fa-twitter'),
+(2, 'Facebook', '#ngenit', 'fa fa-facebook');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `frontpage_clienticon`
+--
+
+CREATE TABLE `frontpage_clienticon` (
+  `id` int(11) NOT NULL,
+  `name` varchar(128) NOT NULL,
+  `iconlink` varchar(128) NOT NULL,
+  `alttext` varchar(128) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `frontpage_clienticon`
+--
+
+INSERT INTO `frontpage_clienticon` (`id`, `name`, `iconlink`, `alttext`) VALUES
+(1, 'Company 1', 'assets/tfl1/demo/clients/1.png', 'Company 1'),
+(2, 'Company 2', 'assets/tfl1/demo/clients/2.png', 'Company 2'),
+(3, 'Company 3', 'assets/tfl1/demo/clients/3.png', 'Company 3'),
+(4, 'Company 4', 'assets/tfl1/demo/clients/4.png', 'Company 4'),
+(5, 'Company 1', 'assets/tfl1/demo/clients/5.png', 'Company 1'),
+(6, 'Company 2', 'assets/tfl1/demo/clients/6.png', 'Company 2'),
+(7, 'Company 3', 'assets/tfl1/demo/clients/7.png', 'Company 3'),
+(8, 'Company 4', 'assets/tfl1/demo/clients/8.png', 'Company 4');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `frontpage_slider`
+--
+
+CREATE TABLE `frontpage_slider` (
+  `id` int(11) NOT NULL,
+  `imagelink_lg` text NOT NULL,
+  `imagelink_sm_1` text NOT NULL,
+  `imagelink_sm_2` text NOT NULL,
+  `title` varchar(56) NOT NULL,
+  `details` text NOT NULL,
+  `button_text` varchar(18) NOT NULL,
+  `button_href` text NOT NULL,
+  `updatedate` timestamp NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `frontpage_slider`
+--
+
+INSERT INTO `frontpage_slider` (`id`, `imagelink_lg`, `imagelink_sm_1`, `imagelink_sm_2`, `title`, `details`, `button_text`, `button_href`, `updatedate`) VALUES
+(1, './assets/tfl1/images/slider/flex-bg-01.jpg', '', './assets/tfl1/images/slider/s1.jpg', 'Awesome Theme <span>With a lot +</span>', 'Lorem ipsum dolor slo onsec designs <br>tueraliquet Morbi nec In Curabitur nel. Morbi <br>nec In Curabitur nel dolor slo onsec designs <br>dolor slo onsec designs', 'Purchase Now!', '#', '2017-01-12 04:55:38'),
+(2, './assets/tfl1/images/slider/flex-bg-02.jpg', '', './assets/tfl1/images/slider/s1.jpg', 'Awesome Theme <span>With a lot +</span>', 'Lorem ipsum dolor slo onsec designs <br>tueraliquet Morbi nec In Curabitur nel. Morbi <br>nec In Curabitur nel dolor slo onsec designs <br>dolor slo onsec designs', 'Purchase Now!', '#', '2017-01-12 05:10:46'),
+(4, './assets/tfl1/images/slider/objectiflune.jpg', '', './assets/tfl1/images/slider/s1.jpg', '', '', '', '', '2017-01-12 10:00:28'),
+(7, './assets/tfl1/images/slider/acronis.png', '', './assets/tfl1/images/slider/s1.jpg', '', '', '', '', '2017-01-12 10:17:46');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `frontpage_whatwedo`
 --
 
@@ -13053,6 +13129,24 @@ ALTER TABLE `film`
   ADD PRIMARY KEY (`film_id`);
 
 --
+-- Indexes for table `footer_social_share`
+--
+ALTER TABLE `footer_social_share`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `frontpage_clienticon`
+--
+ALTER TABLE `frontpage_clienticon`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `frontpage_slider`
+--
+ALTER TABLE `frontpage_slider`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `frontpage_whatwedo`
 --
 ALTER TABLE `frontpage_whatwedo`
@@ -13162,6 +13256,21 @@ ALTER TABLE `employees`
 --
 ALTER TABLE `film`
   MODIFY `film_id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1001;
+--
+-- AUTO_INCREMENT for table `footer_social_share`
+--
+ALTER TABLE `footer_social_share`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `frontpage_clienticon`
+--
+ALTER TABLE `frontpage_clienticon`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+--
+-- AUTO_INCREMENT for table `frontpage_slider`
+--
+ALTER TABLE `frontpage_slider`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `frontpage_whatwedo`
 --
