@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 13, 2017 at 04:21 PM
+-- Generation Time: Jan 13, 2017 at 05:53 PM
 -- Server version: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -13054,21 +13054,13 @@ CREATE TABLE `products_category` (
 
 INSERT INTO `products_category` (`id`, `categoryname`, `parentid`) VALUES
 (1, 'Database Solution', 1),
-(2, 'Database Solution', 1),
-(3, 'Database Solution', 1),
-(4, 'Database Solution', 1),
-(5, 'Database Solution', 1),
-(6, 'Database Solution', 1),
-(7, 'Database Solution', 1),
-(8, 'Database Solution', 1),
-(9, 'Database Solution', 1),
-(10, 'Database Solution', 1),
-(11, 'Database Solution', 1),
-(12, 'Database Solution', 1),
-(13, 'Database Solution', 1),
-(14, 'Database Solution', 1),
-(15, 'Database Solution', 1),
-(16, 'Database Solution', 1);
+(2, 'Server Solution', 1),
+(3, 'Print Service', 1),
+(4, 'OS Solution', 1),
+(5, 'Cloud Solution', 1),
+(6, 'Virtualization', 1),
+(7, 'Lab Solution', 1),
+(8, 'Application Performance', 1);
 
 -- --------------------------------------------------------
 
@@ -13087,7 +13079,9 @@ CREATE TABLE `products_category_relation` (
 --
 
 INSERT INTO `products_category_relation` (`id`, `productsid`, `categoryid`) VALUES
-(1, 1, 1);
+(1, 1, 1),
+(2, 2, 4),
+(3, 3, 3);
 
 -- --------------------------------------------------------
 
@@ -13115,7 +13109,9 @@ CREATE TABLE `products_main` (
 --
 
 INSERT INTO `products_main` (`id`, `name`, `details`, `ratings`, `imageurl1`, `imageurl2`, `imageurl3`, `imageurl4`, `code`, `tags`, `userid`, `updatetime`) VALUES
-(1, 'SQL Server', 'Best Database Server in the Industry', 4, './assets/tfl1/images/products/team-member-1.png', './assets/tfl1/images/products/team-member-2.png', './assets/tfl1/images/products/team-member-3.png', './assets/tfl1/images/products/team-member-4.png', 'sku: 6tr5', 'Microsoft', 1, '2017-01-13 15:36:01');
+(1, 'SQL Server', 'Best Database Server in the Industry', 4, './assets/tfl1/images/products/team-member-1.png', './assets/tfl1/images/products/team-member-2.png', './assets/tfl1/images/products/team-member-3.png', './assets/tfl1/images/products/team-member-4.png', 'sku: 6tr5', 'Microsoft', 1, '2017-01-13 15:36:01'),
+(2, 'Oracle Server', 'Best Database Server in the World', 4, './assets/tfl1/images/products/team-member-2.png', './assets/tfl1/images/products/team-member-1.png', './assets/tfl1/images/products/team-member-3.png', './assets/tfl1/images/products/team-member-4.png', 'sku: 6tr6', 'Oracle', 1, '2017-01-13 17:47:17'),
+(3, 'Windows Server 2016 R2', 'Best Server in the World', 5, './assets/tfl1/images/products/team-member-3.png', './assets/tfl1/images/products/team-member-1.png', './assets/tfl1/images/products/team-member-2.png', './assets/tfl1/images/products/team-member-4.png', 'sku: 6tr7', 'Microsoft', 1, '2017-01-13 17:49:57');
 
 -- --------------------------------------------------------
 
@@ -13414,12 +13410,12 @@ ALTER TABLE `products_category`
 -- AUTO_INCREMENT for table `products_category_relation`
 --
 ALTER TABLE `products_category_relation`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `products_main`
 --
 ALTER TABLE `products_main`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `users`
 --
