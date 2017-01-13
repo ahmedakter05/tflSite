@@ -26,12 +26,14 @@ class Products extends My_Controller {
 		$page = 'Products';
 		$this->set_activepage($page);
 
-		$this->data['clienticon'] = $this->tfl_model->frontpage_client_icon();
+		$this->get_blog_cat();
+		$this->data['products'] = $this->tfl_model->products_view_all();
+		//$this->data['clienticon'] = $this->tfl_model->frontpage_client_icon();
 		//var_dump($this->data);
 		$this->data['message'] = $this->session->flashdata('message');
 		$this->load->view($this->template_dir.'products_main.php', $this->data);
 	}
-	public function home()
+	public function category()
 	{
 		$page = 'Products';
 		$this->set_activepage($page);

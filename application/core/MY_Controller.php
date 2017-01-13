@@ -41,11 +41,10 @@ public $data = array();
 		$this->data['socialshare'] = $this->tfl_model->footer_socialshare();
 					
 	}
-	function get_blog_cat_tag()
+	function get_blog_cat()
 	{
 
-		$this->data['blog_cats'] = $this->aa_model->get_blog_cats();
-		$this->data['blog_tags'] = $this->aa_model->get_blog_tags();
+		$this->data['products_category'] = $this->tfl_model->get_products_category();
 					
 	}
 	

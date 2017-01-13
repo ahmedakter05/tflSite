@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 12, 2017 at 11:56 AM
+-- Generation Time: Jan 13, 2017 at 04:21 PM
 -- Server version: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -13039,6 +13039,87 @@ INSERT INTO `products` (`productCode`, `productName`, `productLine`, `productSca
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `products_category`
+--
+
+CREATE TABLE `products_category` (
+  `id` int(11) NOT NULL,
+  `categoryname` varchar(128) NOT NULL,
+  `parentid` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `products_category`
+--
+
+INSERT INTO `products_category` (`id`, `categoryname`, `parentid`) VALUES
+(1, 'Database Solution', 1),
+(2, 'Database Solution', 1),
+(3, 'Database Solution', 1),
+(4, 'Database Solution', 1),
+(5, 'Database Solution', 1),
+(6, 'Database Solution', 1),
+(7, 'Database Solution', 1),
+(8, 'Database Solution', 1),
+(9, 'Database Solution', 1),
+(10, 'Database Solution', 1),
+(11, 'Database Solution', 1),
+(12, 'Database Solution', 1),
+(13, 'Database Solution', 1),
+(14, 'Database Solution', 1),
+(15, 'Database Solution', 1),
+(16, 'Database Solution', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `products_category_relation`
+--
+
+CREATE TABLE `products_category_relation` (
+  `id` int(11) NOT NULL,
+  `productsid` int(11) NOT NULL,
+  `categoryid` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `products_category_relation`
+--
+
+INSERT INTO `products_category_relation` (`id`, `productsid`, `categoryid`) VALUES
+(1, 1, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `products_main`
+--
+
+CREATE TABLE `products_main` (
+  `id` int(11) NOT NULL,
+  `name` varchar(128) NOT NULL,
+  `details` text NOT NULL,
+  `ratings` int(2) NOT NULL,
+  `imageurl1` varchar(256) NOT NULL,
+  `imageurl2` varchar(256) NOT NULL,
+  `imageurl3` varchar(256) NOT NULL,
+  `imageurl4` varchar(256) NOT NULL,
+  `code` varchar(128) NOT NULL,
+  `tags` varchar(512) NOT NULL,
+  `userid` int(11) NOT NULL,
+  `updatetime` timestamp NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `products_main`
+--
+
+INSERT INTO `products_main` (`id`, `name`, `details`, `ratings`, `imageurl1`, `imageurl2`, `imageurl3`, `imageurl4`, `code`, `tags`, `userid`, `updatetime`) VALUES
+(1, 'SQL Server', 'Best Database Server in the Industry', 4, './assets/tfl1/images/products/team-member-1.png', './assets/tfl1/images/products/team-member-2.png', './assets/tfl1/images/products/team-member-3.png', './assets/tfl1/images/products/team-member-4.png', 'sku: 6tr5', 'Microsoft', 1, '2017-01-13 15:36:01');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -13213,6 +13294,24 @@ ALTER TABLE `products`
   ADD PRIMARY KEY (`productCode`);
 
 --
+-- Indexes for table `products_category`
+--
+ALTER TABLE `products_category`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `products_category_relation`
+--
+ALTER TABLE `products_category_relation`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `products_main`
+--
+ALTER TABLE `products_main`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -13306,6 +13405,21 @@ ALTER TABLE `offices`
 --
 ALTER TABLE `orders`
   MODIFY `orderNumber` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10426;
+--
+-- AUTO_INCREMENT for table `products_category`
+--
+ALTER TABLE `products_category`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+--
+-- AUTO_INCREMENT for table `products_category_relation`
+--
+ALTER TABLE `products_category_relation`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `products_main`
+--
+ALTER TABLE `products_main`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `users`
 --
