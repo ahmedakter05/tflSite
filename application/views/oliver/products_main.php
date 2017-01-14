@@ -5,7 +5,7 @@
 <link rel="Stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/tfl1/css/jquery_ui.css" /> 
 <link rel="Stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/tfl1/css/superTabs.css" />
 <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/tfl1/css/isotope.css">
-<style> .zoom-info { width: 107px;height:68px}.zoom-info a {margin:2px 4px;}</style>
+<style> .zoom-info { width: 107px; height:68px}.zoom-info a {margin:2px 4px;}</style>
 
 <!-- Page-head -->
 <div class="page-head">
@@ -142,7 +142,7 @@
                         <div class="folio-item col-md-4 no-padding isotope-item web">
                             <div class="item works-content">
                                 <div class="works-overlay">
-                                    <img class="img-responsive" src="<?php echo $print['imageurl1']; ?>" alt=""/>
+                                    <img class="img-responsive" src="<?php echo base_url(); echo $print['imageurl1']; ?>" alt=""/>
                                     <div>
                                         <div class="shadow-left"></div>
                                             <div class="zoom">

@@ -17,6 +17,7 @@ class Products extends My_Controller {
 	{
 		$this->output->set_template('oliver_layout');
 		$this->get_header_footer();
+		$this->get_blog_cat();
 
 		
 	}
@@ -25,20 +26,20 @@ class Products extends My_Controller {
 	{
 		$page = 'Products';
 		$this->set_activepage($page);
-
-		$this->get_blog_cat();
+		
 		$this->data['products'] = $this->tfl_model->products_view_all();
 		//$this->data['clienticon'] = $this->tfl_model->frontpage_client_icon();
 		//var_dump($this->data);
 		$this->data['message'] = $this->session->flashdata('message');
 		$this->load->view($this->template_dir.'products_main.php', $this->data);
 	}
-	public function category()
+	public function category($cid=NULL)
 	{
 		$page = 'Products';
 		$this->set_activepage($page);
-
-		$this->data['clienticon'] = $this->tfl_model->frontpage_client_icon();
+		
+		$this->data['products'] = $this->tfl_model->products_view_all();
+		//$this->data['clienticon'] = $this->tfl_model->frontpage_client_icon();
 		//var_dump($this->data);
 		$this->data['message'] = $this->session->flashdata('message');
 		$this->load->view($this->template_dir.'products_main.php', $this->data);
@@ -70,6 +71,17 @@ class Products extends My_Controller {
 		//var_dump($this->data);
 		$this->data['message'] = $this->session->flashdata('message');
 		$this->load->view($this->template_dir.'home', $this->data);
+	}
+	public function details($pid=NULL)
+	{
+		$page = 'Product';
+		$this->set_activepage($page);
+		
+		$this->data['products'] = $this->tfl_model->products_view_all();
+		//$this->data['clienticon'] = $this->tfl_model->frontpage_client_icon();
+		//var_dump($this->data);
+		$this->data['message'] = $this->session->flashdata('message');
+		$this->load->view($this->template_dir.'products_main.php', $this->data);
 	}
 
 }

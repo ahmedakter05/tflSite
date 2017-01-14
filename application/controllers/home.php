@@ -17,6 +17,7 @@ class Home extends My_Controller {
 	{
 		$this->output->set_template('oliver_layout');
 		$this->get_header_footer();
+		$this->get_blog_cat();
 
 		
 	}

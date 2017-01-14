@@ -89,17 +89,16 @@
                      <a href='<?php echo base_url(); ?>'><span>Home</span></a>
                   </li>
                   <li class='<?php echo (isset($activepage) ? ($activepage=='Products' ? 'active' : '') : '');?> has-sub-full'>
-                     <a href='#'><span>Products</span></a>
+                     <a href='<?php echo base_url() . "products"; ?>'<span>Products</span></a>
                      <ul class="full-sub">
                         <li class="col-md-3">
                            <ul>
                               <li class="sub-head">Categories</li>
-                              <li><a href="./full-width.html">Category 1</a></li>
-                              <li><a href="./right_side_navigator.html">Category 2</a></li>
-                              <li><a href="./left_side_navigator.html">Category 3</a></li>
-                              <li><a href="./testimonials_1">Category 4</a></li>
-                              <li><a href="./testimonials_2">Category 5</a></li>
-                              <li><a href="./404.html">Category 6</a></li>
+                              <?php $i=1; ?>
+                              <?php foreach ($products_category as $print): ?>
+                              <li><a href="<?php echo base_url() . 'products/category/' . $print['id']; ?>"><?php echo $print['categoryname']; ?></a></li>
+                              <?php if($i==6) break; $i++;?>
+                              <?php endforeach; ?>
                            </ul>
                         </li>
                         <li class="col-md-3">
@@ -269,7 +268,7 @@
 				<!-- Footer - Flickrfeed -->
 				<div class="col-md-3 footer-widget">
 					<h6><span>Contacts</span></h6>
-					<ul id="flickr" class="thumbs"></ul>
+					<ul id="contact" class="thumbs"></ul>
 				</div>
 			</div>
 		</div>		
@@ -283,7 +282,7 @@
 	<div class="container">
 		<div class="row-fluid">
 			<div class="col-md-6">
-				<p>Copyright 2012.All Rights Reserved / Powered By <a href="#">Wordpress</a></p>
+				<p>Copyright 2017.All Rights Reserved / Powered By <a href="http://www.ngenitltd.com" target="blank">NgenIT Ltd.</a></p>
 			</div>
 			<div class="col-md-6">
 				<ul class="top-contact">
