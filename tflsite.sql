@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 13, 2017 at 05:53 PM
+-- Generation Time: Jan 14, 2017 at 12:32 PM
 -- Server version: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -13071,17 +13071,45 @@ INSERT INTO `products_category` (`id`, `categoryname`, `parentid`) VALUES
 CREATE TABLE `products_category_relation` (
   `id` int(11) NOT NULL,
   `productsid` int(11) NOT NULL,
-  `categoryid` int(11) NOT NULL
+  `categoryid` int(11) NOT NULL,
+  `industryid` int(11) NOT NULL,
+  `technologyid` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `products_category_relation`
 --
 
-INSERT INTO `products_category_relation` (`id`, `productsid`, `categoryid`) VALUES
-(1, 1, 1),
-(2, 2, 4),
-(3, 3, 3);
+INSERT INTO `products_category_relation` (`id`, `productsid`, `categoryid`, `industryid`, `technologyid`) VALUES
+(1, 1, 1, 1, 1),
+(2, 2, 4, 2, 3),
+(3, 3, 3, 3, 4);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `products_industry`
+--
+
+CREATE TABLE `products_industry` (
+  `id` int(11) NOT NULL,
+  `industryname` varchar(128) NOT NULL,
+  `parentid` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `products_industry`
+--
+
+INSERT INTO `products_industry` (`id`, `industryname`, `parentid`) VALUES
+(1, 'Bank', 1),
+(2, 'Telco', 1),
+(3, 'Govt', 1),
+(4, 'SMB', 1),
+(5, 'Cloud Solution', 1),
+(6, 'Virtualization', 1),
+(7, 'Lab Solution', 1),
+(8, 'Application Performance', 1);
 
 -- --------------------------------------------------------
 
@@ -13109,9 +13137,35 @@ CREATE TABLE `products_main` (
 --
 
 INSERT INTO `products_main` (`id`, `name`, `details`, `ratings`, `imageurl1`, `imageurl2`, `imageurl3`, `imageurl4`, `code`, `tags`, `userid`, `updatetime`) VALUES
-(1, 'SQL Server', 'Best Database Server in the Industry', 4, './assets/tfl1/images/products/team-member-1.png', './assets/tfl1/images/products/team-member-2.png', './assets/tfl1/images/products/team-member-3.png', './assets/tfl1/images/products/team-member-4.png', 'sku: 6tr5', 'Microsoft', 1, '2017-01-13 15:36:01'),
-(2, 'Oracle Server', 'Best Database Server in the World', 4, './assets/tfl1/images/products/team-member-2.png', './assets/tfl1/images/products/team-member-1.png', './assets/tfl1/images/products/team-member-3.png', './assets/tfl1/images/products/team-member-4.png', 'sku: 6tr6', 'Oracle', 1, '2017-01-13 17:47:17'),
-(3, 'Windows Server 2016 R2', 'Best Server in the World', 5, './assets/tfl1/images/products/team-member-3.png', './assets/tfl1/images/products/team-member-1.png', './assets/tfl1/images/products/team-member-2.png', './assets/tfl1/images/products/team-member-4.png', 'sku: 6tr7', 'Microsoft', 1, '2017-01-13 17:49:57');
+(1, 'SQL Server', 'Best Database Server in the Industry', 4, 'assets/tfl1/images/products/team-member-1.png', 'assets/tfl1/images/products/team-member-2.png', 'assets/tfl1/images/products/team-member-3.png', 'assets/tfl1/images/products/team-member-4.png', '6tr5', 'Microsoft', 1, '2017-01-13 15:36:01'),
+(2, 'Oracle Server', 'Best Database Server in the World', 4, 'assets/tfl1/images/products/team-member-2.png', 'assets/tfl1/images/products/team-member-1.png', 'assets/tfl1/images/products/team-member-3.png', 'assets/tfl1/images/products/team-member-4.png', '6tr6', 'Oracle', 1, '2017-01-13 17:47:17'),
+(3, 'Windows Server 2016', 'Best Server in the World', 5, 'assets/tfl1/images/products/team-member-3.png', 'assets/tfl1/images/products/team-member-1.png', 'assets/tfl1/images/products/team-member-2.png', 'assets/tfl1/images/products/team-member-4.png', '6tr7', 'Microsoft', 1, '2017-01-13 17:49:57');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `products_technology`
+--
+
+CREATE TABLE `products_technology` (
+  `id` int(11) NOT NULL,
+  `technologyname` varchar(128) NOT NULL,
+  `parentid` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `products_technology`
+--
+
+INSERT INTO `products_technology` (`id`, `technologyname`, `parentid`) VALUES
+(1, 'Microsoft', 1),
+(2, 'Red Hat', 1),
+(3, 'Oracle', 1),
+(4, 'Antivirus', 1),
+(5, 'Others', 1),
+(6, 'Virtualization', 1),
+(7, 'Lab Solution', 1),
+(8, 'Application Performance', 1);
 
 -- --------------------------------------------------------
 
@@ -13302,9 +13356,21 @@ ALTER TABLE `products_category_relation`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `products_industry`
+--
+ALTER TABLE `products_industry`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `products_main`
 --
 ALTER TABLE `products_main`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `products_technology`
+--
+ALTER TABLE `products_technology`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -13405,17 +13471,27 @@ ALTER TABLE `orders`
 -- AUTO_INCREMENT for table `products_category`
 --
 ALTER TABLE `products_category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `products_category_relation`
 --
 ALTER TABLE `products_category_relation`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
+-- AUTO_INCREMENT for table `products_industry`
+--
+ALTER TABLE `products_industry`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+--
 -- AUTO_INCREMENT for table `products_main`
 --
 ALTER TABLE `products_main`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT for table `products_technology`
+--
+ALTER TABLE `products_technology`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `users`
 --

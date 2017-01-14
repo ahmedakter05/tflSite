@@ -17,7 +17,7 @@ class Products extends My_Controller {
 	{
 		$this->output->set_template('oliver_layout');
 		$this->get_header_footer();
-		$this->get_blog_cat();
+		$this->get_common_param();
 
 		
 	}
@@ -26,7 +26,8 @@ class Products extends My_Controller {
 	{
 		$page = 'Products';
 		$this->set_activepage($page);
-		
+		$this->data['side_menu_name'] = "Category";
+
 		$this->data['products'] = $this->tfl_model->products_view_all();
 		//$this->data['clienticon'] = $this->tfl_model->frontpage_client_icon();
 		//var_dump($this->data);
@@ -37,51 +38,48 @@ class Products extends My_Controller {
 	{
 		$page = 'Products';
 		$this->set_activepage($page);
+		$this->data['side_menu_name'] = "Category";
 		
-		$this->data['products'] = $this->tfl_model->products_view_all();
+		$this->data['products'] = $this->tfl_model->products_view_category($cid);
 		//$this->data['clienticon'] = $this->tfl_model->frontpage_client_icon();
 		//var_dump($this->data);
 		$this->data['message'] = $this->session->flashdata('message');
 		$this->load->view($this->template_dir.'products_main.php', $this->data);
 	}
-	public function industry()
+	public function industry($cid=NULL)
 	{
-		$page = 'Home';
+		$page = 'Products';
 		$this->set_activepage($page);
-
-		$this->data['whatwedo'] = $this->tfl_model->frontpage_what_we_do();
-		$this->data['whoweare'] = $this->tfl_model->frontpage_who_we_are();
-		$this->data['whyus'] = $this->tfl_model->frontpage_why_us();
-		$this->data['slider'] = $this->tfl_model->frontpage_slider();
-		$this->data['clienticon'] = $this->tfl_model->frontpage_client_icon();
+		$this->data['side_menu_name'] = "Industry";
+		
+		$this->data['products'] = $this->tfl_model->products_view_industry($cid);
+		//$this->data['clienticon'] = $this->tfl_model->frontpage_client_icon();
 		//var_dump($this->data);
 		$this->data['message'] = $this->session->flashdata('message');
-		$this->load->view($this->template_dir.'home', $this->data);
+		$this->load->view($this->template_dir.'products_main_industry.php', $this->data);
 	}
-	public function technology()
+	public function technology($cid=NULL)
 	{
-		$page = 'Home';
+		$page = 'Products';
 		$this->set_activepage($page);
-
-		$this->data['whatwedo'] = $this->tfl_model->frontpage_what_we_do();
-		$this->data['whoweare'] = $this->tfl_model->frontpage_who_we_are();
-		$this->data['whyus'] = $this->tfl_model->frontpage_why_us();
-		$this->data['slider'] = $this->tfl_model->frontpage_slider();
-		$this->data['clienticon'] = $this->tfl_model->frontpage_client_icon();
-		//var_dump($this->data);
+		$this->data['side_menu_name'] = "Technology";
+		
+		$this->data['products'] = $this->tfl_model->products_view_technology($cid);
+		//$this->data['clienticon'] = $this->tfl_model->frontpage_client_icon();
+		//print_r($this->data['products']);
 		$this->data['message'] = $this->session->flashdata('message');
-		$this->load->view($this->template_dir.'home', $this->data);
+		$this->load->view($this->template_dir.'products_main_technology.php', $this->data);
 	}
 	public function details($pid=NULL)
 	{
 		$page = 'Product';
 		$this->set_activepage($page);
 		
-		$this->data['products'] = $this->tfl_model->products_view_all();
+		$this->data['singleproduct'] = $this->tfl_model->products_view_single($pid);
 		//$this->data['clienticon'] = $this->tfl_model->frontpage_client_icon();
-		//var_dump($this->data);
+		//var_dump($this->data['singleproduct']);
 		$this->data['message'] = $this->session->flashdata('message');
-		$this->load->view($this->template_dir.'products_main.php', $this->data);
+		$this->load->view($this->template_dir.'products_single.php', $this->data);
 	}
 
 }

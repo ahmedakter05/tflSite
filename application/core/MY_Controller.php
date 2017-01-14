@@ -41,10 +41,12 @@ public $data = array();
 		$this->data['socialshare'] = $this->tfl_model->footer_socialshare();
 					
 	}
-	function get_blog_cat()
+	function get_common_param()
 	{
 
 		$this->data['products_category'] = $this->tfl_model->get_products_category();
+		$this->data['products_industry'] = $this->tfl_model->get_products_industry();
+		$this->data['products_technology'] = $this->tfl_model->get_products_technology();
 					
 	}
 	

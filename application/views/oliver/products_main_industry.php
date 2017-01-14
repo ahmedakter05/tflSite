@@ -32,10 +32,10 @@
     <div class="row">
         <div class="col-md-4 sidebar">
             <div class="side-widget">
-                <h5><span>Categories</span></h5>
+                <h5><span>Industry</span></h5>
                 <ul class="category">
-                    <?php foreach ($products_category as $print): ?>
-                        <li><a href="<?php echo base_url() . 'products/category/' . $print['id']; ?>"><?php echo $print['categoryname']; ?></a></li>
+                    <?php foreach ($products_industry as $print): ?>
+                        <li><a href="<?php echo base_url() . 'products/industry/' . $print['id']; ?>"><?php echo $print['industryname']; ?></a></li>
                     <?php endforeach; ?>
 
                 </ul>
@@ -153,7 +153,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <h4><?php echo anchor('products/details/'.$print['id'], $print['name'].' '); ?> <span><?php foreach ($print['categories'] as $category){ echo anchor('products/category/'.$category['categoryid'], $category['categoryname'].' '); }; ?></span></h4>
+                                <h4><?php echo anchor('products/details/'.$print['id'], $print['name'].' '); ?> <span><?php foreach ($print['industries'] as $industry){ echo anchor('products/industry/'.$industry['categoryid'], $industry['industryname'].' '); }; ?></span></h4>
                             </div>
                         </div>
                         <?php endforeach; ?>

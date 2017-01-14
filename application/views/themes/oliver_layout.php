@@ -93,7 +93,7 @@
                      <ul class="full-sub">
                         <li class="col-md-3">
                            <ul>
-                              <li class="sub-head">Categories</li>
+                              <li class="sub-head">Category</li>
                               <?php $i=1; ?>
                               <?php foreach ($products_category as $print): ?>
                               <li><a href="<?php echo base_url() . 'products/category/' . $print['id']; ?>"><?php echo $print['categoryname']; ?></a></li>
@@ -103,24 +103,22 @@
                         </li>
                         <li class="col-md-3">
                            <ul>
-                              <li class="sub-head">Industry</li>
-                              <li><a href="./pricing.html">Pricing Table </a></li>
-                              <li><a href="./shop.html">Product Page</a></li>
-                              <li><a href="./shop_single.html">Product Single</a></li>
-                              <li><a href="./services.html">Service Page 1</a></li>
-                              <li><a href="./services_1.html">Service Page 2</a></li>
-                              <li><a href="./forums_1.html">Forum Page 1</a></li>
+                              <li class="sub-head">Indutry</li>
+                              <?php $i=1; ?>
+                              <?php foreach ($products_industry as $print): ?>
+                              <li><a href="<?php echo base_url() . 'products/industry/' . $print['id']; ?>"><?php echo $print['industryname']; ?></a></li>
+                              <?php if($i==6) break; $i++;?>
+                              <?php endforeach; ?>
                            </ul>
                         </li>
                         <li class="col-md-3">
                            <ul>
                               <li class="sub-head">Technology</li>
-                              <li><a href="./about_1.html">About Us Page 1</a></li>
-                              <li><a href="./about_2.html">About Us Page 2</a></li>
-                              <li><a href="./about_3.html">About Us Page 3</a></li>
-                              <li><a href="./about_4.html">About Us Page 4</a></li>
-                              <li><a href="./testimonials_1.html">Testimonials page 1</a></li>
-                              <li><a href="./testimonials_2.html">Testimonials page 1</a></li>
+                              <?php $i=1; ?>
+                              <?php foreach ($products_technology as $print): ?>
+                              <li><a href="<?php echo base_url() . 'products/technology/' . $print['id']; ?>"><?php echo $print['technologyname']; ?></a></li>
+                              <?php if($i==6) break; $i++;?>
+                              <?php endforeach; ?>
                            </ul>
                         </li>
                         <li class="col-md-3">

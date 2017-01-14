@@ -122,8 +122,140 @@ class Tfl_model extends CI_Model
 						  
 		return $query;
 	}
+	function get_products_industry()
+	{
+		$query = $this->db->select('*')
+						  ->order_by('industryname', 'asc')
+						  //->limit(10)
+						  ->get('products_industry')
+						  ->result_array();
 
+						  
+		return $query;
+	}
+	function get_products_technology()
+	{
+		$query = $this->db->select('*')
+						  ->order_by('technologyname', 'asc')
+						  //->limit(10)
+						  ->get('products_technology')
+						  ->result_array();
 
+						  
+		return $query;
+	}
+
+	function products_view_single($pid=NULL)
+	{	
+		//$query['product'] = $this->db->select('blog_post_category.*, blog_category.categoryname, blog_post.*, users.id as userid, users.username, users.first_name, users.last_name, users.email')
+		$query['product'] = $this->db->select('*')
+						  ->order_by('updatetime', 'desc')
+						  ->where('products_main.id', $pid)
+						  ->limit(1)
+						  //->join('users', 'blog_post.userid = users.id', 'inner')
+						  ->join('products_category_relation', 'products_category_relation.productsid = products_main.id', 'left')
+						  ->join('products_category', 'products_category.id = products_category_relation.categoryid', 'left')
+						  //->group_by('blog_post.postid')
+						  ->get('products_main')
+						  ->row_array();
+
+		/*
+
+		$query['comments'] = $this->db->select('blog_comment.*, users.first_name, users.last_name')
+							      ->limit(10)
+							      ->join('blog_comment', 'blog_comment.commentid = blog_post_comment.commentid', 'left')
+							      ->where('blog_post_comment.postid', $postid)
+							      ->join('users', 'blog_comment.author = users.id', 'inner')
+							    //->Offset($start)
+							    //->group_by('blog_post.postid')
+			                    ->get('blog_post_comment')
+			                    ->result_array();
+
+		$query['commentcount'] = $this->db->from('blog_comment')
+												->join('blog_post_comment', 'blog_comment.commentid = blog_post_comment.commentid')
+												->where('blog_post_comment.postid', $postid)
+												->count_all_results();
+
+		//var_dump($query);*/
+												
+		return $query;
+	}
+
+	function products_view_category($cid=NULL) 
+	{
+		$query = $this->db->select('*')
+						  ->order_by('updatetime', 'asc')
+						  ->limit(30)
+						  ->join('products_category_relation', 'products_category_relation.productsid = products_main.id', 'inner')
+						  ->where('products_category_relation.categoryid', $cid)
+						  //->group_by('products_main.id')
+		                  ->get('products_main')
+		                  ->result_array();
+
+		foreach ($query as $key => $value) {
+			
+		$query[$key]['categories'] = $this->db->select('*')
+							    ->limit(10)
+							    ->join('products_category', 'products_category.id = products_category_relation.categoryid')
+							    ->where('products_category_relation.productsid', $value['id'])
+							    //->Offset($start)
+							    //->group_by('products_main.postid')
+			                  ->get('products_category_relation')
+			                  ->result_array();
+		}
+
+		return $query;
+	}
+	function products_view_industry($cid=NULL) 
+	{
+		$query = $this->db->select('*')
+						  ->order_by('updatetime', 'asc')
+						  ->limit(30)
+						  ->join('products_category_relation', 'products_category_relation.productsid = products_main.id', 'inner')
+						  ->where('products_category_relation.industryid', $cid)
+						  //->group_by('products_main.id')
+		                  ->get('products_main')
+		                  ->result_array();
+
+		foreach ($query as $key => $value) {
+			
+		$query[$key]['industries'] = $this->db->select('*')
+							    ->limit(10)
+							    ->join('products_industry', 'products_industry.id = products_category_relation.industryid')
+							    ->where('products_category_relation.productsid', $value['id'])
+							    //->Offset($start)
+							    //->group_by('products_main.postid')
+			                  ->get('products_category_relation')
+			                  ->result_array();
+		}
+
+		return $query;
+	}
+	function products_view_technology($cid=NULL) 
+	{
+		$query = $this->db->select('*')
+						  ->order_by('updatetime', 'asc')
+						  ->limit(30)
+						  ->join('products_category_relation', 'products_category_relation.productsid = products_main.id', 'inner')
+						  ->where('products_category_relation.categoryid', $cid)
+						  //->group_by('products_main.id')
+		                  ->get('products_main')
+		                  ->result_array();
+
+		foreach ($query as $key => $value) {
+			
+		$query[$key]['technologies'] = $this->db->select('*')
+							    ->limit(10)
+							    ->join('products_technology', 'products_technology.id = products_category_relation.technologyid')
+							    ->where('products_category_relation.productsid', $value['id'])
+							    //->Offset($start)
+							    //->group_by('products_main.postid')
+			                  ->get('products_category_relation')
+			                  ->result_array();
+		}
+
+		return $query;
+	}
 
 
 
