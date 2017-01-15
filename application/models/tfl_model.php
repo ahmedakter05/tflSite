@@ -148,7 +148,7 @@ class Tfl_model extends CI_Model
 	function products_view_single($pid=NULL)
 	{	
 		//$query['product'] = $this->db->select('blog_post_category.*, blog_category.categoryname, blog_post.*, users.id as userid, users.username, users.first_name, users.last_name, users.email')
-		$query['product'] = $this->db->select('*')
+		$query['product'] = $this->db->select('products_main.*, products_category.id as categoryid, products_category.categoryname')
 						  ->order_by('updatetime', 'desc')
 						  ->where('products_main.id', $pid)
 						  ->limit(1)
@@ -178,6 +178,40 @@ class Tfl_model extends CI_Model
 
 		//var_dump($query);*/
 												
+		return $query;
+	}
+
+	function get_category_intro($cid=NULL)
+	{
+		$query = $this->db->select('*')
+						  ->where('products_category.id', $cid)
+						  ->limit(1)
+						  ->get('products_category')
+						  ->row_array();
+
+						  
+		return $query;
+	}
+	function get_industry_intro($cid=NULL)
+	{
+		$query = $this->db->select('*')
+						  ->where('products_industry.id', $cid)
+						  ->limit(1)
+						  ->get('products_industry')
+						  ->row_array();
+
+						  
+		return $query;
+	}
+	function get_technology_intro($cid=NULL)
+	{
+		$query = $this->db->select('*')
+						  ->where('products_technology.id', $cid)
+						  ->limit(1)
+						  ->get('products_technology')
+						  ->row_array();
+
+						  
 		return $query;
 	}
 

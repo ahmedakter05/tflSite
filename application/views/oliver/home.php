@@ -4,10 +4,10 @@
 		<ul>
 			<?php foreach ($slider as $print): ?>
 				<li data-transition="random" data-slotamount="7" data-masterspeed="1000">
-					<img src="<?php echo $print->imagelink_lg; ?>" alt="slide" data-fullwidthcentering="true">
+					<img src="<?php echo base_url() . $print->imagelink_lg; ?>" alt="slide" data-fullwidthcentering="true">
 					<?php if(!empty($print->imagelink_sm_1)){?>
 						<div class="tp-caption large_black sfr" data-x="450" data-y="0" data-speed="1500" data-start="600" data-easing="easeInOutBack">
-							<img src="<?php echo $print->imagelink_sm_1; ?>" alt="" >
+							<img src="<?php echo base_url() . $print->imagelink_sm_1; ?>" alt="" >
 						</div>
 					<?php };?>
 					<div class="tp-caption large_black sfr carousel-caption-inner" data-x="30" data-y="80" data-speed="1100" data-start="1100" data-easing="easeInOutBack">

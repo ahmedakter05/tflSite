@@ -2960,6 +2960,11 @@ cite span {
 	color:#2294ed;
 }
 
+.category .active li:before {
+	color:#2294ed;
+}
+
+
 .category li a {
 	color:#747474;
 	font-size:13px;

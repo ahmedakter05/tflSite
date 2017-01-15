@@ -26,9 +26,14 @@ class Products extends My_Controller {
 	{
 		$page = 'Products';
 		$this->set_activepage($page);
-		$this->data['side_menu_name'] = "Category";
+		$this->data['cid'] = 0;
+		$this->data['parent'] = "Products";
 
 		$this->data['products'] = $this->tfl_model->products_view_all();
+		$this->data['category_intro']['categoryid'] = "0";
+		$this->data['category_intro']['categoryname'] = "All Products"; 
+		$this->data['category_intro']['imageurl1'] = "assets/tfl1/images/slider/objectiflune.jpg";
+		$this->data['category_intro']['categoryinfo'] = "";
 		//$this->data['clienticon'] = $this->tfl_model->frontpage_client_icon();
 		//var_dump($this->data);
 		$this->data['message'] = $this->session->flashdata('message');
@@ -38,11 +43,13 @@ class Products extends My_Controller {
 	{
 		$page = 'Products';
 		$this->set_activepage($page);
-		$this->data['side_menu_name'] = "Category";
-		
+		$this->data['cid'] = $cid;
+		$this->data['parent'] = "Category";
+
+		$this->data['category_intro'] = $this->tfl_model->get_category_intro($cid);
 		$this->data['products'] = $this->tfl_model->products_view_category($cid);
 		//$this->data['clienticon'] = $this->tfl_model->frontpage_client_icon();
-		//var_dump($this->data);
+		//var_dump($this->data['category_intro']);
 		$this->data['message'] = $this->session->flashdata('message');
 		$this->load->view($this->template_dir.'products_main.php', $this->data);
 	}
@@ -50,8 +57,10 @@ class Products extends My_Controller {
 	{
 		$page = 'Products';
 		$this->set_activepage($page);
-		$this->data['side_menu_name'] = "Industry";
+		$this->data['cid'] = $cid;
+		$this->data['parent'] = "Industry";
 		
+		$this->data['industry_intro'] = $this->tfl_model->get_industry_intro($cid);
 		$this->data['products'] = $this->tfl_model->products_view_industry($cid);
 		//$this->data['clienticon'] = $this->tfl_model->frontpage_client_icon();
 		//var_dump($this->data);
@@ -62,11 +71,13 @@ class Products extends My_Controller {
 	{
 		$page = 'Products';
 		$this->set_activepage($page);
-		$this->data['side_menu_name'] = "Technology";
+		$this->data['cid'] = $cid;
+		$this->data['parent'] = "Technology";
 		
+		$this->data['technology_intro'] = $this->tfl_model->get_technology_intro($cid);
 		$this->data['products'] = $this->tfl_model->products_view_technology($cid);
 		//$this->data['clienticon'] = $this->tfl_model->frontpage_client_icon();
-		//print_r($this->data['products']);
+		//print_r($this->data['technology_intro']);
 		$this->data['message'] = $this->session->flashdata('message');
 		$this->load->view($this->template_dir.'products_main_technology.php', $this->data);
 	}

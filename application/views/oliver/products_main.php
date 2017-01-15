@@ -34,10 +34,11 @@
             <div class="side-widget">
                 <h5><span>Categories</span></h5>
                 <ul class="category">
-                    <?php foreach ($products_category as $print): ?>
-                        <li><a href="<?php echo base_url() . 'products/category/' . $print['id']; ?>"><?php echo $print['categoryname']; ?></a></li>
-                    <?php endforeach; ?>
-
+                        <?php foreach ($products_category as $print): ?>
+                            <div class='<?php if($cid==$print["id"]){ echo "active";} ?>'>
+                                <li><a href="<?php echo base_url() . 'products/category/' . $print['id']; ?>"><?php echo $print['categoryname']; ?></a></li>
+                            </div>
+                        <?php endforeach; ?>
                 </ul>
             </div>
             <div class="clear"></div>
@@ -123,6 +124,32 @@
             </div>
         </div>
         <div class="col-md-8">
+            <article class="post col-md-12">
+                <div class="post-thumb">
+                    <div id="post-slider" class="flexslider">
+                        <ul class="slides">
+                            <li><img src="<?php echo base_url() . $category_intro['imageurl1']; ?>" alt=""/></li>
+                        </ul>
+                    </div> 
+                    <div class="shadow-left-big"></div>
+                </div>
+
+                <div class="post-info">
+                    <h3><a href=""><?php echo $category_intro['categoryname']; ?></a></h3>
+                    <p><?php echo $category_intro['categoryinfo']; ?></p>
+                </div>
+
+                <div class="post-meta">
+                    <div class="meta-right">
+                    <div class="meta-info">
+                        <span><b>Parent: <a href="#"><?php echo $parent; ?></a></b></span>
+                    </div>
+                    <div class="post-more">
+                        
+                    </div>
+                    </div>
+                </div>
+            </article>
             <div id="portfolio">
                 <!--
                 <div class="col-md-12 no-padding">
@@ -134,8 +161,8 @@
                         <li><a href="#filter" data-option-value=".design"><span><i class="fa fa-pencil-square-o"></i></span>Design</a></li>
                         <li><a href="#filter" data-option-value=".videos"><span><i class="fa fa-video-camera"></i></span>Video</a></li>
                     </ul> -->
-                    <!-- End Filter -->
-                </div>
+                    <!-- End Filter 
+                </div>-->
                 <div class="portfolio-inner nport pwside">
                     <div id="folio" class="isotope col-md-12 no-padding">
                         <?php foreach ($products as $print): ?>
@@ -147,13 +174,13 @@
                                         <div class="shadow-left"></div>
                                             <div class="zoom">
                                                 <div class="zoom-info">
-                                                    <a class="lightbox-popup" href="<?php echo $print['imageurl1']; ?>">View Larger</a>
-                                                    <a href="./portfolio_single1.html">Read More</a>
+                                                    <br></br><br></br>
+                                                    <?php echo anchor('products/details/'.$print['id'], 'View More'.' '); ?>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <h4><?php echo anchor('products/details/'.$print['id'], $print['name'].' '); ?> <span><?php foreach ($print['categories'] as $category){ echo anchor('products/category/'.$category['categoryid'], $category['categoryname'].' '); }; ?></span></h4>
+                                <h4><?php echo anchor('products/details/'.$print['id'], $print['name'].' '); ?> <!--<span><?php foreach ($print['categories'] as $category){ echo anchor('products/category/'.$category['categoryid'], $category['categoryname'].' '); }; ?></span>--></h4>
                             </div>
                         </div>
                         <?php endforeach; ?>
