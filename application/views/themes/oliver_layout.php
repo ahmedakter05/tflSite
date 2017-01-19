@@ -10,7 +10,7 @@
 	<meta name="description" content="Multipress - Responsive Multipurpose HTML5 Template">
 	<meta name="author" content="">
 
-	<title>Oliver - Responsive HTML5 Multipurpose theme</title>
+	<title>TechFocus Ltd. - Focusing on Technology</title>
 
 	<!-- Mobile Meta -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -60,12 +60,8 @@
 				Welcome Guest! <a href="#">Login</a>
 			</div>
 
-			<a href="#">
-				<div class="top-language">Mobile: +8801712203145</div>
-			</a>
-
-			<a href="#">
-				<div class="top-cart">Email: sales@techfocusltd.com, </n> hr@techfocusltd.com</div>
+			<a href=to:sales@techfocusltd.com>
+				<div class="top-cart">E: sales@techfocusltd.com, </n> M: +8801712203145</div>
 			</a>
 		</div>
 	</div>
@@ -153,13 +149,8 @@
                        </ul>
                   </li>
                   
-                  <li class="<?php echo (isset($activepage) ? ($activepage=='Services' ? 'active' : '') : '');?> has-sub">
+                  <li class="<?php echo (isset($activepage) ? ($activepage=='Contact Us' ? 'active' : '') : '');?>">
                      <a href='#'><span>Contact</span></a>
-                     <ul>
-                        <li><a href="./contact.html">Contact 1</a></li>
-                        <li><a href="./contact_1.html">Contact 2</a></li>
-                        <li><a href="./contact_2.html">Contact 3</a></li>
-                     </ul>
                   </li>
                </ul>
             </nav>

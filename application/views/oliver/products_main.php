@@ -151,6 +151,19 @@
                 </div>
             </article>
             <div id="portfolio">
+                <?php if(!empty($message)){?>
+                <article class="post col-md-12">
+                    <div class="post-thumb">
+                        <div class="error-wrap">
+                            <h4><span>*</span>Ooops!!!</h4>
+                            <div class="space10"></div>
+                            <p><?php echo  $message; ?></p>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+                <?php } ?>
+
                 <!--
                 <div class="col-md-12 no-padding">
                     <!-- Start Filter --/>

@@ -122,6 +122,18 @@ class Tfl_model extends CI_Model
 						  
 		return $query;
 	}
+	function get_products_sub_category($cid=NULL)
+	{
+		$query = $this->db->select('*')
+						  ->order_by('subname', 'asc')
+						  //->limit(10)
+						  ->where('products_category_sub.parentid', $cid)
+						  ->get('products_category_sub')
+						  ->result_array();
+
+						  
+		return $query;
+	}
 	function get_products_industry()
 	{
 		$query = $this->db->select('*')
@@ -229,13 +241,13 @@ class Tfl_model extends CI_Model
 		foreach ($query as $key => $value) {
 			
 		$query[$key]['categories'] = $this->db->select('*')
-							    ->limit(10)
+							    ->limit(1)
 							    ->join('products_category', 'products_category.id = products_category_relation.categoryid')
 							    ->where('products_category_relation.productsid', $value['id'])
 							    //->Offset($start)
 							    //->group_by('products_main.postid')
 			                  ->get('products_category_relation')
-			                  ->result_array();
+			                  ->row_array();
 		}
 
 		return $query;
@@ -291,9 +303,31 @@ class Tfl_model extends CI_Model
 		return $query;
 	}
 
+	function products_cat_check($key=NULL, $id=NULL )
+	{
+		$query = $this->db->select('*')
+						  //->limit(10)
+						  ->where('id', $id)
+						  ->get('products_'.$key)
+						  ->num_rows() > '0';
 
+		//if ($query > "0") { return TRUE; } else {return FALSE; }
+		return $query;				  
+	}
 
+	function custom_cat_view()
+	{
+		{
+		$query = $this->db->select('*')
+						  ->order_by('name', 'asc')
+						  //->limit(10)
+						  ->get('category')
+						  ->result_array();
 
+						  
+		return $query;
+	}		  
+	}
 
 
 

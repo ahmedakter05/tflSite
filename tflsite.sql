@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 14, 2017 at 12:32 PM
+-- Generation Time: Jan 19, 2017 at 01:20 PM
 -- Server version: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -246,30 +246,31 @@ INSERT INTO `actor` (`actor_id`, `fullname`, `last_update`) VALUES
 
 CREATE TABLE `category` (
   `category_id` tinyint(3) UNSIGNED NOT NULL,
-  `name` varchar(25) NOT NULL
+  `name` varchar(25) NOT NULL,
+  `parentid` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `category`
 --
 
-INSERT INTO `category` (`category_id`, `name`) VALUES
-(1, 'Action'),
-(2, 'Animation'),
-(3, 'Children'),
-(4, 'Classics'),
-(5, 'Comedy'),
-(6, 'Documentary'),
-(7, 'Drama'),
-(8, 'Family'),
-(9, 'Foreign'),
-(10, 'Games'),
-(11, 'Horror'),
-(12, 'Music'),
-(13, 'New'),
-(14, 'Sci-Fi'),
-(15, 'Sports'),
-(16, 'Travel');
+INSERT INTO `category` (`category_id`, `name`, `parentid`) VALUES
+(1, 'Action', 0),
+(2, 'Animation', 1),
+(3, 'Children', 1),
+(4, 'Classics', 1),
+(5, 'Comedy', 0),
+(6, 'Documentary', 2),
+(7, 'Drama', 2),
+(8, 'Family', 0),
+(9, 'Foreign', 4),
+(10, 'Games', 3),
+(11, 'Horror', 4),
+(12, 'Music', 3),
+(13, 'New', 4),
+(14, 'Sci-Fi', 2),
+(15, 'Sports', 0),
+(16, 'Travel', 5);
 
 -- --------------------------------------------------------
 
@@ -9082,10 +9083,10 @@ CREATE TABLE `frontpage_slider` (
 --
 
 INSERT INTO `frontpage_slider` (`id`, `imagelink_lg`, `imagelink_sm_1`, `imagelink_sm_2`, `title`, `details`, `button_text`, `button_href`, `updatedate`) VALUES
-(1, './assets/tfl1/images/slider/flex-bg-01.jpg', '', './assets/tfl1/images/slider/s1.jpg', 'Awesome Theme <span>With a lot +</span>', 'Lorem ipsum dolor slo onsec designs <br>tueraliquet Morbi nec In Curabitur nel. Morbi <br>nec In Curabitur nel dolor slo onsec designs <br>dolor slo onsec designs', 'Purchase Now!', '#', '2017-01-12 04:55:38'),
-(2, './assets/tfl1/images/slider/flex-bg-02.jpg', '', './assets/tfl1/images/slider/s1.jpg', 'Awesome Theme <span>With a lot +</span>', 'Lorem ipsum dolor slo onsec designs <br>tueraliquet Morbi nec In Curabitur nel. Morbi <br>nec In Curabitur nel dolor slo onsec designs <br>dolor slo onsec designs', 'Purchase Now!', '#', '2017-01-12 05:10:46'),
-(4, './assets/tfl1/images/slider/objectiflune.jpg', '', './assets/tfl1/images/slider/s1.jpg', '', '', '', '', '2017-01-12 10:00:28'),
-(7, './assets/tfl1/images/slider/acronis.png', '', './assets/tfl1/images/slider/s1.jpg', '', '', '', '', '2017-01-12 10:17:46');
+(1, 'assets/tfl1/images/slider/flex-bg-01.jpg', '', 'assets/tfl1/images/slider/s1.jpg', 'Awesome Theme <span>With a lot +</span>', 'Lorem ipsum dolor slo onsec designs <br>tueraliquet Morbi nec In Curabitur nel. Morbi <br>nec In Curabitur nel dolor slo onsec designs <br>dolor slo onsec designs', 'Purchase Now!', '#', '2017-01-12 04:55:38'),
+(2, 'assets/tfl1/images/slider/flex-bg-02.jpg', '', 'assets/tfl1/images/slider/s1.jpg', 'Awesome Theme <span>With a lot +</span>', 'Lorem ipsum dolor slo onsec designs <br>tueraliquet Morbi nec In Curabitur nel. Morbi <br>nec In Curabitur nel dolor slo onsec designs <br>dolor slo onsec designs', 'Purchase Now!', '#', '2017-01-12 05:10:46'),
+(4, 'assets/tfl1/images/slider/objectiflune.jpg', '', 'assets/tfl1/images/slider/s1.jpg', '', '', '', '', '2017-01-12 10:00:28'),
+(7, 'assets/tfl1/images/slider/acronis.png', '', 'assets/tfl1/images/slider/s1.jpg', '', '', '', '', '2017-01-12 10:17:46');
 
 -- --------------------------------------------------------
 
@@ -13045,22 +13046,26 @@ INSERT INTO `products` (`productCode`, `productName`, `productLine`, `productSca
 CREATE TABLE `products_category` (
   `id` int(11) NOT NULL,
   `categoryname` varchar(128) NOT NULL,
-  `parentid` int(11) NOT NULL
+  `parentid` int(11) NOT NULL,
+  `categoryinfo` text NOT NULL,
+  `imageurl1` varchar(128) NOT NULL,
+  `imageurl2` varchar(128) NOT NULL,
+  `imageurl3` varchar(128) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `products_category`
 --
 
-INSERT INTO `products_category` (`id`, `categoryname`, `parentid`) VALUES
-(1, 'Database Solution', 1),
-(2, 'Server Solution', 1),
-(3, 'Print Service', 1),
-(4, 'OS Solution', 1),
-(5, 'Cloud Solution', 1),
-(6, 'Virtualization', 1),
-(7, 'Lab Solution', 1),
-(8, 'Application Performance', 1);
+INSERT INTO `products_category` (`id`, `categoryname`, `parentid`, `categoryinfo`, `imageurl1`, `imageurl2`, `imageurl3`) VALUES
+(1, 'Database Solution', 1, 'Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores uni nemis Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores uni nemis . Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores', 'assets/tfl1/images/slider/flex-bg-01.jpg', '0', '0'),
+(2, 'Server Solution', 1, 'Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores uni nemis Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores uni nemis . Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores', 'assets/tfl1/images/slider/flex-bg-01.jpg', '0', '0'),
+(3, 'Print Service', 1, 'Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores uni nemis Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores uni nemis . Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores', 'assets/tfl1/images/slider/flex-bg-04.jpg', '0', '0'),
+(4, 'OS Solution', 1, 'Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores uni nemis Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores uni nemis . Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores', 'assets/tfl1/images/slider/flex-bg-01.jpg', '0', '0'),
+(5, 'Cloud Solution', 1, 'Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores uni nemis Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores uni nemis . Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores', 'assets/tfl1/images/slider/flex-bg-03.jpg', '0', '0'),
+(6, 'Virtualization', 1, 'Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores uni nemis Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores uni nemis . Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores', 'assets/tfl1/images/slider/flex-bg-01.jpg', '0', '0'),
+(7, 'Lab Solution', 1, 'Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores uni nemis Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores uni nemis . Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores', 'assets/tfl1/images/slider/flex-bg-01.jpg', '0', '0'),
+(8, 'Application Performance', 1, 'Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores uni nemis Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores uni nemis . Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores', 'assets/tfl1/images/slider/flex-bg-01.jpg', '0', '0');
 
 -- --------------------------------------------------------
 
@@ -13072,6 +13077,7 @@ CREATE TABLE `products_category_relation` (
   `id` int(11) NOT NULL,
   `productsid` int(11) NOT NULL,
   `categoryid` int(11) NOT NULL,
+  `subcategory` int(11) NOT NULL,
   `industryid` int(11) NOT NULL,
   `technologyid` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -13080,10 +13086,43 @@ CREATE TABLE `products_category_relation` (
 -- Dumping data for table `products_category_relation`
 --
 
-INSERT INTO `products_category_relation` (`id`, `productsid`, `categoryid`, `industryid`, `technologyid`) VALUES
-(1, 1, 1, 1, 1),
-(2, 2, 4, 2, 3),
-(3, 3, 3, 3, 4);
+INSERT INTO `products_category_relation` (`id`, `productsid`, `categoryid`, `subcategory`, `industryid`, `technologyid`) VALUES
+(1, 1, 1, 1, 1, 1),
+(2, 2, 4, 2, 2, 3),
+(3, 3, 3, 3, 3, 4),
+(4, 4, 1, 2, 1, 1),
+(5, 5, 4, 2, 2, 3),
+(6, 6, 3, 3, 3, 4),
+(7, 7, 1, 2, 1, 1),
+(8, 8, 4, 1, 2, 3),
+(9, 9, 3, 2, 3, 4),
+(10, 10, 1, 3, 1, 1),
+(11, 11, 4, 4, 2, 3),
+(12, 12, 3, 5, 3, 4);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `products_category_sub`
+--
+
+CREATE TABLE `products_category_sub` (
+  `id` int(11) NOT NULL,
+  `subname` varchar(128) NOT NULL,
+  `subcatinfo` text NOT NULL,
+  `parentid` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `products_category_sub`
+--
+
+INSERT INTO `products_category_sub` (`id`, `subname`, `subcatinfo`, `parentid`) VALUES
+(1, 'Oracle', 'fdgdg', 1),
+(2, 'Microsoft', 'dfgfdgfs', 1),
+(3, 'Microsoft', 'sdgsdgsdg', 2),
+(4, 'Novel Suse', 'dsfsg', 2),
+(5, 'Red Hat', 'dsfsg', 1);
 
 -- --------------------------------------------------------
 
@@ -13094,22 +13133,26 @@ INSERT INTO `products_category_relation` (`id`, `productsid`, `categoryid`, `ind
 CREATE TABLE `products_industry` (
   `id` int(11) NOT NULL,
   `industryname` varchar(128) NOT NULL,
-  `parentid` int(11) NOT NULL
+  `parentid` int(11) NOT NULL,
+  `industryinfo` text NOT NULL,
+  `imageurl1` varchar(128) NOT NULL,
+  `imageurl2` varchar(128) NOT NULL,
+  `imageurl3` varchar(128) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `products_industry`
 --
 
-INSERT INTO `products_industry` (`id`, `industryname`, `parentid`) VALUES
-(1, 'Bank', 1),
-(2, 'Telco', 1),
-(3, 'Govt', 1),
-(4, 'SMB', 1),
-(5, 'Cloud Solution', 1),
-(6, 'Virtualization', 1),
-(7, 'Lab Solution', 1),
-(8, 'Application Performance', 1);
+INSERT INTO `products_industry` (`id`, `industryname`, `parentid`, `industryinfo`, `imageurl1`, `imageurl2`, `imageurl3`) VALUES
+(1, 'Bank', 1, 'Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores uni nemis Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores uni nemis . Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores', 'assets/tfl1/images/slider/objectiflune.jpg', '0', '0'),
+(2, 'Telco', 1, 'Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores uni nemis Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores uni nemis . Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores', 'assets/tfl1/images/slider/objectiflune.jpg', '0', '0'),
+(3, 'Govt', 1, 'Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores uni nemis Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores uni nemis . Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores', 'assets/tfl1/images/slider/objectiflune.jpg', '0', '0'),
+(4, 'SMB', 1, 'Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores uni nemis Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores uni nemis . Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores', 'assets/tfl1/images/slider/acronis.png', '0', '0'),
+(5, 'Cloud Solution', 1, 'Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores uni nemis Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores uni nemis . Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores', 'assets/tfl1/images/slider/acronis.png', '0', '0'),
+(6, 'Virtualization', 1, 'Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores uni nemis Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores uni nemis . Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores', 'assets/tfl1/images/slider/acronis.png', '0', '0'),
+(7, 'Lab Solution', 1, 'Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores uni nemis Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores uni nemis . Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores', 'assets/tfl1/images/slider/flex-bg-01.jpg', '0', '0'),
+(8, 'Application Performance', 1, 'Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores uni nemis Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores uni nemis . Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores', 'assets/tfl1/images/slider/flex-bg-01.jpg', '0', '0');
 
 -- --------------------------------------------------------
 
@@ -13139,7 +13182,16 @@ CREATE TABLE `products_main` (
 INSERT INTO `products_main` (`id`, `name`, `details`, `ratings`, `imageurl1`, `imageurl2`, `imageurl3`, `imageurl4`, `code`, `tags`, `userid`, `updatetime`) VALUES
 (1, 'SQL Server', 'Best Database Server in the Industry', 4, 'assets/tfl1/images/products/team-member-1.png', 'assets/tfl1/images/products/team-member-2.png', 'assets/tfl1/images/products/team-member-3.png', 'assets/tfl1/images/products/team-member-4.png', '6tr5', 'Microsoft', 1, '2017-01-13 15:36:01'),
 (2, 'Oracle Server', 'Best Database Server in the World', 4, 'assets/tfl1/images/products/team-member-2.png', 'assets/tfl1/images/products/team-member-1.png', 'assets/tfl1/images/products/team-member-3.png', 'assets/tfl1/images/products/team-member-4.png', '6tr6', 'Oracle', 1, '2017-01-13 17:47:17'),
-(3, 'Windows Server 2016', 'Best Server in the World', 5, 'assets/tfl1/images/products/team-member-3.png', 'assets/tfl1/images/products/team-member-1.png', 'assets/tfl1/images/products/team-member-2.png', 'assets/tfl1/images/products/team-member-4.png', '6tr7', 'Microsoft', 1, '2017-01-13 17:49:57');
+(3, 'Windows Server 2016', 'Best Server in the World', 5, 'assets/tfl1/images/products/team-member-3.png', 'assets/tfl1/images/products/team-member-1.png', 'assets/tfl1/images/products/team-member-2.png', 'assets/tfl1/images/products/team-member-4.png', '6tr7', 'Microsoft', 1, '2017-01-13 17:49:57'),
+(4, 'PrintSoft', 'Best Database Server in the Industry', 4, 'assets/tfl1/images/products/team-member-1.png', 'assets/tfl1/images/products/team-member-2.png', 'assets/tfl1/images/products/team-member-3.png', 'assets/tfl1/images/products/team-member-4.png', '6tr9', 'Microsoft', 1, '2017-01-15 09:28:31'),
+(5, 'ObjectifLune', 'Best Database Server in the World', 4, 'assets/tfl1/images/products/team-member-2.png', 'assets/tfl1/images/products/team-member-1.png', 'assets/tfl1/images/products/team-member-3.png', 'assets/tfl1/images/products/team-member-4.png', '6tr6', 'Oracle', 1, '2017-01-15 09:28:31'),
+(6, 'Windows10', 'Best Server in the World', 5, 'assets/tfl1/images/products/team-member-3.png', 'assets/tfl1/images/products/team-member-1.png', 'assets/tfl1/images/products/team-member-2.png', 'assets/tfl1/images/products/team-member-4.png', '6tr7', 'Microsoft', 1, '2017-01-15 09:28:31'),
+(7, 'SQL Server', 'Best Database Server in the Industry', 4, 'assets/tfl1/images/products/team-member-1.png', 'assets/tfl1/images/products/team-member-2.png', 'assets/tfl1/images/products/team-member-3.png', 'assets/tfl1/images/products/team-member-4.png', '6tr5', 'Microsoft', 1, '2017-01-15 09:29:12'),
+(8, 'Oracle Server', 'Best Database Server in the World', 4, 'assets/tfl1/images/products/team-member-2.png', 'assets/tfl1/images/products/team-member-1.png', 'assets/tfl1/images/products/team-member-3.png', 'assets/tfl1/images/products/team-member-4.png', '6tr6', 'Oracle', 1, '2017-01-15 09:29:12'),
+(9, 'Windows Server 2016', 'Best Server in the World', 5, 'assets/tfl1/images/products/team-member-3.png', 'assets/tfl1/images/products/team-member-1.png', 'assets/tfl1/images/products/team-member-2.png', 'assets/tfl1/images/products/team-member-4.png', '6tr7', 'Microsoft', 1, '2017-01-15 09:29:12'),
+(10, 'PrintSoft', 'Best Database Server in the Industry', 4, 'assets/tfl1/images/products/team-member-1.png', 'assets/tfl1/images/products/team-member-2.png', 'assets/tfl1/images/products/team-member-3.png', 'assets/tfl1/images/products/team-member-4.png', '6tr9', 'Microsoft', 1, '2017-01-15 09:29:12'),
+(11, 'ObjectifLune', 'Best Database Server in the World', 4, 'assets/tfl1/images/products/team-member-2.png', 'assets/tfl1/images/products/team-member-1.png', 'assets/tfl1/images/products/team-member-3.png', 'assets/tfl1/images/products/team-member-4.png', '6tr6', 'Oracle', 1, '2017-01-15 09:29:12'),
+(12, 'Windows10', 'Best Server in the World', 5, 'assets/tfl1/images/products/team-member-3.png', 'assets/tfl1/images/products/team-member-1.png', 'assets/tfl1/images/products/team-member-2.png', 'assets/tfl1/images/products/team-member-4.png', '6tr7', 'Microsoft', 1, '2017-01-15 09:29:12');
 
 -- --------------------------------------------------------
 
@@ -13150,22 +13202,26 @@ INSERT INTO `products_main` (`id`, `name`, `details`, `ratings`, `imageurl1`, `i
 CREATE TABLE `products_technology` (
   `id` int(11) NOT NULL,
   `technologyname` varchar(128) NOT NULL,
-  `parentid` int(11) NOT NULL
+  `parentid` int(11) NOT NULL,
+  `technologyinfo` text NOT NULL,
+  `imageurl1` varchar(128) NOT NULL,
+  `imageurl2` varchar(128) NOT NULL,
+  `imageurl3` varchar(128) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `products_technology`
 --
 
-INSERT INTO `products_technology` (`id`, `technologyname`, `parentid`) VALUES
-(1, 'Microsoft', 1),
-(2, 'Red Hat', 1),
-(3, 'Oracle', 1),
-(4, 'Antivirus', 1),
-(5, 'Others', 1),
-(6, 'Virtualization', 1),
-(7, 'Lab Solution', 1),
-(8, 'Application Performance', 1);
+INSERT INTO `products_technology` (`id`, `technologyname`, `parentid`, `technologyinfo`, `imageurl1`, `imageurl2`, `imageurl3`) VALUES
+(1, 'Microsoft', 1, 'Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores uni nemis Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores uni nemis . Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores', 'assets/tfl1/images/slider/flex-bg-01.jpg', '', ''),
+(2, 'Red Hat', 1, 'Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores uni nemis Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores uni nemis . Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores', 'assets/tfl1/images/slider/flex-bg-01.jpg', '', ''),
+(3, 'Oracle', 1, 'Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores uni nemis Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores uni nemis . Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores', 'assets/tfl1/images/slider/flex-bg-02.jpg', '', ''),
+(4, 'Antivirus', 1, 'Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores uni nemis Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores uni nemis . Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores', 'assets/tfl1/images/slider/flex-bg-02.jpg', '', ''),
+(5, 'Others', 1, 'Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores uni nemis Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores uni nemis . Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores', 'assets/tfl1/images/slider/objectiflune.jpg', '', ''),
+(6, 'Virtualization', 1, 'Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores uni nemis Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores uni nemis . Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores', 'assets/tfl1/images/slider/objectiflune.jpg', '', ''),
+(7, 'Lab Solution', 1, 'Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores uni nemis Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores uni nemis . Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores', 'assets/tfl1/images/slider/acronis.png', '', ''),
+(8, 'Application Performance', 1, 'Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores uni nemis Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores uni nemis . Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores', 'assets/tfl1/images/slider/acronis.png', '', '');
 
 -- --------------------------------------------------------
 
@@ -13356,6 +13412,12 @@ ALTER TABLE `products_category_relation`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `products_category_sub`
+--
+ALTER TABLE `products_category_sub`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `products_industry`
 --
 ALTER TABLE `products_industry`
@@ -13476,7 +13538,12 @@ ALTER TABLE `products_category`
 -- AUTO_INCREMENT for table `products_category_relation`
 --
 ALTER TABLE `products_category_relation`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+--
+-- AUTO_INCREMENT for table `products_category_sub`
+--
+ALTER TABLE `products_category_sub`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `products_industry`
 --
@@ -13486,7 +13553,7 @@ ALTER TABLE `products_industry`
 -- AUTO_INCREMENT for table `products_main`
 --
 ALTER TABLE `products_main`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT for table `products_technology`
 --
