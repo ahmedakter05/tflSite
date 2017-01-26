@@ -111,6 +111,47 @@ class Tfl_model extends CI_Model
 		return $query;
 	}
 
+	function products_view_all_new($limit=NULL, $start=NULL)
+	{
+		$query = $this->db->select('*')
+						  ->order_by('updatetime', 'asc')
+						  ->limit(30)
+		                  ->get('products_main')
+		                  ->result_array();
+
+		foreach ($query as $key => $value) {
+			
+		$query[$key]['categories'] = $this->db->select('*')
+							    ->limit(10)
+							    ->where('cid', $value['id'])
+				                ->get('categories')
+				                ->row_array();
+		}
+
+		return $query;
+	}
+
+	function products_view_featured($limit=NULL, $start=NULL)
+	{
+		$query = $this->db->select('products_main.id,products_main.name, products_main.details, products_main.imageurl1, products_main.tags')
+						  ->order_by('updatetime', 'asc')
+						  ->where('featured', '1')
+						  ->limit(5)
+		                  ->get('products_main')
+		                  ->result_array();
+
+		foreach ($query as $key => $value) {
+			
+		$query[$key]['categories'] = $this->db->select('cid, cname')
+							    ->limit(10)
+							    ->where('cid', $value['id'])
+				                ->get('categories')
+				                ->row_array();
+		}
+
+		return $query;
+	}
+
 	function get_products_category()
 	{
 		$query = $this->db->select('*')
@@ -160,13 +201,11 @@ class Tfl_model extends CI_Model
 	function products_view_single($pid=NULL)
 	{	
 		//$query['product'] = $this->db->select('blog_post_category.*, blog_category.categoryname, blog_post.*, users.id as userid, users.username, users.first_name, users.last_name, users.email')
-		$query['product'] = $this->db->select('products_main.*, products_category.id as categoryid, products_category.categoryname')
+		$query['product'] = $this->db->select('products_main.*, categories.cid as categoryid, categories.cname as categoryname')
 						  ->order_by('updatetime', 'desc')
 						  ->where('products_main.id', $pid)
 						  ->limit(1)
-						  //->join('users', 'blog_post.userid = users.id', 'inner')
-						  ->join('products_category_relation', 'products_category_relation.productsid = products_main.id', 'left')
-						  ->join('products_category', 'products_category.id = products_category_relation.categoryid', 'left')
+						  ->join('categories', 'categories.cid =  products_main.categoryid', 'left')
 						  //->group_by('blog_post.postid')
 						  ->get('products_main')
 						  ->row_array();
@@ -196,10 +235,17 @@ class Tfl_model extends CI_Model
 	function get_category_intro($cid=NULL)
 	{
 		$query = $this->db->select('*')
-						  ->where('products_category.id', $cid)
+						  ->where('categories.cid', $cid)
 						  ->limit(1)
-						  ->get('products_category')
+						  ->get('categories')
 						  ->row_array();
+
+
+		$query['parent'] = $this->db->select('cname as name, cid as id')
+							  ->where('categories.cid', $query['parentid'])
+							  ->limit(1)
+							  ->get('categories')
+							  ->row_array();
 
 						  
 		return $query;
@@ -315,28 +361,79 @@ class Tfl_model extends CI_Model
 		return $query;				  
 	}
 
-	function custom_cat_view()
+	function products_cat_check_new($cid=NULL)
 	{
-		{
 		$query = $this->db->select('*')
-						  ->order_by('name', 'asc')
 						  //->limit(10)
-						  ->get('category')
-						  ->result_array();
+						  ->where('cid', $cid)
+						  ->get('categories')
+						  ->num_rows() > '0';
 
-						  
-		return $query;
-	}		  
+		//if ($query > "0") { return TRUE; } else {return FALSE; }
+		return $query;				  
 	}
 
+	function custom_cat_view($catid)
+	{
+		
+		
+		$query = $this->db->select('*')
+						  //->limit(10)
+						  ->where('parentid', $catid)
+						  ->get('category');
 
+		
+		return $query->row();	
 
+		
+	}
 
+	public function getCategoryTreeForParentId($parent_id = 0) { ////// Most Charming main 
+	  $categories = array();
+	  $this->db->from('categories');
+	  $this->db->where('parentid', $parent_id);
+	  $result = $this->db->get()->result();
+	  foreach ($result as $mainCategory) {
+	    $category = array();
+	    $category['id'] = $mainCategory->cid;
+	    $category['name'] = $mainCategory->cname;
+	    $category['parent_id'] = $mainCategory->parentid;
+	    $category['sub_categories'] = $this->getCategoryTreeForParentId($category['id']);
+	    $categories[$mainCategory->cid] = $category;
+	  }
+	  /*
+	  foreach ($categories as $value) {
+	  	$this->db->select('cname');
+	  	$this->db->from('categories');
+		$this->db->where('parentid', $value['parent_id']);
+		$categories['parent_name'] = $this->db->get()->row_array();
+	  }*/
+	  return $categories;
+	}
 
+		/*		"SELECT * FROM products WHERE category_id = '$your_category_id'
+			OR category_id IN (
+			  SELECT parent_id FROM categories 
+			    WHERE id = '$your_category_id'
+			)"
+		*/
 
+	function products_view_category_new($cid=NULL) 
+	{
+		$query = $this->db->select('products_main.*, categories.cname')
+						  ->order_by('updatetime', 'asc')
+						  ->limit(30)
+						  ->join('categories', 'categories.cid = products_main.categoryid', 'inner')
+						  ->where('categoryid', $cid)
+						  ->or_where('categories.parentid', $cid)
+						  //->group_by('products_main.id')
+		                  ->get('products_main')
+		                  ->result_array();
 
+			
 
-
+		return $query;
+	}
 
 
 

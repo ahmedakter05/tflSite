@@ -29,7 +29,7 @@
 
 		<div class="col-md-6">
 			
-						<div id="thumb-slider" class="flexslider">
+						<div id="thumb-slider" class="flexslider singimg1">
 							<ul class="slides">
 								<li data-thumb="<?php echo base_url() . $singleproduct['product']['imageurl1']; ?>"><img src="<?php echo base_url() . $singleproduct['product']['imageurl1']; ?>" alt=""/></li>
 								<li data-thumb="<?php echo base_url() . $singleproduct['product']['imageurl2']; ?>"><img src="<?php echo base_url() . $singleproduct['product']['imageurl2']; ?>" alt=""/></li>
@@ -44,21 +44,27 @@
 		<div class="col-md-6">
 	
 			<div class="product_details">
-
-
-
-
 				<div class="product_title"><?php echo $singleproduct['product']['name']; ?></div>
 				<div class="product_price"><h4><?php echo anchor('products/category/'.$singleproduct['product']['categoryid'], $singleproduct['product']['categoryname'].' '); ?></h4></div>
 				<div class="line-sep"></div>
 
 				<p><?php echo $singleproduct['product']['details']; ?></p>
-					
+
+				<p Style="margin-bottom: 0px;"><strong> Key Features: </strong></p>
+					<?php if (!empty($singleproduct['product']['keyfeatures'])) { $features = explode("/", $singleproduct['product']['keyfeatures']);?>
+					<ul class="product-meta" Style="margin-top: 0px;">
+					<?php foreach($features as $value): ?>
+						<li><?php echo $value; ?></li>
+					<?php endforeach; ?>
+					</ul>
+					<?php } ?>
 
 				<ul class="product-meta">
 					<li><b>SKU: </b><?php echo $singleproduct['product']['code']; ?></li>
 					<li><b>Tags: </b><a href="<?php echo base_url() . 'products/tag/' . $singleproduct['product']['tags']; ?>"><?php echo $singleproduct['product']['tags']; ?></a>.</li>
 				</ul>
+
+				
 
 			</div>
 
@@ -77,25 +83,18 @@
 	            <div class="col-md-12 no-padding">
 	                <ul id="myTab" class="nav nav-tabs">
 	                    <li class="active"><a href="#tab1" data-toggle="tab">Description</a></li>
-	                    <li class=""><a href="#tab2" data-toggle="tab">Resoults</a></li>
+	                    <li class=""><a href="#tab2" data-toggle="tab">Specification</a></li>
 	                    <li class=""><a href="#tab3" data-toggle="tab">Reviews</a></li>
 	                </ul>
 	                <div id="myTabContent" class="tab-content">
-	                    <div class="tab-pane fade active in clearfix media " id="tab1">
-					<h5>Product Description</h5>
-	                        <p>Lorem ipsum dolor slo onsec designs tueraliquet Morbi nec In Curabitur lreaoreet nislsus lorem in pellente e vidicus pannel impirus sadintas. Lorem ipsum dolor slo onsec  designs tueraliquet Morbi nec In Curabitur lreaoreet</p>
-	                        <p>Lorem ipsum dolor slo onsec designs tueraliquet Morbi nec In Curabitur lreaoreet nislsus lorem in pellente e vidicus pannel impirus sadintas. Lorem ipsum dolor slo onsec  designs tueraliquet Morbi nec In Curabitur lreaoreet</p>
-
+	                    <div class="tab-pane fade active in clearfix media .sindesprod" id="tab1">
+						    <?php echo $singleproduct['product']['description']; ?>
 	                    </div>
-	                    <div class="tab-pane fade clearfix media " id="tab2">
-					<h5>Product Description</h5>
-	                        <p>Lorem ipsum dolor slo onsec designs tueraliquet Morbi nec In Curabitur lreaoreet nislsus lorem in pellente e vidicus pannel impirus sadintas. Lorem ipsum dolor slo onsec  designs tueraliquet Morbi nec In Curabitur lreaoreet</p>
-	                        <p>Lorem ipsum dolor slo onsec designs tueraliquet Morbi nec In Curabitur lreaoreet nislsus lorem in pellente e vidicus pannel impirus sadintas. Lorem ipsum dolor slo onsec  designs tueraliquet Morbi nec In Curabitur lreaoreet</p>
+	                    <div class="tab-pane fade clearfix media .sindesprod" id="tab2">
+							<?php echo $singleproduct['product']['specification']; ?>
 	                    </div>
-	                    <div class="tab-pane fade clearfix media " id="tab3">
-					<h5>Product Reviews</h5>
-	                        <p>Lorem ipsum dolor slo onsec designs tueraliquet Morbi nec In Curabitur lreaoreet nislsus lorem in pellente e vidicus pannel impirus sadintas. Lorem ipsum dolor slo onsec  designs tueraliquet Morbi nec In Curabitur lreaoreet</p>
-	                        <p>Lorem ipsum dolor slo onsec designs tueraliquet Morbi nec In Curabitur lreaoreet nislsus lorem in pellente e vidicus pannel impirus sadintas. Lorem ipsum dolor slo onsec  designs tueraliquet Morbi nec In Curabitur lreaoreet</p>
+	                    <div class="tab-pane fade clearfix media .sindesprod" id="tab3">
+							<?php echo $singleproduct['product']['review']; ?>
 	                    </div>
 	                </div>
 	            </div>

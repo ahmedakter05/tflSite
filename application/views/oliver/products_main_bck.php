@@ -1,15 +1,10 @@
-<?php //var_dump($new_category); ?>
+<?php //var_dump($products1); ?>
 <?php// var_dump($products['1']['categories']['subcategory'] ); ?>
 <link href="<?php echo base_url(); ?>assets/tfl1/js/rs-plugin/css/settings.css" rel="stylesheet" />
 <link href="<?php echo base_url(); ?>assets/tfl1/js/flexslider/flexslider.css" rel="stylesheet">
 <link rel="Stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/tfl1/css/jquery_ui.css" /> 
 <link rel="Stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/tfl1/css/superTabs.css" />
 <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/tfl1/css/isotope.css">
-
-<script src="<?php echo base_url(); ?>assets/foundation/js/jquery.min.js"></script>
-<!-- this will include every plugin and utility required by Foundation -->
-<script src="<?php echo base_url(); ?>assets/foundation/js/foundation.min.js"></script>
-
 <style> .zoom-info { width: 107px; height:68px}.zoom-info a {margin:2px 4px;}</style>
 
 <!-- Page-head -->
@@ -38,20 +33,14 @@
         <div class="col-md-4 sidebar">
             <div class="side-widget">
                 <h5><span><?php echo (!empty($category_intro)) ? anchor('products/test/'.$category_intro['parentid'], $category_intro['cname'] . ' - Up') : 'Top Category'; ?> </span></h5>
-                <ul class="category vertical menu" data-accordion-menu>                        
+                <ul class="category">
+                        
                         <?php if (!empty($new_category)) { ?>
-                            <?php foreach ($new_category as $print): ?>
-                                <div class='<?php if($cid==$print["id"]){ echo "/*active*/";} ?>'>
-                                    <li><a href="<?php echo base_url() . 'products/test/' . $print['id']; ?>"><?php echo $print['name']; ?></a></li>
-                                    <?php if (!empty($print['sub_categories'])){?>
-                                    <ul class="sub-category menu vertical nested">
-                                        <?php foreach ($print['sub_categories'] as $value): ?>
-                                        <li><a href="<?php echo base_url() . 'products/test/' . $value['id']; ?>"><?php echo $value['name']; ?></a></li>
-                                        <?php endforeach; ?>
-                                    </ul>
-                                    <?php } ?>
-                                </div>
-                            <?php endforeach; ?>
+                        <?php foreach ($new_category as $print): ?>
+                            <div class='<?php if($cid==$print["id"]){ echo "active";} ?>'>
+                                <li><a href="<?php echo base_url() . 'products/test/' . $print['id']; ?>"><?php echo $print['name']; ?></a></li>
+                            </div>
+                        <?php endforeach; ?>
                         <?php } else { ?>
                         <div class=''>
                                 <p>No Sub Category Founds</p>

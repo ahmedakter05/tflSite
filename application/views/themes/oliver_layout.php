@@ -1,3 +1,4 @@
+<?php //var_dump($products_category); ?>
 <!DOCTYPE html>
 <!--[if IE 8]>			<html class="ie ie8"> <![endif]-->
 <!--[if IE 9]>			<html class="ie ie9"> <![endif]-->
@@ -85,34 +86,34 @@
                      <a href='<?php echo base_url(); ?>'><span>Home</span></a>
                   </li>
                   <li class='<?php echo (isset($activepage) ? ($activepage=='Products' ? 'active' : '') : '');?> has-sub-full'>
-                     <a href='<?php echo base_url() . "products"; ?>'<span>Products</span></a>
+                     <a href='<?php echo base_url() . "products/index"; ?>'<span>Products</span></a>
                      <ul class="full-sub">
                         <li class="col-md-3">
                            <ul>
-                              <li class="sub-head">Category</li>
+                              <a href="<?php echo base_url() . 'products/category/1' ; ?>"><li class="sub-head">Category</li></a>
                               <?php $i=1; ?>
                               <?php foreach ($products_category as $print): ?>
-                              <li><a href="<?php echo base_url() . 'products/category/' . $print['id']; ?>"><?php echo $print['categoryname']; ?></a></li>
+                              <li><a href="<?php echo base_url() . 'products/category/' . $print['id']; ?>"><?php echo $print['name']; ?></a></li>
                               <?php if($i==6) break; $i++;?>
                               <?php endforeach; ?>
                            </ul>
                         </li>
                         <li class="col-md-3">
                            <ul>
-                              <li class="sub-head">Indutry</li>
+                              <a href="<?php echo base_url() . 'products/category/2' ; ?>"><li class="sub-head">Industry</li></a>
                               <?php $i=1; ?>
                               <?php foreach ($products_industry as $print): ?>
-                              <li><a href="<?php echo base_url() . 'products/industry/' . $print['id']; ?>"><?php echo $print['industryname']; ?></a></li>
+                              <li><a href="<?php echo base_url() . 'products/category/' . $print['id']; ?>"><?php echo $print['name']; ?></a></li>
                               <?php if($i==6) break; $i++;?>
                               <?php endforeach; ?>
                            </ul>
                         </li>
                         <li class="col-md-3">
                            <ul>
-                              <li class="sub-head">Technology</li>
+                              <a href="<?php echo base_url() . 'products/category/3' ; ?>"><li class="sub-head">Technology</li></a>
                               <?php $i=1; ?>
                               <?php foreach ($products_technology as $print): ?>
-                              <li><a href="<?php echo base_url() . 'products/technology/' . $print['id']; ?>"><?php echo $print['technologyname']; ?></a></li>
+                              <li><a href="<?php echo base_url() . 'products/category/' . $print['id']; ?>"><?php echo $print['name']; ?></a></li>
                               <?php if($i==6) break; $i++;?>
                               <?php endforeach; ?>
                            </ul>

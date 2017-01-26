@@ -5340,3 +5340,23 @@ img.mfp-img {
 	 margin: 0 0 10px 0 !important;
 
 }
+.panel {
+	display: none;
+    background-color: white;
+}
+
+.customnav1 {
+	float: left !important;
+}
+.customnav1 li {
+	padding: 5px !important;
+}
+.singimg1 .flex-viewport {
+    max-height: 320px !important;
+    
+}
+
+.cusact1 li {
+    color: blue !important;
+    
+}

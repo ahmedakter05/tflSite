@@ -227,7 +227,7 @@
 	</div>
 </div>
 <!-- Recent Projects - Carousel -->
-<div class="space40"></div>
+<div class="space70"></div>
 <!-- Hot Games -->
 <div class="container">
 	<div class="row">
