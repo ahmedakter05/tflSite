@@ -4,9 +4,11 @@
 class MY_Controller extends CI_Controller
 {	
 
-public $template_dir = 'oliver/';
-public $data = array();
-//public $data['bc']=array();
+	public $template_dir = 'oliver/';
+
+	public $data = array();
+
+	//public $data['bc']=array();
 
 	function __construct()
     {
@@ -35,6 +37,10 @@ public $data = array();
 		$this->output->unset_template('oliver');
 					
 	}
+	function set_panel($pname)
+	{
+		$this->template_dir = $pname . '/';	
+	}
 	function get_header_footer()
 	{
 		
@@ -52,7 +58,8 @@ public $data = array();
 		$this->data['products_category'] = $this->tfl_model->getCategoryTreeForParentId(1);
 		$this->data['products_industry'] = $this->tfl_model->getCategoryTreeForParentId(2);
 		$this->data['products_technology'] = $this->tfl_model->getCategoryTreeForParentId(3);	
-		$this->data['featured_products'] = $this->tfl_model->products_view_featured();				
+		$this->data['featured_products'] = $this->tfl_model->products_view_featured();	
+		$this->data['recent_products'] = $this->tfl_model->products_view_recent();			
 	}
 	
 	function set_activepage($page=NULL)

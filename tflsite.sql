@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 26, 2017 at 07:14 AM
+-- Generation Time: Jan 30, 2017 at 12:04 PM
 -- Server version: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -307,6 +307,32 @@ INSERT INTO `category` (`category_id`, `name`, `parentid`) VALUES
 (14, 'Sci-Fi', 1),
 (15, 'Sports', 0),
 (16, 'Travel', 5);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `contactpage_info`
+--
+
+CREATE TABLE `contactpage_info` (
+  `id` int(11) NOT NULL,
+  `name` varchar(128) NOT NULL,
+  `description` text CHARACTER SET utf8 NOT NULL,
+  `updatetime` timestamp NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `contactpage_info`
+--
+
+INSERT INTO `contactpage_info` (`id`, `name`, `description`, `updatetime`) VALUES
+(0, 'Address', 'Haque Chamber(11 floor - C&D) </br>89/2, West Panthapath,Dhaka', '2017-01-28 05:41:02'),
+(1, 'Phone', '+8801712203145', '2017-01-28 05:42:30'),
+(2, 'Email', 'sales@techfocusltd.com, hr@techfocusltd.com', '2017-01-28 05:42:53'),
+(3, 'Website', 'www.techfocusltd.com', '2017-01-28 05:43:12'),
+(4, 'Hi, Wellcome to TechFocus', 'Focusing on Technology', '2017-01-28 05:44:12'),
+(5, 'Our Location', '', '2017-01-29 11:11:04'),
+(6, '<!-- Details -->', '<!-- <div class="sep"></div> -->', '2017-01-29 11:29:24');
 
 -- --------------------------------------------------------
 
@@ -13297,9 +13323,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`) VALUES
-(1, '127.0.0.1', 'admin', '$2y$08$aqHPvyuNhIQ5eoOjn0xcuuPLh090d3z8kIyMjY1w7b1iLVP8udquG', '', 'admin@admin.com', '', NULL, NULL, NULL, 1268889823, 1483529054, 1, 'System', 'Admin', 'Support', '0'),
-(2, '::1', 'ahmedakter', '$2y$08$F1rgg1W2XBsW6KbbpIe8mOM4/tKiiTVL9iXclvAW7pLyRkwFlxuoS', NULL, 'ahmedakter@gmail.com', NULL, NULL, NULL, NULL, 1483528697, NULL, 1, 'Ahmed', 'Akter', 'AA', '56646654'),
-(3, '::1', 'test', '$2y$08$EJnAwBxfuzmsAR6aENV3IOkcqw6T2PWLvEuZPZtfxokYjiwq82bbm', NULL, 'aa@aa.com', NULL, NULL, NULL, NULL, 1483529266, NULL, 1, 'Hello', 'World', 'Demo', '0');
+(1, '127.0.0.1', 'admin', '$2a$07$SeBknntpZror9uyftVopmu61qg0ms8Qv1yV6FG.kQOSM.9QhmTo36', '', 'admin@admin.com', '', NULL, NULL, '39T/YWM.MtR0OseDwy8yw.', 1268889823, 1485777101, 1, 'System', 'Admin', 'Support', '0'),
+(2, '::1', 'ahmedakter', '$2a$07$SeBknntpZror9uyftVopmu61qg0ms8Qv1yV6FG.kQOSM.9QhmTo36', NULL, 'ahmedakter@gmail.com', NULL, NULL, NULL, NULL, 1483528697, NULL, 1, 'Ahmed', 'Akter', 'AA', '56646654'),
+(3, '::1', 'test', '$2a$07$SeBknntpZror9uyftVopmu61qg0ms8Qv1yV6FG.kQOSM.9QhmTo36', NULL, 'aa@aa.com', NULL, NULL, NULL, NULL, 1483529266, NULL, 1, 'Hello', 'World', 'Demo', '0');
 
 -- --------------------------------------------------------
 
@@ -13345,6 +13371,12 @@ ALTER TABLE `categories`
 --
 ALTER TABLE `category`
   ADD PRIMARY KEY (`category_id`);
+
+--
+-- Indexes for table `contactpage_info`
+--
+ALTER TABLE `contactpage_info`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `customers`
@@ -13518,6 +13550,11 @@ ALTER TABLE `categories`
 --
 ALTER TABLE `category`
   MODIFY `category_id` tinyint(3) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+--
+-- AUTO_INCREMENT for table `contactpage_info`
+--
+ALTER TABLE `contactpage_info`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `customers`
 --

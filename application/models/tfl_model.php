@@ -151,6 +151,25 @@ class Tfl_model extends CI_Model
 
 		return $query;
 	}
+	function products_view_recent($limit=NULL, $start=NULL)
+	{
+		$query = $this->db->select('products_main.id,products_main.name, products_main.details, products_main.imageurl1, products_main.tags')
+						  ->order_by('updatetime', 'asc')
+						  ->limit(8)
+		                  ->get('products_main')
+		                  ->result_array();
+
+		foreach ($query as $key => $value) {
+			
+		$query[$key]['categories'] = $this->db->select('cid, cname')
+							    ->limit(10)
+							    ->where('cid', $value['id'])
+				                ->get('categories')
+				                ->row_array();
+		}
+
+		return $query;
+	}
 
 	function get_products_category()
 	{
@@ -435,6 +454,14 @@ class Tfl_model extends CI_Model
 		return $query;
 	}
 
+	function get_contact_page() 
+	{
+		$query = $this->db->select('*')
+						  ->limit(10)
+						  ->get('contactpage_info')
+		                  ->result_array();
+		return $query;
+	}
 
 
 
@@ -444,6 +471,18 @@ class Tfl_model extends CI_Model
 
 
 
+	public function errors()
+	{
+		$_output = '';
+		foreach ($this->errors as $error)
+		{
+			$errorLang = $this->lang->line($error) ? $this->lang->line($error) : ' ' . $error . ' ';
+			$_output .= $errorLang;
+		}
+		//$_output .= "Error Defined";
+
+		return $_output;
+	}
 
 
 

@@ -74,9 +74,10 @@
 		</div>
 
 		<div id="owl-example" class="owl-carousel">
+			<?php foreach ($recent_products as $fvalue): ?>
 			<div class="item works-content">
 				<div class="works-overlay">
-			      	<img class="img-responsive" src="http://placehold.it/452x325" alt=""/>
+			      	<img class="img-responsive" src="<?php echo base_url() . $fvalue['imageurl1']; ?>" alt=""/>
 					<div>
 						<div class="zoom">
 							<div class="zoom-info">
@@ -86,143 +87,10 @@
 						</div>
 					</div>
 				</div>
-				<h4>Same Project Title <span>Web Design</span></h4>
+				<h4><?php echo substr($fvalue['name'], 0, 16); ?> <span><?php echo anchor('products/category/'.$fvalue['categories']['cid'], $fvalue['categories']['cname'] .' '); ?></span></h4>
 			</div>
+		<?php endforeach; ?>
 
-			<div class="item works-content">
-				<div class="works-overlay">
-			      	<img class="img-responsive" src="http://placehold.it/452x325" alt=""/>
-					<div>
-						<div class="zoom">
-							<div class="zoom-info">
-								<a class="lightbox-popup" href="http://placehold.it/452x325">View Larger</a>
-		                                    <a href="./portfolio_single1.html">Read More</a>
-							</div>
-						</div>
-					</div>
-				</div>
-				<h4>Same Project Title <span>Web Design</span></h4>
-			</div>
-
-			<div class="item works-content">
-				<div class="works-overlay">
-			      	<img class="img-responsive" src="http://placehold.it/452x325" alt=""/>
-					<div>
-						<div class="zoom">
-							<div class="zoom-info">
-								<a class="lightbox-popup" href="http://placehold.it/452x325">View Larger</a>
-		                                    <a href="./portfolio_single1.html">Read More</a>
-							</div>
-						</div>
-					</div>
-				</div>
-				<h4>Same Project Title <span>Web Design</span></h4>
-			</div>
-
-			<div class="item works-content">
-				<div class="works-overlay">
-			      	<img class="img-responsive" src="http://placehold.it/452x325" alt=""/>
-					<div>
-						<div class="zoom">
-							<div class="zoom-info">
-								<a class="lightbox-popup" href="http://placehold.it/452x325">View Larger</a>
-		                                    <a href="./portfolio_single1.html">Read More</a>
-							</div>
-						</div>
-					</div>
-				</div>
-				<h4>Same Project Title <span>Web Design</span></h4>
-			</div>
-
-			<div class="item works-content">
-				<div class="works-overlay">
-	      			<img class="img-responsive" src="http://placehold.it/452x325" alt=""/>
-					<div>
-						<div class="zoom">
-							<div class="zoom-info">
-								<a class="lightbox-popup" href="http://placehold.it/452x325">View Larger</a>
-		                                    <a href="./portfolio_single1.html">Read More</a>
-							</div>
-						</div>
-					</div>
-				</div>
-				<h4>Same Project Title <span>Web Design</span></h4>
-			</div>
-
-			<div class="item works-content">
-				<div class="works-overlay">
-			      	<img class="img-responsive" src="http://placehold.it/452x325" alt=""/>
-					<div>
-						<div class="zoom">
-							<div class="zoom-info">
-								<a class="lightbox-popup" href="http://placehold.it/452x325">View Larger</a>
-		                                    <a href="./portfolio_single1.html">Read More</a>
-							</div>
-						</div>
-					</div>
-				</div>
-				<h4>Same Project Title <span>Web Design</span></h4>
-			</div>
-
-			<div class="item works-content">
-				<div class="works-overlay">
-			      	<img class="img-responsive" src="http://placehold.it/452x325" alt=""/>
-					<div>
-						<div class="zoom">
-							<div class="zoom-info">
-								<a class="lightbox-popup" href="http://placehold.it/452x325">View Larger</a>
-		                                    <a href="./portfolio_single1.html">Read More</a>
-							</div>
-						</div>
-					</div>
-				</div>
-				<h4>Same Project Title <span>Web Design</span></h4>
-			</div>
-
-			<div class="item works-content">
-				<div class="works-overlay">
-			      	<img class="img-responsive" src="http://placehold.it/452x325" alt=""/>
-					<div>
-						<div class="zoom">
-							<div class="zoom-info">
-								<a class="lightbox-popup" href="http://placehold.it/452x325">View Larger</a>
-		                                    <a href="./portfolio_single1.html">Read More</a>
-							</div>
-						</div>
-					</div>
-				</div>
-				<h4>Same Project Title <span>Web Design</span></h4>
-			</div>
-
-			<div class="item works-content">
-				<div class="works-overlay">
-			      	<img class="img-responsive" src="http://placehold.it/452x325" alt=""/>
-					<div>
-						<div class="zoom">
-							<div class="zoom-info">
-								<a class="lightbox-popup" href="http://placehold.it/452x325">View Larger</a>
-		                                    <a href="./portfolio_single1.html">Read More</a>
-							</div>
-						</div>
-					</div>
-				</div>
-				<h4>Same Project Title <span>Web Design</span></h4>
-			</div>
-
-			<div class="item works-content">
-				<div class="works-overlay">
-			      	<img class="img-responsive" src="http://placehold.it/452x325" alt=""/>
-					<div>
-						<div class="zoom">
-							<div class="zoom-info">
-								<a class="lightbox-popup" href="http://placehold.it/452x325">View Larger</a>
-		                                    <a href="./portfolio_single1.html">Read More</a>
-							</div>
-						</div>
-					</div>
-				</div>
-				<h4>Same Project Title <span>Web Design</span></h4>
-			</div>
 		</div>
 	</div>
 </div>

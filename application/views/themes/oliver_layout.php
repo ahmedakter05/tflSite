@@ -129,17 +129,15 @@
                      </ul>
                   </li>
                   <li class='<?php echo (isset($activepage) ? ($activepage=='Services' ? 'active' : '') : '');?> has-sub'>
-                     <a href='#'><span>Services</span></a>
+                     <a href='<?php echo base_url() . "services"; ?>'><span>Services</span></a>
                      <ul>
                         <li>
-                           <a class="nav-sub" href='#'><span>Solution</span></a>
+                           <a class="nav-sub" href='<?php echo base_url() . "solution"; ?>'><span>Solution</span></a>
                         </li>
                         <li>
-                           <a href='#'><span>Installation</span></a>
+                           <a href='installation'><span>Installation</span></a>
                         </li>
-                        <li><a href='./shortcodes.html'><span>Maintenance</span></a></li>
-                        <li><a href='./pricing.html'><span>Pricing Table</span></a></li>
-                        <li><a href='./full-width.html'><span>Grid System</span></a></li>
+                        <li><a href='maintenance'><span>Maintenance</span></a></li>
                      </ul>
                   </li>
                   <li class="<?php echo (isset($activepage) ? ($activepage=='Services' ? 'active' : '') : '');?> has-sub">
@@ -151,7 +149,7 @@
                   </li>
                   
                   <li class="<?php echo (isset($activepage) ? ($activepage=='Contact Us' ? 'active' : '') : '');?>">
-                     <a href='#'><span>Contact</span></a>
+                     <a href='<?php echo base_url() . "contactus"; ?>'><span>Contact</span></a>
                   </li>
                </ul>
             </nav>
