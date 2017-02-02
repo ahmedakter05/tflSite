@@ -18,7 +18,7 @@
                                 <div class="head red">                                
                                     <h2><?php echo $message;?></h2> 
                                 </div>
-									<?php echo form_open("admin/login");?>
+									<?php echo form_open("admin/cp/login");?>
 									<div class="row-form">
 										<div class="span3"><?php echo lang('login_identity_label', 'identity');?></div>
 										<div class="span9"><?php echo form_input($identity);?></div>

@@ -67,7 +67,7 @@
                     <?php foreach ($featured_products as $fvalue): ?>
                     <li>
                         <div class="product-thumbs">
-                            <img src="<?php echo base_url() . $fvalue['imageurl1']; ?>" alt=""/>
+                            <img src="<?php echo base_url() . 'assets/uploads/files/' . $fvalue['imageurl1']; ?>" alt=""/>
                         </div>
 
                         <div class="product-post-info">
@@ -115,7 +115,7 @@
               <div class="post-thumb">
                   <div id="post-slider" class="flexslider">
                       <ul class="slides">
-                          <li><img src="<?php echo base_url() . $category_intro['imageurl1']; ?>" alt=""/></li>
+                          <li><img src="<?php echo base_url() . 'assets/uploads/files/' . $category_intro['imageurl1']; ?>" alt=""/></li>
                       </ul>
                   </div> 
                   <div class="shadow-left-big"></div>
@@ -146,7 +146,7 @@
                 <div class="tab-content">
                     <?php foreach ($products1 as $value): ?>
                     <div class="tab-pane fade active in clearfix media">
-                        <img class="pull-left" src="<?php echo base_url() . $value['imageurl1']; ?>" width="20%" alt=""/>
+                        <img class="pull-left" src="<?php echo base_url() . 'assets/uploads/files/' . $value['imageurl1']; ?>" width="20%" alt=""/>
                         <h5 Style="margin-top: 0px !important;"> <?php echo anchor('products/details/'.$value['id'], $value['name'] .' '); ?> </h5>
                         <p><?php $content = $value['details'];
                         //echo "$content";

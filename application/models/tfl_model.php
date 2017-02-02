@@ -25,6 +25,28 @@ class Tfl_model extends CI_Model
 		
 		return $query->result();
 	}
+
+	function header_query()
+	{
+		$query = $this->db->select('*')
+						  ->order_by('id', 'asc')
+						  //->limit(4)
+						  ->get('header')
+						  ->result_array();
+
+
+		return $query;
+	}
+	function footer_query()
+	{
+		$query = $this->db->select('*')
+						  ->order_by('id', 'asc')
+						  //->limit(4)
+						  ->get('footer')
+						  ->result_array();
+						  
+		return $query;
+	}
 	
 	function frontpage_who_we_are()
 	{
@@ -133,7 +155,7 @@ class Tfl_model extends CI_Model
 
 	function products_view_featured($limit=NULL, $start=NULL)
 	{
-		$query = $this->db->select('products_main.id,products_main.name, products_main.details, products_main.imageurl1, products_main.tags')
+		$query = $this->db->select('*')
 						  ->order_by('updatetime', 'asc')
 						  ->where('featured', '1')
 						  ->limit(5)
@@ -153,7 +175,7 @@ class Tfl_model extends CI_Model
 	}
 	function products_view_recent($limit=NULL, $start=NULL)
 	{
-		$query = $this->db->select('products_main.id,products_main.name, products_main.details, products_main.imageurl1, products_main.tags')
+		$query = $this->db->select('*')
 						  ->order_by('updatetime', 'asc')
 						  ->limit(8)
 		                  ->get('products_main')

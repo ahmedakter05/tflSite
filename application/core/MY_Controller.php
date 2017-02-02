@@ -14,7 +14,7 @@ class MY_Controller extends CI_Controller
     {
         parent::__construct();
         
-		$this->load->library(array('aa_lib', 'session', 'ion_auth'));
+		$this->load->library(array('aa_lib', 'session', 'ion_auth', 'MY_Session'));
 		$this->load->helper(array('cookie', 'url', 'language', 'date'));
 		$this->load->database();
 		//$this->lang->load('aa');
@@ -42,10 +42,12 @@ class MY_Controller extends CI_Controller
 		$this->template_dir = $pname . '/';	
 	}
 	function get_header_footer()
-	{
-		
+	{		
+		$this->data['metainfo'] = $this->tfl_model->header_query();
+		//var_dump($this->data['metainfo'] );
 		$this->data['socialshare'] = $this->tfl_model->footer_socialshare();
-					
+		$this->data['footerinfo'] = $this->tfl_model->footer_query();		
+		$this->data['contacts'] = $this->tfl_model->get_contact_page();					
 	}
 
 	function get_common_param()

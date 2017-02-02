@@ -182,6 +182,7 @@ p {
     font-family:Roboto;
     line-height:46px;
     border-right:1px solid #d5e1ea;
+    border-left:1px solid #d5e1ea;
     color:#20affe; /*#7588ab;*/
 }
 
@@ -5370,4 +5371,8 @@ img.mfp-img {
 .insidequote p {
 	color: #2E2E2E !important;
 	
+}
+
+.footervmenu a:hover li {
+	color: #2E2E2E !important;
 }

@@ -21,7 +21,7 @@
 						
 						<div class="data-fluid">
 						
-							<?php echo form_open("admin/change_password");?>
+							<?php echo form_open("admin/cp/change_password");?>
 
 								  <p>
 										<?php echo lang('change_password_old_password_label', 'old_password');?> <br />

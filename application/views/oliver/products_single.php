@@ -31,10 +31,10 @@
 			
 						<div id="thumb-slider" class="flexslider singimg1">
 							<ul class="slides">
-								<li data-thumb="<?php echo base_url() . $singleproduct['product']['imageurl1']; ?>"><img src="<?php echo base_url() . $singleproduct['product']['imageurl1']; ?>" alt=""/></li>
-								<li data-thumb="<?php echo base_url() . $singleproduct['product']['imageurl2']; ?>"><img src="<?php echo base_url() . $singleproduct['product']['imageurl2']; ?>" alt=""/></li>
-								<li data-thumb="<?php echo base_url() . $singleproduct['product']['imageurl3']; ?>"><img src="<?php echo base_url() . $singleproduct['product']['imageurl3']; ?>" alt=""/></li>
-								<li data-thumb="<?php echo base_url() . $singleproduct['product']['imageurl4']; ?>"><img src="<?php echo base_url() . $singleproduct['product']['imageurl4']; ?>" alt=""/></li>
+								<?php if(!empty($singleproduct['product']['imageurl1'])){ ?><li data-thumb="<?php echo base_url() . 'assets/uploads/files/' . $singleproduct['product']['imageurl1']; ?>"><img src="<?php echo base_url() . 'assets/uploads/files/' . $singleproduct['product']['imageurl1']; ?>" alt=""/></li> <?php }?>
+								<?php if(!empty($singleproduct['product']['imageurl2'])){ ?><li data-thumb="<?php echo base_url() . 'assets/uploads/files/' . $singleproduct['product']['imageurl2']; ?>"><img src="<?php echo base_url() . 'assets/uploads/files/' . $singleproduct['product']['imageurl2']; ?>" alt=""/></li> <?php }?>
+								<?php if(!empty($singleproduct['product']['imageurl3'])){ ?><li data-thumb="<?php echo base_url() . 'assets/uploads/files/' . $singleproduct['product']['imageurl3']; ?>"><img src="<?php echo base_url() . 'assets/uploads/files/' . $singleproduct['product']['imageurl3']; ?>" alt=""/></li> <?php }?>
+								<?php if(!empty($singleproduct['product']['imageurl4'])){ ?><li data-thumb="<?php echo base_url() . 'assets/uploads/files/' . $singleproduct['product']['imageurl4']; ?>"><img src="<?php echo base_url() . 'assets/uploads/files/' . $singleproduct['product']['imageurl4']; ?>" alt=""/></li> <?php }?>
 							</ul>
 						</div>
 
@@ -51,7 +51,7 @@
 				<p><?php echo $singleproduct['product']['details']; ?></p>
 
 				<p Style="margin-bottom: 0px;"><strong> Key Features: </strong></p>
-					<?php if (!empty($singleproduct['product']['keyfeatures'])) { $features = explode("/", $singleproduct['product']['keyfeatures']);?>
+					<?php if (!empty($singleproduct['product']['keyfeatures'])) { $features = explode("|", $singleproduct['product']['keyfeatures']);?>
 					<ul class="product-meta" Style="margin-top: 0px;">
 					<?php foreach($features as $value): ?>
 						<li><?php echo $value; ?></li>

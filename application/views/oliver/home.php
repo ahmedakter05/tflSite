@@ -4,7 +4,7 @@
 		<ul>
 			<?php foreach ($slider as $print): ?>
 				<li data-transition="random" data-slotamount="7" data-masterspeed="1000">
-					<img src="<?php echo base_url() . $print->imagelink_lg; ?>" alt="slide" data-fullwidthcentering="true">
+					<img src="<?php echo base_url() . 'assets/uploads/slider/' . $print->imagelink_lg; ?>" alt="slide" data-fullwidthcentering="true">
 					<?php if(!empty($print->imagelink_sm_1)){?>
 						<div class="tp-caption large_black sfr" data-x="450" data-y="0" data-speed="1500" data-start="600" data-easing="easeInOutBack">
 							<img src="<?php echo base_url() . $print->imagelink_sm_1; ?>" alt="" >
@@ -38,7 +38,7 @@
 		<div id="client-content" class="owl-carousel">
 			<?php foreach ($clienticon as $print): ?>
 			<div class="item client-content">
-				<img src="<?php echo $print->iconlink; ?>" alt="<?php echo $print->alttext; ?>"/>
+				<img src="<?php echo base_url() . 'assets/uploads/icon/' . $print->iconlink; ?>" alt="<?php echo $print->alttext; ?>"/>
 			</div>
 			<?php endforeach; ?>			
 		</div>
@@ -77,12 +77,12 @@
 			<?php foreach ($recent_products as $fvalue): ?>
 			<div class="item works-content">
 				<div class="works-overlay">
-			      	<img class="img-responsive" src="<?php echo base_url() . $fvalue['imageurl1']; ?>" alt=""/>
+			      	<img class="img-responsive" src="<?php echo base_url() . 'assets/uploads/files/' . $fvalue['imageurl1']; ?>" alt=""/>
 					<div>
 						<div class="zoom">
 							<div class="zoom-info">
-								<a class="lightbox-popup" href="http://placehold.it/452x325">View Larger</a>
-		                                    <a href="./portfolio_single1.html">Read More</a>
+								<a class="lightbox-popup" href="<?php echo base_url() . 'assets/uploads/files/' . $fvalue['imageurl1']; ?>">View Larger</a>
+		                                    <a href="<?php echo base_url() . 'products/details/' . $fvalue['id']; ?>">View More</a>
 							</div>
 						</div>
 					</div>
@@ -252,7 +252,7 @@
 							</div>
 							<div class="akordeon-item-body">
 								<div class="akordeon-item-content">
-									<p><?php echo $print->description; ?></p>
+									<?php echo $print->description; ?>
 								</div>
 							</div>
 						</div>
@@ -266,12 +266,11 @@
 				</div>
 				<?php foreach ($whoweare as $print): ?>
 					<div class="col-lg-12 no-padding clearfix media ">
-						<img class="pull-left" src="<?php echo $print->imagelink; ?>" alt=""/>
-						<p><?php echo $print->details; ?></p>
+						<img class="pull-left" src="<?php echo base_url() . 'assets/uploads/files/' . $print->imagelink; ?>" alt=""/>
+						<?php echo $print->details; ?>
 					</div>
-
 					<div class="white-panel">
-						<p><?php echo $print->specialtext; ?></p>
+						<?php echo $print->specialtext; ?>
 					</div>
 				<?php endforeach; ?>
 			</div>

@@ -1,4 +1,4 @@
-<?php //var_dump($products_category); ?>
+<?php //var_dump($contacts); ?>
 <!DOCTYPE html>
 <!--[if IE 8]>			<html class="ie ie8"> <![endif]-->
 <!--[if IE 9]>			<html class="ie ie9"> <![endif]-->
@@ -7,17 +7,18 @@
 
 	<!-- Meta -->
 	<meta charset="utf-8">
-	<meta name="keywords" content="HTML5 Template" />
-	<meta name="description" content="Multipress - Responsive Multipurpose HTML5 Template">
-	<meta name="author" content="">
+	<meta name="<?php echo $metainfo['0']['name']; ?>" content="<?php echo $metainfo['0']['content']; ?>">
+	<meta name="<?php echo $metainfo['1']['name']; ?>" content="<?php echo $metainfo['1']['content']; ?>">
+	<meta name="<?php echo $metainfo['3']['name']; ?>" content="<?php echo $metainfo['3']['content']; ?>">
+   <meta name="<?php echo $metainfo['4']['name']; ?>" content="<?php echo $metainfo['4']['content']; ?>">
 
-	<title>TechFocus Ltd. - Focusing on Technology</title>
+	<title><?php echo $metainfo['2']['content']; ?></title>
 
 	<!-- Mobile Meta -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 	<!-- Favicons -->
-	<link rel="shortcut icon" href="<?php echo base_url(); ?>assets/tfl1/img/favicon.ico">
+	<link rel="shortcut icon" href="<?php echo base_url() . 'assets/uploads/files/' . $metainfo['5']['imagelink']; ?>">
 	<link rel="apple-touch-icon" href="<?php echo base_url(); ?>assets/tfl1/img/apple-touch-icon.png">
 	<link rel="apple-touch-icon" sizes="72x72" href="<?php echo base_url(); ?>assets/tfl1/img/apple-touch-icon-72x72.png">
 	<link rel="apple-touch-icon" sizes="114x114" href="<?php echo base_url(); ?>assets/tfl1/img/apple-touch-icon-114x114.png">
@@ -58,11 +59,10 @@
 	<div class="container top-wrap-inner">
 		<div class="col-md-12">
 			<div class="top-login">
-				Welcome Guest! <a href="#">Login</a>
+				<a href="<?php echo base_url(); ?>admin/cp/login">Login</a>
 			</div>
-
-			<a href=to:sales@techfocusltd.com>
-				<div class="top-cart">E: sales@techfocusltd.com, </n> M: +8801712203145</div>
+			<a href=to:sales@techfocusltd.com> 
+				<div class="top-cart"><?php echo $metainfo['7']['content']; ?></div>
 			</a>
 		</div>
 	</div>
@@ -75,7 +75,7 @@
       <div class="col-md-12">
          <!-- Logo -->
          <div class="col-md-2">
-            <h1 class="logo"><a href="<?php echo base_url(); ?>"><img src="<?php echo base_url(); ?>assets/tfl1/images/logo.png" alt="" width="120%"/></a></h1>
+            <h1 class="logo"><a href="<?php echo base_url(); ?>"><img src="<?php echo base_url() . 'assets/uploads/files/' . $metainfo['6']['imagelink']; ?>" alt="" width="120%"/></a></h1>
          </div>
          
         <!-- Navmenu -->
@@ -121,8 +121,8 @@
                         <li class="col-md-3">
                            <ul>
                               <div class="col-lg-12 no-padding clearfix media" Style="padding-left: 10px;">
-                                 <img class="pull-left" src="<?php echo base_url(); ?>assets/tfl1/images/menug.png" alt=""/>
-                                 <p>Since the beginning, we’ve focused on providing the best user experience possible. Whether we’re designing a new Internet browser or a new tweak to the look of the homepage, we take great care to ensure that they will ultimately serve you, rather than our own internal goal or bottom line.</p>
+                                 <img class="pull-left" src="<?php echo base_url() . 'assets/uploads/files/' . $metainfo['8']['imagelink']; ?>" alt=""/>
+                                 <p><?php echo $metainfo['8']['content']; ?></p>
                               </div>
                            </ul>
                         </li>
@@ -191,7 +191,7 @@
          <div class="col-md-8">
             <ul class="social-info">
                <?php foreach ($socialshare as $print): ?>
-                  <li><a href="<?php echo $print->href; ?>"><span><i class="<?php echo $print->class_ref; ?>"></i></span><?php echo $print->title; ?></a></li>
+                  <li><a href="<?php echo $print->href; ?>" target="_blank"><span><i class="<?php echo $print->class_ref; ?>"></i></span><?php echo $print->title; ?></a></li>
                <?php endforeach; ?>        
             </ul>
          </div>
@@ -240,23 +240,24 @@
             <div class="col-md-3 footer-widget">
                <h6><span>Top Links</span></h6>
 
-               <ul class="tags-list">
-                  <li><a href="#">Web Design</a></li>
-                  <li><a href="#">Print</a></li>
-                  <li><a href="#">Agency</a></li>
-                  <li><a href="#">HTML/Css</a></li>
-                  <li><a href="#">Ui</a></li>
-                  <li><a href="#">Architecture</a></li>
-                  <li><a href="#">Movie llustrations</a></li>
-                  <li><a href="#">Photography</a></li>
+               <ul class="footervmenu" Style="color: #a0a0a0 !important;">     
+                  <?php echo $footerinfo['1']['content1']; ?>
                </ul>
       
             </div>
 
 				<!-- Footer - Flickrfeed -->
 				<div class="col-md-3 footer-widget">
-					<h6><span>Contacts</span></h6>
-					<ul id="contact" class="thumbs"></ul>
+					<h6 Style="margin-bottom: 3px !important;"><span>Contacts</span></h6>
+					<ul id="contact" class="thumbs">
+                  <div class="contact-info">
+                   <div class="space25"></div>
+                   <p><b>Address:</b> <?php echo $contacts['0']['description']; ?></p>
+                   <div class="space20"></div>
+                   <p><b>Mobile:</b> <?php echo $contacts['1']['description']; ?></p>
+                   <p><b>Email:</b> <?php echo $contacts['2']['description']; ?></p>
+                  </div>
+               </ul>
 				</div>
 			</div>
 		</div>		
@@ -270,12 +271,12 @@
 	<div class="container">
 		<div class="row-fluid">
 			<div class="col-md-6">
-				<p>Copyright 2017.All Rights Reserved / Powered By <a href="http://www.ngenitltd.com" target="blank">NgenIT Ltd.</a></p>
+				<p><?php echo $footerinfo['2']['content2'] . ' ';?><a href="<?php echo $footerinfo['2']['link']; ?>" target="blank"><?php echo $footerinfo['2']['content1']; ?></a></p>
 			</div>
 			<div class="col-md-6">
 				<ul class="top-contact">
-					<li><i class="fa fa-phone"></i> 1900-239-533-16</li>
-					<li><i class="fa fa-envelope"></i> contact@oliver.com</li>
+					<li><i class="fa fa-phone"></i> <?php echo $footerinfo['3']['content1']; ?></li>
+					<li><i class="fa fa-envelope"></i> <?php echo $footerinfo['4']['content1']; ?></li>
 				</ul>
 			</div>
 		</div>

@@ -34,7 +34,7 @@ class Products extends My_Controller {
 		$this->data['products1'] = $this->tfl_model->products_view_all_new();
 		$this->data['category_intro']['cid'] = "0";
 		$this->data['category_intro']['cname'] = "All Products"; 
-		$this->data['category_intro']['imageurl1'] = "assets/tfl1/images/slider/objectiflune.jpg";
+		$this->data['category_intro']['imageurl1'] = "7c28b-objectiflune.jpg";
 		$this->data['category_intro']['cinfo'] = "";
 		$this->data['category_intro']['parentid'] = "";
 		//$this->data['clienticon'] = $this->tfl_model->frontpage_client_icon();

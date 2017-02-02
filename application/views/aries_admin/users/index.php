@@ -48,19 +48,19 @@
                                             </td>
                                             <td>
                                                 <?php foreach ($user->groups as $group):?>
-												<span class="label label-warning" style="color: #FFF; align: center;"><?php echo anchor("admin/edit_group/".$group->id, htmlspecialchars($group->name,ENT_QUOTES,'UTF-8')) ;?> </span>
+												<span class="label label-warning" style="color: #FFF; align: center;"><?php echo anchor("admin/cp/edit_group/".$group->id, htmlspecialchars($group->name,ENT_QUOTES,'UTF-8')) ;?> </span>
 												<?php endforeach?>
                                             </td>
                                             <td>
-												<?php echo ($user->active) ? anchor("admin/deactivate/".$user->id, lang('index_active_link')) : anchor("admin/activate/". $user->id, lang('index_inactive_link'));?>
+												<?php echo ($user->active) ? anchor("admin/cp/deactivate/".$user->id, lang('index_active_link')) : anchor("admin/cp/activate/". $user->id, lang('index_inactive_link'));?>
                                             </td>
 											<td>
                                                 <!--<span>
-												<?php echo ($user->active) ? anchor("admin/deactivate/".$user->id, lang('index_active_link')) : anchor("admin/activate/". $user->id, lang('index_inactive_link'));?>
+												<?php echo ($user->active) ? anchor("admin/cp/deactivate/".$user->id, lang('index_active_link')) : anchor("admin/cp/activate/". $user->id, lang('index_inactive_link'));?>
 												</span>--> <span style="color:#4692D7;"> | </span> <span>
-												<?php echo anchor("admin/edit_user/".$user->id, 'Edit') ;?>
+												<?php echo anchor("admin/cp/edit_user/".$user->id, 'Edit') ;?>
 												<span style="color:#4692D7;"> | </span> <span>
-												<?php echo anchor("admin/delete_user/".$user->id, 'Delete') ;?>
+												<?php echo anchor("admin/cp/delete_user/".$user->id, 'Delete') ;?>
 												</span>
                                             </td>
                                         </tr>
@@ -70,10 +70,10 @@
 								<br></br>
 								<div class="block">
 									<div class="span11">
-										<span class="label label-info"><?php echo anchor('admin/create_user', lang('index_create_user_link'))?> </span> <span class="label label-success" style="color: #FFF; align: right;"> <?php echo anchor('admin/create_group', lang('index_create_group_link'))?></span>
+										<span class="label label-info"><?php echo anchor('admin/cp/create_user', lang('index_create_user_link'))?> </span> <span class="label label-success" style="color: #FFF; align: right;"> <?php echo anchor('admin/cp/create_group', lang('index_create_group_link'))?></span>
 									</div>
 									<div class="span1">
-										<span class="label label-important"><?php echo anchor('admin/logout', lang('logout_heading'))?> </span>
+										<span class="label label-important"><?php echo anchor('admin/cp/logout', lang('logout_heading'))?> </span>
 									</div>
 								</div>
 							</div>                

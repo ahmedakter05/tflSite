@@ -69,42 +69,78 @@
             </div>
             <div class="nContainer">                
                 <ul class="navigation bordered">         
-                    <li class="active"><a href="<?php echo base_url(); ?>admin" class="blblue">Dashboard</a></li>
+                    <li class="active"><a href="<?php echo base_url(); ?>admin/dashboard" class="blblue">Dashboard</a></li>
                     <li>
                         <a href="<?php echo base_url(); ?>admin" class="blyellow">Users Panel</a>
                         <div class="open"></div>
                         <ul>
-                            <li><a href="<?php echo base_url(); ?>admin/index">View User</a></li>
-                            <li><a href="<?php echo base_url(); ?>admin/create_user">Create User</a></li>
-                            <li><a href="<?php echo base_url(); ?>admin/create_group">Create Groups</a></li>
-                            <li><a href="<?php echo base_url(); ?>admin/change_password">Change Password</a></li>
-                            <li><a href="<?php echo base_url(); ?>admin/logout">Logout</a></li>
+                            <li><a href="<?php echo base_url(); ?>admin/cp/index">View User</a></li>
+                            <li><a href="<?php echo base_url(); ?>admin/cp/create_user">Create User</a></li>
+                            <li><a href="<?php echo base_url(); ?>admin/cp/create_group">Create Groups</a></li>
+                            <li><a href="<?php echo base_url(); ?>admin/cp/change_password">Change Password</a></li>
+                            <li><a href="<?php echo base_url(); ?>admin/cp/logout">Logout</a></li>
                         </ul>
                     </li>
                     <li>
-                        <a href="#" class="blgreen">Products</a>
+                        <a href="<?php echo base_url(); ?>admin/req/category" class="blgreen">Products</a>
                         <div class="open"></div>
                         <ul>
-                            <li><a href="<?php echo base_url(); ?>admins/add/category">Add Category</a></li>
-                            <li><a href="<?php echo base_url(); ?>admins/add/product">Add Product</a></li>
-                            <li><a href="<?php echo base_url(); ?>admins/view/product">View Products</a></li>
-                            <li><a href="<?php echo base_url(); ?>admins/add/product/<?php if (isset($this->session->userdata['user_id'])){ echo $this->session->userdata['user_id'];}?>">Update Client</a></li>  
+                            <li><a href="<?php echo base_url(); ?>admin/req/category">Category</a></li>
+                            <li><a href="<?php echo base_url(); ?>admin/req/products">Products</a></li>
+                            <!--li><a href="<?php echo base_url(); ?>admins/add/product/<?php if (isset($this->session->userdata['user_id'])){ echo $this->session->userdata['user_id'];}?>">Update Client</a></li-->  
                             
                         </ul>
                     </li>
                     <li>
-                        <a href="#" class="blred">Pages</a>
+                        <a href="#" class="blred">Front Page</a>
                         <div class="open"></div>
                         <ul>
-                            <li><a href="<?php echo base_url(); ?>apps/client/search">Frontpage</a></li>
-                            <li><a href="<?php echo base_url(); ?>apps/client/index">Service Page</a></li>
-                            <li><a href="<?php echo base_url(); ?>apps/client/add">Contact Page</a></li>
-                            <li><a href="<?php echo base_url(); ?>apps/payment/add">Payment</a></li>
+                            <li><a href="<?php echo base_url(); ?>apps/client/search">Update Slider</a></li>
+                            <li><a href="<?php echo base_url(); ?>apps/client/index">Client Icons</a></li>
+                            <li><a href="<?php echo base_url(); ?>apps/client/add">Why Techfocus</a></li>
+                            <li><a href="<?php echo base_url(); ?>apps/payment/add">What we do</a></li>
+                            <li><a href="<?php echo base_url(); ?>apps/payment/add">Who we are</a></li>
+                            <li><a href="<?php echo base_url(); ?>apps/payment/add">Social Share</a></li>
                         </ul>
                     </li>
-                    <li><a href="statistic.html" class="blred">Statistic</a></li>                
                     <li>
-                        <a href="#" class="blorange">Other</a>
+                        <a href="statistic.html" class="blgreen">Service Page</a>
+                        <div class="open"></div>
+                        <ul>
+                            <li><a href="<?php echo base_url(); ?>apps/client/search">Update Slider</a></li>
+                            <li><a href="<?php echo base_url(); ?>apps/client/index">Client Icons</a></li>
+                            <li><a href="<?php echo base_url(); ?>apps/client/add">Why Techfocus</a></li>
+                            <li><a href="<?php echo base_url(); ?>apps/payment/add">What we do</a></li>
+                            <li><a href="<?php echo base_url(); ?>apps/payment/add">Who we are</a></li>
+                            <li><a href="<?php echo base_url(); ?>apps/payment/add">Social Share</a></li>
+                        </ul>
+                    </li>   
+                    <li>
+                        <a href="statistic.html" class="blblue">Game Shop</a>
+                        <div class="open"></div>
+                        <ul>
+                            <li><a href="<?php echo base_url(); ?>apps/client/search">Update Slider</a></li>
+                            <li><a href="<?php echo base_url(); ?>apps/client/index">Client Icons</a></li>
+                            <li><a href="<?php echo base_url(); ?>apps/client/add">Why Techfocus</a></li>
+                            <li><a href="<?php echo base_url(); ?>apps/payment/add">What we do</a></li>
+                            <li><a href="<?php echo base_url(); ?>apps/payment/add">Who we are</a></li>
+                            <li><a href="<?php echo base_url(); ?>apps/payment/add">Social Share</a></li>
+                        </ul>
+                    </li>   
+                    <li>
+                        <a href="statistic.html" class="blyellow">Header & Footer</a>
+                        <div class="open"></div>
+                        <ul>
+                            <li><a href="<?php echo base_url(); ?>apps/client/search">Update Slider</a></li>
+                            <li><a href="<?php echo base_url(); ?>apps/client/index">Client Icons</a></li>
+                            <li><a href="<?php echo base_url(); ?>apps/client/add">Why Techfocus</a></li>
+                            <li><a href="<?php echo base_url(); ?>apps/payment/add">What we do</a></li>
+                            <li><a href="<?php echo base_url(); ?>apps/payment/add">Who we are</a></li>
+                            <li><a href="<?php echo base_url(); ?>apps/payment/add">Social Share</a></li>
+                        </ul>
+                    </li>                 
+                    <li>
+                        <a href="#" class="blorange">Contact Page</a>
                         <div class="open"></div>
                         <ul>
                             <li><a href="files.html">File handling</a></li>
@@ -118,9 +154,7 @@
                     <span class="ico-remove"></span>
                 </a>
             </div>
-            <div class="widget">
-                <div class="datepicker"></div>
-            </div>
+            
             
         </div>
  
@@ -128,65 +162,48 @@
             
             <ul class="navigation">
                 <li>
-                    <a href="index-2.html" class="button">
+                    <a href="<?php echo base_url() . "admin/req/category"; ?>" class="button">
                         <div class="icon">
                             <span class="ico-monitor"></span>
                         </div>                    
-                        <div class="name">Dashboard</div>
+                        <div class="name">Category</div>
                     </a>                
                 </li>
                 <li>
-                    <a href="#" class="button yellow">
+                    <a href="<?php echo base_url() . "admin/req/products"; ?>" class="button yellow">
                         <div class="arrow"></div>
                         <div class="icon">
                             <span class="ico-cog-2"></span>
                         </div>                    
-                        <div class="name">Clients</div>
+                        <div class="name">Products</div>
                     </a>          
-                    <ul class="sub">
-                        <li><a href="#">View Clients</a></li>
-                        <li><a href="#">Add Clients</a></li>
-                        <li><a href="#">Add Payment</a></li>
-                        <li><a href="#">Search</a></li>
-                        <li><a href="#">Delete Client</a></li>
-                    </ul>
                 </li>                
                 <li>
-                    <a href="#" class="button green">
+                    <a href="<?php echo base_url() . "admin/frontpage"; ?>" class="button green">
                         <div class="arrow"></div>
                         <div class="icon">
                             <span class="ico-pen-2"></span>
                         </div>                    
-                        <div class="name">Agents</div>
+                        <div class="name">FrontPage</div>
                     </a>                
-                    <ul class="sub">
-                        <li><a href="forms.html">Elements</a></li>
-                        <li><a href="validation.html">Validation</a></li>
-                        <li><a href="grid.html">Grid</a></li>
-                        <li><a href="editor.html">Editors</a></li>
-                        <li><a href="wizard.html">Wizard</a></li>
-                    </ul>                    
+                                     
                 </li>                        
                 <li>
-                    <a href="statistic.html" class="button red">
+                    <a href="<?php echo base_url() . "admin/services"; ?>" class="button red">
                         <div class="icon">
                             <span class="ico-chart-4"></span>
                         </div>                    
-                        <div class="name">Admin Panel</div>
+                        <div class="name">Service Page</div>
                     </a>                
                 </li>                
                 <li>
-                    <a href="#" class="button dblue">
+                    <a href="<?php echo base_url() . "admin/cp"; ?>" class="button dblue">
                         <div class="arrow"></div>
                         <div class="icon">
                             <span class="ico-layout-7"></span>
                         </div>                    
-                        <div class="name">Settings</div>
+                        <div class="name">Admin Panel</div>
                     </a> 
-                    <ul class="sub">
-                        <li><a href="tables.html">Simple</a></li>
-                        <li><a href="tables_dynamic.html">Dynamic</a></li>
-                    </ul>                                        
                 </li>
                 <li>
                     <a href="#" class="button purple">
@@ -207,13 +224,13 @@
                         <div class="icon">
                             <span class="ico-cloud"></span>
                         </div>                    
-                        <div class="name">Other</div>
+                        <div class="name">Client End</div>
                     </a>                
                     <ul class="sub">
-                        <li><a href="files.html">File handling</a></li>
-                        <li><a href="images.html">Images</a></li>
-                        <li><a href="typography.html">Typography</a></li>
-                        <li><a href="404.html">Error 404</a></li>
+                        <li><a href="<?php echo base_url() . 'home' ?>">Home</a></li>
+                        <li><a href="files.html">Products</a></li>
+                        <li><a href="images.html">Services</a></li>                        
+                        <li><a href="404.html">Contacts</a></li>
                     </ul>                                        
                 </li>
 

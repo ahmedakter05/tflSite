@@ -38,7 +38,7 @@ class Contactus extends My_Controller {
 		$this->googlemaps->add_marker($marker);
 		$this->data['map'] = $this->googlemaps->create_map();
 
-		$this->data['contacts'] = $this->tfl_model->get_contact_page();
+		//$this->data['contacts'] = $this->tfl_model->get_contact_page();
 		//var_dump($this->data['contacts']);
 
 		$this->data['message'] = $this->session->flashdata('message');
