@@ -439,6 +439,7 @@ class Tfl_model extends CI_Model
 	    $category['id'] = $mainCategory->cid;
 	    $category['name'] = $mainCategory->cname;
 	    $category['parent_id'] = $mainCategory->parentid;
+	    $category['root'] = $mainCategory->root;
 	    $category['sub_categories'] = $this->getCategoryTreeForParentId($category['id']);
 	    $categories[$mainCategory->cid] = $category;
 	  }
@@ -485,13 +486,26 @@ class Tfl_model extends CI_Model
 		return $query;
 	}
 
+	function get_service_info($cid=NULL) 
+	{
+		$query = $this->db->select('*')
+						  ->order_by('id', 'asc')
+						  ->limit(10)
+						  ->where('cid', $cid)
+		                  ->get('services_page')
+		                  ->result_array();
+		return $query;
+	}
 
-
-
-
-
-
-
+	function get_service_others() 
+	{
+		$query = $this->db->select('*')
+						  ->order_by('id', 'asc')
+						  ->limit(20)
+						  ->get('services_others')
+		                  ->result_array();
+		return $query;
+	}
 
 	public function errors()
 	{
@@ -506,9 +520,27 @@ class Tfl_model extends CI_Model
 		return $_output;
 	}
 
+	function get_service_title($cid=NULL)
+	{	
+		$query 			  = $this->db->select('*')
+						  ->where('id', $cid)
+						  ->limit(1)
+						  ->get('services_page')
+						  ->row_array();
+		return $query;
 
+	}
 
+	function getParentofcid($cid=NULL)
+	{	
+		$query 			  = $this->db->select('parentid')
+						  ->where('cid', $cid)
+						  ->limit(1)
+						  ->get('categories')
+						  ->row_array();
+		return $query;
 
+	}
 
 
 

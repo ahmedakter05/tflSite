@@ -46,10 +46,10 @@ class Frontpage extends My_Controller {
 
 	public function slider()
 	{
-		$page = 'Categories';
+		$page = 'Slider Settings';
 		$this->set_activepage($page);
 		$this->data['title'] = "TechFocus Ltd - Focusing on Technology" ;
-		$this->data['activepage'] = "Categories" ;
+		$this->data['activepage'] = $page;
 
 		if (!$this->ion_auth->logged_in())
 		{
@@ -78,10 +78,10 @@ class Frontpage extends My_Controller {
 
 	public function clienticon()
 	{
-		$page = 'Categories';
+		$page = 'Clients Icon';
 		$this->set_activepage($page);
 		$this->data['title'] = "TechFocus Ltd - Focusing on Technology" ;
-		$this->data['activepage'] = "Categories" ;
+		$this->data['activepage'] = $page;
 
 		if (!$this->ion_auth->logged_in())
 		{
@@ -108,10 +108,10 @@ class Frontpage extends My_Controller {
 
 	public function whyus()
 	{
-		$page = 'Categories';
+		$page = 'Why Techfocus';
 		$this->set_activepage($page);
 		$this->data['title'] = "TechFocus Ltd - Focusing on Technology" ;
-		$this->data['activepage'] = "Categories" ;
+		$this->data['activepage'] = $page;
 
 		if (!$this->ion_auth->logged_in())
 		{
@@ -122,9 +122,11 @@ class Frontpage extends My_Controller {
 
 		$crud = new grocery_CRUD();
 		$crud->unset_jquery();
+		$crud->unset_add();
 		$crud->set_table('frontpage_whyus');
 		$crud->columns('id','title','details');
-		$crud->display_as('id','ID')->display_as('title','Title')->display_as('details','Info');
+		$crud->display_as('id','ID')->display_as('title','Title')->display_as('details','Info')->display_as('iconlink','Icon');
+		$crud->set_field_upload('iconlink','assets/uploads/icon'); 
 		$this->data['crud'] = $crud->render();
 
 
@@ -137,10 +139,10 @@ class Frontpage extends My_Controller {
 
 	public function whatwedo()
 	{
-		$page = 'Categories';
+		$page = 'What we do';
 		$this->set_activepage($page);
 		$this->data['title'] = "TechFocus Ltd - Focusing on Technology" ;
-		$this->data['activepage'] = "Categories" ;
+		$this->data['activepage'] = $page;
 
 		if (!$this->ion_auth->logged_in())
 		{
@@ -193,50 +195,4 @@ class Frontpage extends My_Controller {
 		//$this->data['message'] = $this->session->flashdata('message');
 		$this->load->view($this->template_dir.'crud_view', $this->data);
 	}
-
-	
-
-	public function products()
-	{
-		$page = 'Products';
-		$this->set_activepage($page);
-		$this->data['title'] = "TechFocus Ltd - Focusing on Technology" ;
-		$this->data['activepage'] = "Products" ;
-
-		if (!$this->ion_auth->logged_in())
-		{
-			// redirect them to the login page
-			$this->session->set_userdata('last_page', current_url()); redirect('admin/cp/login', 'refresh');
-			//echo "Redirect to Login";
-		}
-
-		$crud = new grocery_CRUD();
-		$crud->unset_jquery();
-		$crud->set_table('products_main');
-		$crud->columns('id','name','details', 'featured', 'imageurl1');
-		//$crud->edit_fields('name','details','description', 'keyfeatures', 'specification', 'featured', 'imageurl1', 'imageurl2', 'imageurl3', 'imageurl4');
-		//$crud->add_fields('name','details','description', 'updatetime');
-
-		$crud->set_relation('categoryid','categories','cname');
-		$crud->field_type('featured','dropdown', array('1' => 'Yes', '0' => 'No'));
-		$crud->display_as('cid','ID')->display_as('cname','Category Name')->display_as('parentid','Parent Category')
-			 ->display_as('cinfo','Category Info')->display_as('imageurl1','Image');
-		$crud->set_field_upload('imageurl1','assets/uploads/files'); 
-		$crud->set_field_upload('imageurl2','assets/uploads/files'); 
-		$crud->set_field_upload('imageurl3','assets/uploads/files'); 
-		$crud->set_field_upload('imageurl4','assets/uploads/files'); 
-		
-		$this->data['crud'] = $crud->render();
-
-
-		 
-		//$this->_example_output($output);
-
-		//$this->data['message'] = $this->session->flashdata('message');
-		$this->load->view($this->template_dir.'crud_view', $this->data);
-	}
-	
-	
-	
-
 }

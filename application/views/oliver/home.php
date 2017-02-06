@@ -56,9 +56,9 @@
 			<div class="col-lg-4 col-md-4">
 				<div class="services">
 					<div class="shadow-right"></div>
-					<span class="service-ico1"></span>
+					<span class="service-ico1" Style="background:#1B9CFF url(<?php echo base_url() . 'assets/uploads/icon/' . $print->iconlink; ?>) no-repeat center center;"></span>
 			            <h3><?php echo $print->title; ?></h3>
-			            <p> <?php echo $print->details; ?></p>	
+			            <?php echo $print->details; ?>	
 				</div>
 			</div>
 		<?php endforeach; ?>

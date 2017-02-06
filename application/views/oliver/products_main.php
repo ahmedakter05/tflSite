@@ -1,4 +1,4 @@
-<?php// var_dump($sub_category); ?>
+<?php //var_dump($sub_category); ?>
 <?php //var_dump($featured_products); ?>
 <link href="<?php echo base_url(); ?>assets/tfl1/js/rs-plugin/css/settings.css" rel="stylesheet" />
 <link href="<?php echo base_url(); ?>assets/tfl1/js/flexslider/flexslider.css" rel="stylesheet">
@@ -37,16 +37,16 @@
     <div class="row">
         <div class="col-md-4 sidebar">
             <div class="side-widget">
-                <h5><span><?php echo (!empty($category_intro)) ? anchor('products/category/'.$category_intro['parentid'], $category_intro['cname'] . ' - Up') : 'Top Category'; ?> </span></h5>
+                <h5><span> Visit Here: <?php //echo (!empty($category_intro)) ? anchor('products/category/'.$category_intro['parentid'], $category_intro['cname'] . ' - Up') : 'Top Category'; ?> </span></h5>
                 <ul class="category vertical menu" data-accordion-menu>                        
                         <?php if (!empty($new_category)) { ?>
                             <?php foreach ($new_category as $print): ?>
                                 <div class='<?php if($cid==$print["id"]){ echo "/*active*/cusact1";} ?>'>
-                                    <li><a href="<?php echo base_url() . 'products/category/' . $print['id']; ?>"><?php echo $print['name']; ?></a></li>
-                                    <?php if (!empty($print['sub_categories'])){?>
+                                    <li><a  <?php if($print['id'] == $cid){ echo 'Style="color:#1c9dfb;"';}?> href="<?php echo base_url() . 'products/category/' . $print['id']; ?>"><?php echo $print['name']; ?></a></li>
+                                    <?php if ((!empty($print['sub_categories']) && ($print['id'] == $root)) /*|| (!empty($print['sub_categories']) && ($print['parent_id'] == $print['root']))*/){?>
                                     <ul class="sub-category menu vertical nested">
                                         <?php foreach ($print['sub_categories'] as $value): ?>
-                                        <li><a href="<?php echo base_url() . 'products/category/' . $value['id']; ?>"><?php echo $value['name']; ?></a></li>
+                                        <li><a <?php if($value['id'] == $cid){ echo 'Style="color:#1c9dfb;"';}?> href="<?php echo base_url() . 'products/category/' . $value['id']; ?>"><?php echo $value['name']; ?></a></li>
                                         <?php endforeach; ?>
                                     </ul>
                                     <?php } ?>
@@ -92,7 +92,7 @@
         <div class="col-md-8">
             <nav id='topnav' class='customnav1'>
                 <ul class="top-menu">
-                    <?php if(!empty($sub_category)){ ?>
+                    <?php if(!empty($sub_category) && ($cid >= '3')){ ?>
                     <?php foreach ($sub_category as $value): ?>
                     <li class='customnav1'>
                         <a href='<?php echo base_url() . "products/category/" . $value['id']; ?>'><span><?php echo $value['name']; ?></span></a>

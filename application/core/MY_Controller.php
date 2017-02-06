@@ -63,6 +63,12 @@ class MY_Controller extends CI_Controller
 		$this->data['featured_products'] = $this->tfl_model->products_view_featured();	
 		$this->data['recent_products'] = $this->tfl_model->products_view_recent();			
 	}
+	function get_service_param()
+	{
+		$this->data['serviceothers'] = $this->tfl_model->get_service_others();
+		//var_dump($this->data['serviceothers']);			
+	}
+	
 	
 	function set_activepage($page=NULL)
 	{

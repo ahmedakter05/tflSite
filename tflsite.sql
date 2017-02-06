@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 02, 2017 at 02:46 PM
+-- Generation Time: Feb 06, 2017 at 11:51 AM
 -- Server version: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -248,6 +248,7 @@ CREATE TABLE `categories` (
   `cid` int(11) NOT NULL,
   `cname` varchar(128) NOT NULL,
   `parentid` int(11) NOT NULL,
+  `root` int(11) NOT NULL,
   `cinfo` text NOT NULL,
   `imageurl1` varchar(256) NOT NULL,
   `imageurl2` varchar(256) NOT NULL,
@@ -258,25 +259,25 @@ CREATE TABLE `categories` (
 -- Dumping data for table `categories`
 --
 
-INSERT INTO `categories` (`cid`, `cname`, `parentid`, `cinfo`, `imageurl1`, `imageurl2`, `imageurl3`) VALUES
-(0, 'Parent', -1, '', '7c28b-objectiflune.jpg', '', ''),
-(1, 'Category', 0, '<p>\r\n	Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores uni nemis Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores uni nemis . Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores</p>\r\n', '7c28b-objectiflune.jpg', '', ''),
-(2, 'Industry', 0, '<p>\r\n	Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores uni nemis Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores uni nemis . Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores</p>\r\n', '4b163-acronis.png', '', ''),
-(3, 'Technology', 0, '<p>\r\n	Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores uni nemis Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores uni nemis . Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores</p>\r\n', 'c5a53-sf1.jpg', '', ''),
-(4, 'Application performance', 1, '<p>\r\n	Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores uni nemis Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores uni nemis . Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores</p>\r\n', 'e0beb-flex-bg-02.jpg', '', ''),
-(5, 'Cloud Solution', 1, '<p>\r\n	Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores uni nemis Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores uni nemis . Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores</p>\r\n', 'a626b-sf1.jpg', '', ''),
-(6, 'Database Management', 1, '<p>\r\n	Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores uni nemis Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores uni nemis . Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores</p>\r\n', 'c76f7-flex-bg-04.png', '', ''),
-(7, 'Oracle 12.0', 6, '<p>\r\n	Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores uni nemis Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores uni nemis . Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores</p>\r\n', '14a4b-objectiflune.jpg', '', ''),
-(8, 'SQL Server 16', 6, '<p>\r\n	Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores uni nemis Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores uni nemis . Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores</p>\r\n', '14a4b-objectiflune.jpg', '', ''),
-(11, 'Oil & Gas', 2, '<p>\r\n	Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores uni nemis Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores uni nemis . Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores</p>\r\n', '91a4b-sf1.jpg', '', ''),
-(12, 'Telco', 2, '<p>\r\n	Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores uni nemis Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores uni nemis . Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores</p>\r\n', 'e2f13-flex-bg-02.jpg', '', ''),
-(13, 'Print Management', 1, '<p>\r\n	Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores uni nemis Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores uni nemis . Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores</p>\r\n', 'c75ab-flex-bg-01.jpg', '', ''),
-(14, 'Others', 1, '<p>\r\n	Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores uni nemis Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores uni nemis . Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores</p>\r\n', 'ceadb-flex-bg-03.jpg', '', ''),
-(15, 'Power', 11, '<p>\r\n	Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores uni nemis Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores uni nemis . Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores</p>\r\n', 'b9ed3-objlune.png', '', ''),
-(16, 'Gas', 11, '<p>\r\n	Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores uni nemis Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores uni nemis . Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores</p>\r\n', '5c6bb-acronis.png', '', ''),
-(17, 'ManageEngine', 4, '<p>\r\n	Lid est laborum dolos rumes fustsirs...</p>\r\n', 'ae577-acronis.png', '', ''),
-(19, 'Device Lock', 14, '<p>\r\n	Good Solutions</p>\r\n', '9a136-sf1.jpg', '', ''),
-(21, 'Backup Solution', 1, '', '50221-acronis.png', '', '');
+INSERT INTO `categories` (`cid`, `cname`, `parentid`, `root`, `cinfo`, `imageurl1`, `imageurl2`, `imageurl3`) VALUES
+(0, 'Parent', -1, 0, '', '7c28b-objectiflune.jpg', '', ''),
+(1, 'Category', 0, 0, '<p>\r\n	Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores uni nemis Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores uni nemis . Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores</p>\r\n', '7c28b-objectiflune.jpg', '', ''),
+(2, 'Industry', 0, 0, '<p>\r\n	Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores uni nemis Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores uni nemis . Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores</p>\r\n', '4b163-acronis.png', '', ''),
+(3, 'Technology', 0, 0, '<p>\r\n	Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores uni nemis Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores uni nemis . Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores</p>\r\n', 'c5a53-sf1.jpg', '', ''),
+(4, 'Application performance', 1, 1, '<p>\r\n	Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores uni nemis Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores uni nemis . Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores</p>\r\n', 'e0beb-flex-bg-02.jpg', '', ''),
+(5, 'Cloud Solution', 1, 1, '<p>\r\n	Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores uni nemis Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores uni nemis . Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores</p>\r\n', 'a626b-sf1.jpg', '', ''),
+(6, 'Database Management', 1, 1, '<p>\r\n	Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores uni nemis Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores uni nemis . Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores</p>\r\n', 'c76f7-flex-bg-04.png', '', ''),
+(7, 'Oracle 12.0', 6, 1, '<p>\r\n	Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores uni nemis Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores uni nemis . Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores</p>\r\n', '14a4b-objectiflune.jpg', '', ''),
+(8, 'SQL Server 16', 6, 1, '<p>\r\n	Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores uni nemis Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores uni nemis . Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores</p>\r\n', '14a4b-objectiflune.jpg', '', ''),
+(11, 'Oil & Gas', 2, 2, '<p>\r\n	Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores uni nemis Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores uni nemis . Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores</p>\r\n', '91a4b-sf1.jpg', '', ''),
+(12, 'Telco', 2, 0, '<p>\r\n	Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores uni nemis Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores uni nemis . Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores</p>\r\n', 'e2f13-flex-bg-02.jpg', '', ''),
+(13, 'Print Management', 1, 0, '<p>\r\n	Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores uni nemis Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores uni nemis . Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores</p>\r\n', 'c75ab-flex-bg-01.jpg', '', ''),
+(14, 'Others', 1, 0, '<p>\r\n	Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores uni nemis Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores uni nemis . Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores</p>\r\n', 'ceadb-flex-bg-03.jpg', '', ''),
+(15, 'Power', 11, 0, '<p>\r\n	Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores uni nemis Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores uni nemis . Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores</p>\r\n', 'b9ed3-objlune.png', '', ''),
+(16, 'Gas', 11, 0, '<p>\r\n	Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores uni nemis Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores uni nemis . Lid est laborum dolos rumes fustsirs sit untras. Et harums ser quidem sit rerums facilis est dolores</p>\r\n', '5c6bb-acronis.png', '', ''),
+(17, 'ManageEngine', 4, 0, '<p>\r\n	Lid est laborum dolos rumes fustsirs...</p>\r\n', 'ae577-acronis.png', '', ''),
+(19, 'Device Lock', 14, 0, '<p>\r\n	Good Solutions</p>\r\n', '9a136-sf1.jpg', '', ''),
+(21, 'Backup Solution', 1, 0, '', '50221-acronis.png', '', '');
 
 -- --------------------------------------------------------
 
@@ -330,7 +331,7 @@ CREATE TABLE `contactpage_info` (
 --
 
 INSERT INTO `contactpage_info` (`id`, `name`, `description`, `updatetime`) VALUES
-(0, 'Address', 'Haque Chamber(11 floor - C&D) </br>89/2, West Panthapath,Dhaka', '2017-01-28 05:41:02'),
+(0, 'Address', 'Haque Chamber (7th floor) </br>89/2, West Panthapath,Dhaka', '2017-01-28 05:41:02'),
 (1, 'Phone', '+8801712203145', '2017-01-28 05:42:30'),
 (2, 'Email', 'sales@techfocusltd.com, hr@techfocusltd.com', '2017-01-28 05:42:53'),
 (3, 'Website', 'www.techfocusltd.com', '2017-01-28 05:43:12'),
@@ -9245,9 +9246,9 @@ CREATE TABLE `frontpage_whyus` (
 --
 
 INSERT INTO `frontpage_whyus` (`id`, `title`, `details`, `iconlink`, `updatetime`) VALUES
-(1, 'Help & Support', 'Lorem ipsum dolor slo onsec  designs tueraliquet Morbi nec In Curabitur nel dolor slo onsec designs', '', '2017-01-11 11:56:18'),
-(2, 'Security One', 'Lorem ipsum dolor slo onsec  designs tueraliquet Morbi nec In Curabitur nel dolor slo onsec designs', '', '2017-01-11 11:56:18'),
-(3, 'All with You', 'Lorem ipsum dolor slo onsec  designs tueraliquet Morbi nec In Curabitur nel dolor slo onsec designs', '', '2017-01-11 11:56:31');
+(1, 'Help & Supports', '<p>\r\n	Lorem ipsum dolor slo onsec designs tueraliquet Morbi nec In Curabitur nel dolor slo onsec designs</p>\r\n', '932f2-ico4.png', '2017-01-11 11:56:18'),
+(2, 'Security One', '<p>\r\n	Lorem ipsum dolor slo onsec designs tueraliquet Morbi nec In Curabitur nel dolor slo onsec designs</p>\r\n', '96d57-ico2.png', '2017-01-11 11:56:18'),
+(3, 'All with You', '<p>\r\n	Lorem ipsum dolor slo onsec designs tueraliquet Morbi nec In Curabitur nel dolor slo onsec designs</p>\r\n', '5df62-ico1.png', '2017-01-11 11:56:31');
 
 -- --------------------------------------------------------
 
@@ -13353,6 +13354,62 @@ INSERT INTO `products_technology` (`id`, `technologyname`, `parentid`, `technolo
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `services_others`
+--
+
+CREATE TABLE `services_others` (
+  `id` int(11) NOT NULL,
+  `name` varchar(256) NOT NULL,
+  `title` varchar(256) NOT NULL,
+  `description` text NOT NULL,
+  `imagelink1` varchar(256) NOT NULL,
+  `imagelink2` varchar(256) NOT NULL,
+  `imagelink3` varchar(256) NOT NULL,
+  `xyzname` varchar(256) NOT NULL,
+  `designation` varchar(128) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `services_others`
+--
+
+INSERT INTO `services_others` (`id`, `name`, `title`, `description`, `imagelink1`, `imagelink2`, `imagelink3`, `xyzname`, `designation`) VALUES
+(1, 'Some Moments', 'Some Moments', '', 'c5642-ol_homepage_slider4.jpg', 'e8f80-digitaleducation.png', 'eac35-home_page_banner_dec.png', '', ''),
+(2, 'Message from CEO', 'This is an opportunity for us', '<p>\r\n	It gives me great pleasure to welcome you to the Techfocus website. These are exciting yet challenging times at Techfocus and I hope this portal creates an opportunity for our valued visitors around the world to learn more about our leading-edge operations, performance, strategies, services, initiatives, and values.</p>\r\n', 'http://placehold.it/154x154', '', '', 'Mr XYZ', 'CEO'),
+(3, 'What Clients say about us', 'Many Features and Goodies', 'Lorem ipsum dolor slo onsec  tueraliquet Morbi nec In Curabitur lreaoreet nisl lorem in pellente e vidicus pannel . Lorem ipsum dolor slo onsec  tueraliquet Morbi nec In Curabitur lreaoreet nisl lorem in pellente nel lvidicus pannel', '', '', '', '', ''),
+(4, 'What Clients say about us', 'Responsive Design', 'Lorem ipsum dolor slo onsec  tueraliquet Morbi nec In Curabitur lreaoreet nisl lorem in pellente e vidicus pannel . Lorem ipsum dolor slo onsec  tueraliquet Morbi nec In Curabitur lreaoreet nisl lorem in pellente nel lvidicus pannel', '', '', '', '', ''),
+(5, 'What Clients say about us', 'Great Help and Support', 'Lorem ipsum dolor slo onsec  tueraliquet Morbi nec In Curabitur lreaoreet nisl lorem in pellente e vidicus pannel . Lorem ipsum dolor slo onsec  tueraliquet Morbi nec In Curabitur lreaoreet nisl lorem in pellente nel lvidicus pannel', '', '', '', '', ''),
+(6, 'What Clients say about us', 'Lorem Ipsum Delikus Inirivus', 'Lorem ipsum dolor slo onsec  tueraliquet Morbi nec In Curabitur lreaoreet nisl lorem in pellente e vidicus pannel . Lorem ipsum dolor slo onsec  tueraliquet Morbi nec In Curabitur lreaoreet nisl lorem in pellente nel lvidicus pannel', '', '', '', '', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `services_page`
+--
+
+CREATE TABLE `services_page` (
+  `id` int(11) NOT NULL,
+  `name` varchar(256) NOT NULL,
+  `title` varchar(256) NOT NULL,
+  `description` text NOT NULL,
+  `imagelink` varchar(256) NOT NULL,
+  `cid` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `services_page`
+--
+
+INSERT INTO `services_page` (`id`, `name`, `title`, `description`, `imagelink`, `cid`) VALUES
+(1, 'solution', 'Best Solution Ever', '<p>\r\n	A vendor support needs you in the all the ways due to expert and certified complete implementation. We have priority support in round the year. Respective expertise will be engaged for your required premium support under the service agreement.</p>\r\n', '0927b-ol_homepage_slider4.jpg', 0),
+(2, 'installation', 'Professional Installation', '<p>\r\n	A vendor support needs you in the all the ways due to expert and certified complete implementation. We have priority support in round the year. Respective expertise will be engaged for your required premium support under the service agreement.</p>\r\n', '1da93-home-it-solutions-banner.jpg', 0),
+(3, 'maintenance', 'Year Around Maintenance', '<p>\r\n	A vendor support needs you in the all the ways due to expert and certified complete implementation. We have priority support in round the year. Respective expertise will be engaged for your required premium support under the service agreement.</p>\r\n', 'bdd13-ol_homepage_slider2.jpg', 0),
+(4, 'maintenance', 'World Best Support', '<p>\r\n	A vendor support needs you in the all the ways due to expert and certified complete implementation. We have priority support in round the year. Respective expertise will be engaged for your required premium support under the service agreement.</p>\r\n', '7e963-ol_homepage_slider3.jpg', 3),
+(5, 'installation', 'Professional Installation', '<p>\r\n	A vendor support needs you in the all the ways due to expert and certified complete implementation. We have priority support in round the year. Respective expertise will be engaged for your required premium support under the service agreement.</p>\r\n', '3f5a3-home_page_banner_dec.png', 3);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -13381,7 +13438,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`) VALUES
-(1, '127.0.0.1', 'admin', '$2a$07$SeBknntpZror9uyftVopmu61qg0ms8Qv1yV6FG.kQOSM.9QhmTo36', '', 'admin@admin.com', '', NULL, NULL, 'KDAypXc/BFrts4mWDqbcs.', 1268889823, 1486023711, 1, 'System', 'Admin', 'Support', '0'),
+(1, '127.0.0.1', 'admin', '$2a$07$SeBknntpZror9uyftVopmu61qg0ms8Qv1yV6FG.kQOSM.9QhmTo36', '', 'admin@admin.com', '', NULL, NULL, 'smv.gZU4RVw9WAdQnpmFhu', 1268889823, 1486381722, 1, 'System', 'Admin', 'Support', '0'),
 (2, '::1', 'ahmedakter', '$2a$07$SeBknntpZror9uyftVopmu61qg0ms8Qv1yV6FG.kQOSM.9QhmTo36', NULL, 'ahmedakter@gmail.com', NULL, NULL, NULL, NULL, 1483528697, NULL, 1, 'Ahmed', 'Akter', 'AA', '56646654'),
 (3, '::1', 'test', '$2a$07$SeBknntpZror9uyftVopmu61qg0ms8Qv1yV6FG.kQOSM.9QhmTo36', NULL, 'aa@aa.com', NULL, NULL, NULL, NULL, 1483529266, NULL, 1, 'Hello', 'World', 'Demo', '0');
 
@@ -13587,6 +13644,18 @@ ALTER TABLE `products_technology`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `services_others`
+--
+ALTER TABLE `services_others`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `services_page`
+--
+ALTER TABLE `services_page`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -13684,7 +13753,7 @@ ALTER TABLE `groups`
 -- AUTO_INCREMENT for table `header`
 --
 ALTER TABLE `header`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `login_attempts`
 --
@@ -13730,6 +13799,16 @@ ALTER TABLE `products_main`
 --
 ALTER TABLE `products_technology`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+--
+-- AUTO_INCREMENT for table `services_others`
+--
+ALTER TABLE `services_others`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+--
+-- AUTO_INCREMENT for table `services_page`
+--
+ALTER TABLE `services_page`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `users`
 --

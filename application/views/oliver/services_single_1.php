@@ -17,44 +17,26 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8 no-padding">
-        	<?php foreach ($serviceinfo as $info): ?>
-	            <article class="post col-md-12 pstyle2">
-	                <div class="col-md-12 no-padding">
-	                    <div class="row">
-	                        <div class="col-md-6">
-	                            <div Style="margin-bottom: 10px;">
-	                                <img src="<?php echo base_url() . 'assets/uploads/files/' . $info['imagelink']; ?>" class="img-responsive"  alt=""/>
-	                                
-	                            </div>
-	                        </div>
-	                        <div class="col-md-6">
-	                            <div class="post-info">
-	                                <h4><a href="<?php echo base_url() . 'services/page/' . $info['id'];?>"><?php echo $info['title'];?></a></h4>
-	                                <?php echo $info['description'];?>
-	                            </div>
-	                        </div>
-	                        <div class="col-md-12 no-padding">
-			                    <div class="post-meta">
-			                        
-			                        <div class="meta-right">
-			                            <div class="post-more">
-			                                <a href="<?php echo base_url() . 'services/page/' . $info['id'];?>">Read More &rarr;</a>
-			                            </div>
-			                        </div>
-			                    </div>
-			                </div>
-	                    </div>
-	                </div>
-	            </article>
+            <div class="col-md-12 no-padding">
+                <h2 class="section-title" style="font-weight: 700; font-size: 1.50em;"><span><?php echo $servicetitle['title'];?></span></h2>
+            </div>
+            <?php foreach ($serviceinfo as $info): ?>
+                <div class="col-md-12 no-padding clearfix media ">
+                    <img class="pull-left" width="200px" src="<?php echo base_url() . 'assets/uploads/files/' . $info['imagelink']; ?>" alt=""/>
+                    <h5 Style="margin-top: 0px; margin-bottom: 5px;"><?php echo $info['title'];?></h5>
+                    <?php echo $info['description'];?>
+                </div>
+                <div class="space30"></div>
             <?php endforeach; ?>  
         </div>
+
         <div class="col-md-4 sidebar">
         	<div class="side-widget">
                 <h5><span>Services</span></h5>
                 <ul class="category vertical menu" data-accordion-menu>                        
-                	<li><a href="<?php echo base_url() . 'services/page/1'; ?>">Solution</a></li>
-                	<li><a href="<?php echo base_url() . 'services/page/1'; ?>">Installation</a></li>
-                	<li><a href="<?php echo base_url() . 'services/page/1'; ?>">Maintenance</a></li>
+                	<div class="<?php if($servicetitle['id'] == '1'){echo 'active cusact1';} ?>"><li><a href="<?php echo base_url() . 'services/page/1'; ?>">Solution</a></li></div>
+                	<div class="<?php if($servicetitle['id'] == '2'){echo 'active cusact1';} ?>"><li><a href="<?php echo base_url() . 'services/page/2'; ?>">Installation</a></li></div>
+                	<div class="<?php if($servicetitle['id'] == '3'){echo 'active cusact1';} ?>"><li><a href="<?php echo base_url() . 'services/page/3'; ?>">Maintenance</a></li></div>
                 </ul>
             </div>
             <div class="clear"></div>
@@ -80,40 +62,40 @@
             <div class="space60"></div>
 
             <div class="side-widget">
-				<h5><span><?php echo $serviceothers['0']['title']; ?></span></h5>
+                <h5><span><?php echo $serviceothers['0']['title']; ?></span></h5>
 
-				<div id="featured-shop" class="flexslider">
-					<ul class="slides">
-						<li>
-							<div class="fproduct-info">
-								<img src="<?php echo base_url() . 'assets/uploads/files/' . $serviceothers['0']['imagelink1']; ?>" alt=""/>
+                <div id="featured-shop" class="flexslider">
+                    <ul class="slides">
+                        <li>
+                            <div class="fproduct-info">
+                                <img src="<?php echo base_url() . 'assets/uploads/files/' . $serviceothers['0']['imagelink1']; ?>" alt=""/>
 
-								<div class="fproduct-info-inner">
-									<p></p>
-								</div>
-							</div>
-						</li>
-						<li>
-							<div class="fproduct-info">
-								<img src="<?php echo base_url() . 'assets/uploads/files/' . $serviceothers['0']['imagelink2']; ?>" alt=""/>
+                                <div class="fproduct-info-inner">
+                                    <p></p>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="fproduct-info">
+                                <img src="<?php echo base_url() . 'assets/uploads/files/' . $serviceothers['0']['imagelink2']; ?>" alt=""/>
 
-								<div class="fproduct-info-inner">
-									<p></p>
-								</div>
-							</div>
-						</li>
-						<li>
-							<div class="fproduct-info">
-								<img src="<?php echo base_url() . 'assets/uploads/files/' . $serviceothers['0']['imagelink3']; ?>" alt=""/>
+                                <div class="fproduct-info-inner">
+                                    <p></p>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="fproduct-info">
+                                <img src="<?php echo base_url() . 'assets/uploads/files/' . $serviceothers['0']['imagelink3']; ?>" alt=""/>
 
-								<div class="fproduct-info-inner">
-									<p></p>
-								</div>
-							</div>
-						</li>
-					</ul>
-				</div>
-			</div>
+                                <div class="fproduct-info-inner">
+                                    <p></p>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
 
             <div class="clear"></div>
             <div class="space60"></div>
@@ -122,7 +104,7 @@
                 <div id="quoteslider">
                     <div class="quote-wrap">
                         <h6><?php echo $serviceothers['1']['title']; ?></h6>
-                        	<?php echo $serviceothers['1']['description']; ?>
+                            <?php echo $serviceothers['1']['description']; ?>
                         <div class="quote-author">
                             <div class="quote-author-img">
                                 <img src="<?php echo $serviceothers['1']['imagelink1']; ?>" alt=""/>

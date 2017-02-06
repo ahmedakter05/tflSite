@@ -28,6 +28,7 @@ class Products extends My_Controller {
 		$page = 'Products';
 		$this->set_activepage($page);
 		$this->data['cid'] = 0;
+		$this->data['root'] = 0;
 		$this->data['parent'] = "Products";
 
 		$this->data['new_category'] = $this->tfl_model->getCategoryTreeForParentId(0);
@@ -76,6 +77,17 @@ class Products extends My_Controller {
 		}
 		$this->data['new_category'] = $this->tfl_model->getCategoryTreeForParentId(0);
 		$this->data['sub_category'] = $this->tfl_model->getCategoryTreeForParentId($cid);
+
+		$root = $cid;
+		while ($root >= 4){
+			$parent = $this->tfl_model->getParentofcid($root);
+			if($parent['parentid'] == '0'){
+			break;
+			} 	else { $root = $parent['parentid']; }
+		}	
+		
+		$this->data['root'] = $root;
+		//var_dump($this->data['root']);
 
 
 		$this->data['category_intro'] = $this->tfl_model->get_category_intro($cid);

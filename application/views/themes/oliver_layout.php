@@ -140,7 +140,7 @@
                         <li><a href='maintenance'><span>Maintenance</span></a></li>
                      </ul>
                   </li>
-                  <li class="<?php echo (isset($activepage) ? ($activepage=='Services' ? 'active' : '') : '');?> has-sub">
+                  <li class="<?php echo (isset($activepage) ? ($activepage=='New Features' ? 'active' : '') : '');?> has-sub">
                        <a href='#'><span>New Features</span></a>
                        <ul>
                          <li><a href="./shop.html">Shop - Home</a></li>

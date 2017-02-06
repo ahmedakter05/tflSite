@@ -46,10 +46,10 @@ class Query extends My_Controller {
 
 	public function socialshare()
 	{
-		$page = 'Categories';
+		$page = 'Social Account Settings';
 		$this->set_activepage($page);
 		$this->data['title'] = "TechFocus Ltd - Focusing on Technology" ;
-		$this->data['activepage'] = "Categories" ;
+		$this->data['activepage'] = $page;
 
 		if (!$this->ion_auth->logged_in())
 		{
@@ -76,10 +76,10 @@ class Query extends My_Controller {
 
 	public function header()
 	{
-		$page = 'Categories';
+		$page = 'Header Setting';
 		$this->set_activepage($page);
 		$this->data['title'] = "TechFocus Ltd - Focusing on Technology" ;
-		$this->data['activepage'] = "Categories" ;
+		$this->data['activepage'] = $page;
 
 		if (!$this->ion_auth->logged_in())
 		{
@@ -108,10 +108,10 @@ class Query extends My_Controller {
 
 	public function footer()
 	{
-		$page = 'Categories';
+		$page = 'Footer Setting';
 		$this->set_activepage($page);
 		$this->data['title'] = "TechFocus Ltd - Focusing on Technology" ;
-		$this->data['activepage'] = "Categories" ;
+		$this->data['activepage'] = $page;
 
 		if (!$this->ion_auth->logged_in())
 		{
@@ -137,13 +137,12 @@ class Query extends My_Controller {
 		//$this->data['message'] = $this->session->flashdata('message');
 		$this->load->view($this->template_dir.'crud_view', $this->data);
 	}
-
-	public function dsafdf()
+	public function services()
 	{
-		$page = 'Categories';
+		$page = 'Service Page';
 		$this->set_activepage($page);
 		$this->data['title'] = "TechFocus Ltd - Focusing on Technology" ;
-		$this->data['activepage'] = "Categories" ;
+		$this->data['activepage'] = "Services" ;
 
 		if (!$this->ion_auth->logged_in())
 		{
@@ -154,10 +153,76 @@ class Query extends My_Controller {
 
 		$crud = new grocery_CRUD();
 		$crud->unset_jquery();
-		$crud->set_table('footer_social_share');
-		$crud->columns('id','title','href');
-		$crud->display_as('id','ID')->display_as('title','Title')->display_as('href','Link');
-		$crud->field_type('class_ref','dropdown', array('fa fa-dribbble' => 'Dribble', 'fa fa-twitter' => 'Twitter' , 'fa fa-facebook' => 'Facebook', 'fa fa-google-plus' => 'Google +' , 'fa fa-linkedin' => 'Linkedin'));
+		$crud->unset_delete();
+		$crud->set_table('services_page');
+		$crud->columns('id','title','description', 'imagelink', 'cid');
+		$crud->display_as('id','ID')->display_as('title','Title')->display_as('description','Description')->display_as('imagelink', 'Image')->display_as('cid', 'Parent');
+		$crud->field_type('cid','dropdown', array('0' => 'Parent', '1' => 'Solution', '2' => 'Installation' , '3' => 'Maintenance'));
+		$crud->set_field_upload('imagelink','assets/uploads/files'); 
+		$this->data['crud'] = $crud->render();
+
+
+		 
+		//$this->_example_output($output);
+
+		//$this->data['message'] = $this->session->flashdata('message');
+		$this->load->view($this->template_dir.'crud_view', $this->data);
+	}
+
+	public function serothers()
+	{
+		$page = 'Services';
+		$this->set_activepage($page);
+		$this->data['title'] = "TechFocus Ltd - Focusing on Technology" ;
+		$this->data['activepage'] = "Services" ;
+
+		if (!$this->ion_auth->logged_in())
+		{
+			// redirect them to the login page
+			$this->session->set_userdata('last_page', current_url()); redirect('admin/cp/login', 'refresh');
+			//echo "Redirect to Login";
+		}
+
+		$crud = new grocery_CRUD();
+		$crud->unset_jquery();
+		$crud->unset_add();
+		$crud->unset_delete();
+		$crud->set_table('services_others');
+		$crud->columns('id','name','title','description', 'imagelink');
+		$crud->display_as('id','ID')->display_as('name','Name')->display_as('title','Title')->display_as('description','Description')->display_as('imagelink', 'Image');
+		$crud->set_field_upload('imagelink1','assets/uploads/files'); 
+		$crud->set_field_upload('imagelink2','assets/uploads/files'); 
+		$crud->set_field_upload('imagelink3','assets/uploads/files'); 
+		$this->data['crud'] = $crud->render();
+
+
+		 
+		//$this->_example_output($output);
+
+		//$this->data['message'] = $this->session->flashdata('message');
+		$this->load->view($this->template_dir.'crud_view', $this->data);
+	}
+
+	public function contactus()
+	{
+		$page = 'Contact Us';
+		$this->set_activepage($page);
+		$this->data['title'] = "TechFocus Ltd - Focusing on Technology" ;
+		$this->data['activepage'] = $page ;
+
+		if (!$this->ion_auth->logged_in())
+		{
+			// redirect them to the login page
+			$this->session->set_userdata('last_page', current_url()); redirect('admin/cp/login', 'refresh');
+			//echo "Redirect to Login";
+		}
+
+		$crud = new grocery_CRUD();
+		$crud->unset_jquery();
+		$crud->set_table('contactpage_info');
+		$crud->columns('id','name','description');
+		$crud->fields('id', 'name', 'description');
+		$crud->display_as('id','ID')->display_as('name','Name')->display_as('description','Description');
 		$this->data['crud'] = $crud->render();
 
 

@@ -69,7 +69,7 @@
             </div>
             <div class="nContainer">                
                 <ul class="navigation bordered">         
-                    <li class="active"><a href="<?php echo base_url(); ?>admin/dashboard" class="blblue">Dashboard</a></li>
+                    <li class="active"><a href="<?php echo base_url(); ?>admin/cp" class="blblue">Dashboard</a></li>
                     <li>
                         <a href="<?php echo base_url(); ?>admin" class="blyellow">Users Panel</a>
                         <div class="open"></div>
@@ -95,27 +95,23 @@
                         <a href="#" class="blred">Front Page</a>
                         <div class="open"></div>
                         <ul>
-                            <li><a href="<?php echo base_url(); ?>apps/client/search">Update Slider</a></li>
-                            <li><a href="<?php echo base_url(); ?>apps/client/index">Client Icons</a></li>
-                            <li><a href="<?php echo base_url(); ?>apps/client/add">Why Techfocus</a></li>
-                            <li><a href="<?php echo base_url(); ?>apps/payment/add">What we do</a></li>
-                            <li><a href="<?php echo base_url(); ?>apps/payment/add">Who we are</a></li>
-                            <li><a href="<?php echo base_url(); ?>apps/payment/add">Social Share</a></li>
+                            <li><a href="<?php echo base_url(); ?>admin/frontpage/slider">Update Slider</a></li>
+                            <li><a href="<?php echo base_url(); ?>admin/frontpage/clienticon">Client Icons</a></li>
+                            <li><a href="<?php echo base_url(); ?>admin/frontpage/whyus">Why Techfocus</a></li>
+                            <li><a href="<?php echo base_url(); ?>admin/frontpage/whatwedo">What we do</a></li>
+                            <li><a href="<?php echo base_url(); ?>admin/frontpage/whoweare">Who we are</a></li>
+                            <li><a href="<?php echo base_url(); ?>admin/query/socialshare">Social Share</a></li>
                         </ul>
                     </li>
                     <li>
                         <a href="statistic.html" class="blgreen">Service Page</a>
                         <div class="open"></div>
                         <ul>
-                            <li><a href="<?php echo base_url(); ?>apps/client/search">Update Slider</a></li>
-                            <li><a href="<?php echo base_url(); ?>apps/client/index">Client Icons</a></li>
-                            <li><a href="<?php echo base_url(); ?>apps/client/add">Why Techfocus</a></li>
-                            <li><a href="<?php echo base_url(); ?>apps/payment/add">What we do</a></li>
-                            <li><a href="<?php echo base_url(); ?>apps/payment/add">Who we are</a></li>
-                            <li><a href="<?php echo base_url(); ?>apps/payment/add">Social Share</a></li>
+                            <li><a href="<?php echo base_url(); ?>admin/query/services">Services</a></li>
+                            <li><a href="<?php echo base_url(); ?>admin/query/serothers">Sidebar</a></li>
                         </ul>
                     </li>   
-                    <li>
+                    <!--li>
                         <a href="statistic.html" class="blblue">Game Shop</a>
                         <div class="open"></div>
                         <ul>
@@ -126,27 +122,22 @@
                             <li><a href="<?php echo base_url(); ?>apps/payment/add">Who we are</a></li>
                             <li><a href="<?php echo base_url(); ?>apps/payment/add">Social Share</a></li>
                         </ul>
-                    </li>   
+                    </li-->   
                     <li>
                         <a href="statistic.html" class="blyellow">Header & Footer</a>
                         <div class="open"></div>
                         <ul>
-                            <li><a href="<?php echo base_url(); ?>apps/client/search">Update Slider</a></li>
-                            <li><a href="<?php echo base_url(); ?>apps/client/index">Client Icons</a></li>
-                            <li><a href="<?php echo base_url(); ?>apps/client/add">Why Techfocus</a></li>
-                            <li><a href="<?php echo base_url(); ?>apps/payment/add">What we do</a></li>
-                            <li><a href="<?php echo base_url(); ?>apps/payment/add">Who we are</a></li>
-                            <li><a href="<?php echo base_url(); ?>apps/payment/add">Social Share</a></li>
+                            <li><a href="<?php echo base_url(); ?>admin/query/socialshare">Social Share</a></li>
+                            <li><a href="<?php echo base_url(); ?>admin/query/header">Header</a></li>
+                            <li><a href="<?php echo base_url(); ?>admin/query/footer">Footer</a></li>
                         </ul>
                     </li>                 
                     <li>
-                        <a href="#" class="blorange">Contact Page</a>
+                        <a href="<?php echo base_url(); ?>admin/query/contactus" class="blorange">Contact Us</a>
                         <div class="open"></div>
                         <ul>
-                            <li><a href="files.html">File handling</a></li>
-                            <li><a href="images.html">Images</a></li>
-                            <li><a href="typography.html">Typography</a></li>
-                            <li><a href="404.html">Error 404</a></li>
+                            <li><a href="<?php echo base_url(); ?>admin/query/contactus">Contact Us</a></li>
+                            <li><a href="<?php echo base_url(); ?>admin/query/aboutus">About Us</a></li>
                         </ul>
                     </li>
                 </ul>

@@ -103,7 +103,7 @@ class Cp extends My_Controller {
 				$this->session->set_flashdata('message', $this->ion_auth->messages());
 
 				//echo $this->session->userdata['last_page'];
-				redirect($this->session->userdata['last_page'], 'refresh');
+				redirect((isset($this->session->userdata['last_page']) ? $this->session->userdata['last_page'] : 'home'), 'refresh');
 			}
 			else
 			{
