@@ -87,10 +87,11 @@ class Req extends My_Controller {
 		$crud->columns('cid','cname','parentid','cinfo', 'imageurl1');
 		$crud->set_relation('parentid','categories','cname');
 		$crud->display_as('cid','ID')->display_as('cname','Category Name')->display_as('parentid','Parent Category')
-			 ->display_as('cinfo','Category Info')->display_as('imageurl1','Image')->display_as('imageurl2','Image')->display_as('imageurl3','Image');
+			 ->display_as('cinfo','Category Info')->display_as('imageurl1','Image')->display_as('imageurl2','Image')->display_as('imageurl3','Image')->display_as('root','Root Category');
 		$crud->set_field_upload('imageurl1','assets/uploads/files'); 
 		$crud->set_field_upload('imageurl2','assets/uploads/files'); 
 		$crud->set_field_upload('imageurl3','assets/uploads/files'); 
+		$crud->field_type('root','dropdown', array('0' => 'None', '1' => 'Category', '2' => 'Industry', '3' => 'Technology'));
 		$this->data['crud'] = $crud->render();
 
 
@@ -119,13 +120,14 @@ class Req extends My_Controller {
 		$crud->unset_jquery();
 		$crud->set_table('products_main');
 		$crud->columns('id','name','details', 'featured', 'imageurl1');
+		//$crud->fields('name', 'details', 'keyfeatures', 'description', 'specification', 'featured', 'imageurl1', 'imageurl2', 'imageurl3', 'imageurl4', 'categoryid', 'tags', 'code', 'updatetime');
 		//$crud->edit_fields('name','details','description', 'keyfeatures', 'specification', 'featured', 'imageurl1', 'imageurl2', 'imageurl3', 'imageurl4');
 		//$crud->add_fields('name','details','description', 'updatetime');
 
 		$crud->set_relation('categoryid','categories','cname');
 		$crud->field_type('featured','dropdown', array('1' => 'Yes', '0' => 'No'));
 		$crud->display_as('cid','ID')->display_as('cname','Category Name')->display_as('parentid','Parent Category')
-			 ->display_as('cinfo','Category Info')->display_as('imageurl1','Image');
+			 ->display_as('cinfo','Category Info')->display_as('imageurl1','Image')->display_as('categoryid','Category');
 		$crud->set_field_upload('imageurl1','assets/uploads/files'); 
 		$crud->set_field_upload('imageurl2','assets/uploads/files'); 
 		$crud->set_field_upload('imageurl3','assets/uploads/files'); 

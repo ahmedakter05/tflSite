@@ -68,6 +68,9 @@ class Products extends My_Controller {
 		$page = 'Products';
 		$this->set_activepage($page);
 		$this->data['cid'] = $cid;
+		$pid = $this->tfl_model->getParentofcid($cid);
+		$this->data['pid'] = $pid['parentid'];
+		//echo $this->data['pid'];
 		$this->data['parent'] = "Category";
 		$cid = ($this->tfl_model->products_cat_check_new($cid) ? $cid : '0');
 		if ($cid=='0') 
@@ -77,6 +80,10 @@ class Products extends My_Controller {
 		}
 		$this->data['new_category'] = $this->tfl_model->getCategoryTreeForParentId(0);
 		$this->data['sub_category'] = $this->tfl_model->getCategoryTreeForParentId($cid);
+		
+		$opt = $this->tfl_model->getParentofcid($cid);
+		$this->data['opt_category'] = $this->tfl_model->getCategoryTreeForParentId($opt['parentid']);
+		//var_dump($this->data['opt_category']);
 
 		$root = $cid;
 		while ($root >= 4){
@@ -92,10 +99,16 @@ class Products extends My_Controller {
 
 		$this->data['category_intro'] = $this->tfl_model->get_category_intro($cid);
 		$this->data['products1'] = $this->tfl_model->products_view_category_new($cid);
-		
+		/*
+		$this->data['products2'][$cid] = $this->tfl_model->products_view_category_new_custom($cid);
+		foreach ($this->data['sub_category'] as $value) {
+			//echo $value['id'] . ',';
+			$this->data['products2'][$value['id']] = $this->tfl_model->products_view_category_new_custom($value['id']);
+		}
 
-		
+		//var_dump($this->data['products2']);
 		//var_dump($this->data['sub_category']);
+		*/
 		$this->data['message'] = $this->session->flashdata('message');
 		$this->load->view($this->template_dir.'products_main.php', $this->data);
 	}

@@ -72,7 +72,7 @@
 
                         <div class="product-post-info">
                             <h5><a href="<?php echo base_url() . 'products/details/' . $fvalue['id']; ?>"><?php echo $fvalue['name']; ?></a></h5>
-                            <p>Category: <?php echo anchor('products/category/'.$fvalue['categories']['cid'], $fvalue['categories']['cname'] .' '); ?></p>
+                            <p>Category: <?php if(!empty($fvalue['categories']['cname'])){ echo anchor('products/category/'.$fvalue['categories']['cid'], $fvalue['categories']['cname'] .' ');} ?></p>
                         </div>
                     </li> 
                     <?php endforeach; ?>                   
@@ -98,6 +98,12 @@
                         <a href='<?php echo base_url() . "products/category/" . $value['id']; ?>'><span><?php echo $value['name']; ?></span></a>
                     </li>
                     <?php endforeach; ?>
+                    <?php } else if(!empty($opt_category) && ($cid >= '3') && ($pid >= '3')){ ?>
+                    <?php foreach ($opt_category as $value): ?>
+                    <li class='<?php if($value['id'] == $cid){echo 'active';}?> customnav1'>
+                        <a href='<?php echo base_url() . "products/category/" . $value['id']; ?>'><span><?php echo $value['name']; ?></span></a>
+                    </li>
+                    <?php endforeach; ?>
                     <?php } ?>
                 </ul>
             </nav>
@@ -112,6 +118,7 @@
                     </div>
                 </div>
               <?php } ?>-->
+              <?php if(!empty($category_intro['imageurl1'])){ ?>
               <div class="post-thumb">
                   <div id="post-slider" class="flexslider">
                       <ul class="slides">
@@ -120,15 +127,15 @@
                   </div> 
                   <div class="shadow-left-big"></div>
               </div>
-
+              <?php } ?>
               <div class="post-info">
                   <h3><a href=""><?php echo $category_intro['cname']; ?></a></h3>
-                  <p><?php echo $category_intro['cinfo']; ?></p>
+                  <p><?php if(!empty($category_intro['cinfo'])){ echo $category_intro['cinfo'];} ?></p>
               </div>
               <div class="post-meta">
                   <div class="meta-right">
                   <div class="meta-info">
-                      <span><b>Parent: <a href="<?php if(!empty($category_intro['parent']['name'])) { echo base_url() . 'products/category/' .  $category_intro['parentid']; ?>"><?php echo $category_intro['parent']['name']; } else {echo '#">Hello';}?></a></b></span>
+                      <span><b>Parent: <a href="<?php if(!empty($category_intro['parent']['name'])) { echo base_url() . 'products/category/' .  $category_intro['parentid']; ?>"><?php echo $category_intro['parent']['name']; } else {echo '#">';}?></a></b></span>
                   </div>
                   <div class="post-more">
                       
@@ -164,6 +171,33 @@
                     </div>
                     </br>
                     <?php endforeach; ?>
+                </div>
+            </div>
+                <!--/br>
+            <div class="col-lg-12 no-padding">                
+                <div class="tab-content">
+                    <?php foreach ($products2 as $kv){ ?>
+                        <?php foreach ($kv as $value): ?>
+                        <div class="tab-pane fade active in clearfix media">
+                            <img class="pull-left" src="<?php echo base_url() . 'assets/uploads/files/' . $value['imageurl1']; ?>" width="20%" alt=""/>
+                            <h5 Style="margin-top: 0px !important;"> <?php echo anchor('products/details/'.$value['id'], $value['name'] .' '); ?> </h5>
+                            <p><?php $content = $value['details'];
+                            //echo "$content";
+                            $contentarr=explode(' ', $content); 
+                            $i = '1';
+                            foreach ($contentarr as $content) {
+                                if ($i <= '50'){
+                                    echo " " . $content;
+                                    $i++;
+                                }
+                            }
+                            echo '&nbsp;&nbsp;&nbsp;' . anchor('products/details/'.$value['id'], 'View More');
+                            
+                            ?></p>
+                        </div>
+                        </br>
+                        <?php endforeach; ?>
+                    <?php } ?>
                 </div>
             </div>
 

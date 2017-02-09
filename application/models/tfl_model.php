@@ -136,7 +136,7 @@ class Tfl_model extends CI_Model
 	function products_view_all_new($limit=NULL, $start=NULL)
 	{
 		$query = $this->db->select('*')
-						  ->order_by('updatetime', 'asc')
+						  ->order_by('updatetime', 'desc')
 						  ->limit(30)
 		                  ->get('products_main')
 		                  ->result_array();
@@ -156,7 +156,7 @@ class Tfl_model extends CI_Model
 	function products_view_featured($limit=NULL, $start=NULL)
 	{
 		$query = $this->db->select('*')
-						  ->order_by('updatetime', 'asc')
+						  ->order_by('updatetime', 'desc')
 						  ->where('featured', '1')
 						  ->limit(5)
 		                  ->get('products_main')
@@ -176,7 +176,7 @@ class Tfl_model extends CI_Model
 	function products_view_recent($limit=NULL, $start=NULL)
 	{
 		$query = $this->db->select('*')
-						  ->order_by('updatetime', 'asc')
+						  ->order_by('updatetime', 'desc')
 						  ->limit(8)
 		                  ->get('products_main')
 		                  ->result_array();
@@ -189,7 +189,7 @@ class Tfl_model extends CI_Model
 				                ->get('categories')
 				                ->row_array();
 		}
-
+		//var_dump($query);
 		return $query;
 	}
 
@@ -319,7 +319,7 @@ class Tfl_model extends CI_Model
 		$query = $this->db->select('*')
 						  ->order_by('updatetime', 'asc')
 						  ->limit(30)
-						  ->join('products_category_relation', 'products_category_relation.productsid = products_main.id', 'inner')
+						  ->join('products_category_relation', 'products_category_relation.productsid = products_main.id', 'left')
 						  ->where('products_category_relation.categoryid', $cid)
 						  //->group_by('products_main.id')
 		                  ->get('products_main')
@@ -344,7 +344,7 @@ class Tfl_model extends CI_Model
 		$query = $this->db->select('*')
 						  ->order_by('updatetime', 'asc')
 						  ->limit(30)
-						  ->join('products_category_relation', 'products_category_relation.productsid = products_main.id', 'inner')
+						  ->join('products_category_relation', 'products_category_relation.productsid = products_main.id', 'left')
 						  ->where('products_category_relation.industryid', $cid)
 						  //->group_by('products_main.id')
 		                  ->get('products_main')
@@ -369,7 +369,7 @@ class Tfl_model extends CI_Model
 		$query = $this->db->select('*')
 						  ->order_by('updatetime', 'asc')
 						  ->limit(30)
-						  ->join('products_category_relation', 'products_category_relation.productsid = products_main.id', 'inner')
+						  ->join('products_category_relation', 'products_category_relation.productsid = products_main.id', 'left')
 						  ->where('products_category_relation.categoryid', $cid)
 						  //->group_by('products_main.id')
 		                  ->get('products_main')
@@ -439,7 +439,7 @@ class Tfl_model extends CI_Model
 	    $category['id'] = $mainCategory->cid;
 	    $category['name'] = $mainCategory->cname;
 	    $category['parent_id'] = $mainCategory->parentid;
-	    $category['root'] = $mainCategory->root;
+	    //$category['root'] = $mainCategory->root;
 	    $category['sub_categories'] = $this->getCategoryTreeForParentId($category['id']);
 	    $categories[$mainCategory->cid] = $category;
 	  }
@@ -463,15 +463,42 @@ class Tfl_model extends CI_Model
 	function products_view_category_new($cid=NULL) 
 	{
 		$query = $this->db->select('products_main.*, categories.cname')
-						  ->order_by('updatetime', 'asc')
+						  ->order_by('updatetime', 'desc')
 						  ->limit(30)
-						  ->join('categories', 'categories.cid = products_main.categoryid', 'inner')
+						  ->join('categories', 'categories.cid = products_main.categoryid', 'left')
 						  ->where('categoryid', $cid)
 						  ->or_where('categories.parentid', $cid)
 						  //->group_by('products_main.id')
 		                  ->get('products_main')
 		                  ->result_array();
 
+
+
+
+			
+
+		return $query;
+	}
+
+	function products_view_category_new_custom($cid=NULL) 
+	{
+		$query = $this->db->select('products_main.*, categories.cname')
+						  ->order_by('updatetime', 'asc')
+						  ->limit(30)
+						  ->join('categories', 'categories.cid = products_main.categoryid', 'left')
+						  ->where('categoryid', $cid)
+						  //->group_by('products_main.id')
+		                  ->get('products_main')
+		                  ->result_array();
+
+		foreach ($query as $key => $value) {
+			
+		$query[$key]['category'] = $this->db->select('cid, cname')
+							    ->limit(10)
+							    ->where('cid', $value['id'])
+				                ->get('categories')
+				                ->row_array();
+		}
 			
 
 		return $query;
@@ -543,12 +570,58 @@ class Tfl_model extends CI_Model
 	}
 
 
+/***********************************************************************************
+Edutech Boundary
+***********************************************************************************/
 
+	function get_edutech_videos($eid=NULL)
+		{
 
+			$query = $this->db->select('*')
+						  ->order_by('updatetime', 'asc')
+						  //->limit($limit)
+						  //->Offset($start)
+						  ->where('categoryid', $eid)
+		                  ->get('edutech_videos')
+		                  ->result_array();
 
+		    foreach ($query as $key => $value) 
+		    {
+				$query[$key]['category'] 	= $this->db->select('*')
+									   	->limit(10)
+									    ->where('eid', $value['categoryid'])
+						                ->get('edutech_categories')
+						                ->row_array();
+			}
+			
+			return $query;
+		}
+		function get_edutech_videos_all()
+		{
 
+			$query = $this->db->select('*')
+						  ->order_by('updatetime', 'asc')
+						  //->limit($limit)
+						  //->Offset($start)
+						  ->join('edutech_categories', 'edutech_categories.eid = edutech_videos.id', 'left')
+						  ->get('edutech_videos')
+		                  ->result_array();
 
+		                  //var_dump($query);
+		    foreach ($query as $key => $value) {
+			
+			$query[$key]['category'] 	= $this->db->select('*')
+									   	->limit(10)
+									    ->where('eid', $value['categoryid'])
+										//->group_by('products_main.postid')
+						                ->get('edutech_categories')
+						                ->row_array();
+			}
 
+			
+			return $query;
+		}
+		
 
 
 
@@ -607,6 +680,10 @@ class Tfl_model extends CI_Model
 
 
 
+
+/***********************************************************************************
+Old Database, Not in Use
+***********************************************************************************/
 
 
 	function blog_view_all()

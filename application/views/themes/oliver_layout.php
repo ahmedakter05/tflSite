@@ -143,8 +143,8 @@
                   <li class="<?php echo (isset($activepage) ? ($activepage=='New Features' ? 'active' : '') : '');?> has-sub">
                        <a href='#'><span>New Features</span></a>
                        <ul>
-                         <li><a href="./shop.html">Shop - Home</a></li>
-                         <li><a href="./shop_single.html">Shop Single</a></li>
+                         <li><a href="<?php echo base_url(); ?>edutech/index">EduTech</a></li>
+                         <li><a href="<?php echo base_url(); ?>shop/games">Gameshop</a></li>
                        </ul>
                   </li>
                   
