@@ -22,6 +22,7 @@
 | a PHP script and you can easily do that on your own.
 |
 */
+date_default_timezone_set('Asia/Dhaka');
 //$config['base_url'] = '';
 $config['base_url']  =  "http://".$_SERVER['HTTP_HOST'];
 $config['base_url'] .= preg_replace('@/+$@', '', dirname($_SERVER['SCRIPT_NAME'])).'/';
@@ -136,7 +137,7 @@ $config['subclass_prefix'] = 'MY_';
 | DO NOT CHANGE THIS UNLESS YOU FULLY UNDERSTAND THE REPERCUSSIONS!!
 |
 */
-$config['permitted_uri_chars'] = 'a-z 0-9~%.:_\-';
+$config['permitted_uri_chars'] = 'a-z 0-9~%.:_\-\=';
 
 
 /*

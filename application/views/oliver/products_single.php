@@ -48,7 +48,7 @@
 				<div class="product_price"><h4><?php echo anchor('products/category/'.$singleproduct['product']['categoryid'], $singleproduct['product']['categoryname'].' '); ?></h4></div>
 				<div class="line-sep"></div>
 
-				<p><?php echo $singleproduct['product']['details']; ?></p>
+				<?php echo $singleproduct['product']['details']; ?>
 
 				<p Style="margin-bottom: 0px;"><strong> Key Features: </strong></p>
 					<?php if (!empty($singleproduct['product']['keyfeatures'])) { $features = explode("|", $singleproduct['product']['keyfeatures']);?>

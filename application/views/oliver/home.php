@@ -1,8 +1,10 @@
+<?php //var_dump($whoweare);?>
 <!-- Slider -->
  <div class="fullwidthbanner-container" >
 	<div class="fullwidthbanner">
 		<ul>
 			<?php foreach ($slider as $print): ?>
+				<?php if(!empty($print->imagelink_lg)){ ?>
 				<li data-transition="random" data-slotamount="7" data-masterspeed="1000">
 					<img src="<?php echo base_url() . 'assets/uploads/slider/' . $print->imagelink_lg; ?>" alt="slide" data-fullwidthcentering="true">
 					<?php if(!empty($print->imagelink_sm_1)){?>
@@ -22,6 +24,7 @@
 					</div>
 					<?php };?>
 				</li>
+				<?php } ?>
 			<?php endforeach; ?>
 
 		</ul>
@@ -33,11 +36,11 @@
 <div class="container home-works">
 	<div class="row">
       	<div class="col-lg-12">
-			<h2 class="section-title"><span>Our Clients</span></h2>
+			<h2 class="section-title"><span>&nbsp;&nbsp;Our Clients</span></h2>
       	</div>
 		<div id="client-content" class="owl-carousel">
 			<?php foreach ($clienticon as $print): ?>
-			<div class="item client-content">
+			<div class="item client-content" Style="padding: 10px !important;">
 				<img src="<?php echo base_url() . 'assets/uploads/icon/' . $print->iconlink; ?>" alt="<?php echo $print->alttext; ?>"/>
 			</div>
 			<?php endforeach; ?>			
@@ -47,7 +50,7 @@
 <!-- Clients -->
 
 <!-- Services -->
-<div class="section">
+<div class="section" Style="padding: 40px 0;">
 	<div class="container">
 		<div class="col-lg-12">
 			<h2 class="section-title"><span>Why TechFocus?</span></h2>
@@ -65,7 +68,7 @@
 	</div>
 </div>
 <!-- Services -->
-
+<div class="space10"></div>
 <!-- Recent Projects - Carousel -->
 <div class="container home-works">
 	<div class="row">
@@ -95,8 +98,8 @@
 	</div>
 </div>
 <!-- Recent Projects - Carousel -->
-<div class="space70"></div>
-<!-- Hot Games -->
+<div class="space10"></div>
+<!-- Hot Games --1>
 <div class="container">
 	<div class="row">
 		<div class="col-lg-12">
@@ -262,17 +265,19 @@
 
 			<div class="col-lg-6 about-home">
 		      	<div class="col-lg-12 no-padding">
-			            <h2 class="section-title"><span>Who we are</span></h2>
+			            <h2 class="section-title"><span><?php echo $whoweare['name']; ?></span></h2>
 				</div>
-				<?php foreach ($whoweare as $print): ?>
+				
 					<div class="col-lg-12 no-padding clearfix media ">
-						<img class="pull-left" src="<?php echo base_url() . 'assets/uploads/files/' . $print->imagelink; ?>" alt=""/>
-						<?php echo $print->details; ?>
+						<img class="pull-left" src="<?php echo base_url() . 'assets/uploads/files/' . $whoweare['imagelink']; ?>" alt=""/>
+						<?php echo $whoweare['details']; ?>
 					</div>
-					<div class="white-panel">
-						<?php echo $print->specialtext; ?>
+					<?php if(!empty($whoweare['specialtext'])){ ?>
+					<div class="white-panel" Style="margin-top: 0 !important;">
+						<?php echo $whoweare['specialtext']; ?>
 					</div>
-				<?php endforeach; ?>
+					<?php } ?>
+				
 			</div>
 		</div>
 	</div>

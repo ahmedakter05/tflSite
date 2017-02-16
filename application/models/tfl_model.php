@@ -53,11 +53,12 @@ class Tfl_model extends CI_Model
 		$query = $this->db->select('*')
 						  ->order_by('id', 'asc')
 						  ->limit(1)
-						  ->get('frontpage_whoweare');
-
+						  ->where('id', '1')
+						  ->get('frontpage_whoweare')
+						  ->row_array();
 						  //var_dump($query->result());
 		
-		return $query->result();
+		return $query;
 	}
 	function frontpage_why_us()
 	{
@@ -73,7 +74,7 @@ class Tfl_model extends CI_Model
 	function frontpage_slider()
 	{
 		$query = $this->db->select('*')
-						  ->order_by('id', 'asc')
+						  ->order_by('position', 'asc')
 						  ->limit(10)
 						  ->get('frontpage_slider');
 
@@ -577,7 +578,7 @@ Edutech Boundary
 	function get_edutech_videos($eid=NULL)
 		{
 
-			$query = $this->db->select('*')
+			$query = $this->db->select('id, name, summary, thumblink, videolink, categoryid, viewcount, updatetime')
 						  ->order_by('updatetime', 'asc')
 						  //->limit($limit)
 						  //->Offset($start)
@@ -599,11 +600,11 @@ Edutech Boundary
 		function get_edutech_videos_all()
 		{
 
-			$query = $this->db->select('*')
+			$query = $this->db->select('id, name, summary, thumblink, videolink, categoryid, viewcount, updatetime')
 						  ->order_by('updatetime', 'asc')
 						  //->limit($limit)
 						  //->Offset($start)
-						  ->join('edutech_categories', 'edutech_categories.eid = edutech_videos.id', 'left')
+						  ->join('edutech_categories', 'edutech_categories.eid = edutech_videos.categoryid', 'left')
 						  ->get('edutech_videos')
 		                  ->result_array();
 
@@ -621,10 +622,97 @@ Edutech Boundary
 			
 			return $query;
 		}
-		
 
+		function edutech_get_side_category() 
+		{
+			$query = $this->db->select('*')
+							  ->limit(20)
+							  ->get('edutech_categories')
+			                  ->result_array();
+			
+			return $query;
+		}
 
+		function edutech_get_slide_video() 
+		{
+			$query = $this->db->select('id, name, summary, thumblink, Videolink, viewcount, updatetime')
+						  ->order_by('id', 'desc')
+						  ->limit('5')
+						  ->where('featured', '1')
+						  ->get('edutech_videos')
+		                  ->result_array();
+			//var_dump($query);
+			return $query;
+		}
 
+		function edutech_get_recent_video() 
+		{
+			$query = $this->db->select('id, name, summary, thumblink, Videolink, viewcount, updatetime')
+						  ->order_by('updatetime', 'desc')
+						  ->limit('5')
+						  //->Offset($start)
+						  ->get('edutech_videos')
+		                  ->result_array();
+			//var_dump($query);
+			return $query;
+		}
+
+		function get_edutech_video_single($vid = NULL)
+	{	
+			$query    = $this->db->select('id, name, summary, description, thumblink, videolink, categoryid, viewcount, updatetime, eid, ename')
+					  ->where('id', $vid)
+					  ->join('edutech_categories', 'edutech_categories.eid = edutech_videos.categoryid', 'left')
+					  ->limit(1)
+					  ->get('edutech_videos')
+					  ->row_array();
+
+			 $this->db->select('viewcount')
+					  ->where('id', $vid)
+					  ->set('viewcount', 'viewcount+1', FALSE)
+					  ->update('edutech_videos');
+		return $query;
+	}
+	
+	function edutech_count_video()
+	{
+		$query = $this->db->get('edutech_videos')
+	                  ->num_rows();
+		//var_dump($query);
+		return $query;
+	}
+
+	function get_edutech_videos_featured()
+	{
+
+		$query = $this->db->select('id, name, thumblink, viewcount, updatetime')
+					  ->order_by('id', 'RANDOM')
+					  ->limit('8')
+					  ->get('edutech_videos')
+	                  ->result_array();
+
+		return $query;
+	}
+
+	function get_edutech_front_slider() 
+	{
+		$query = $this->db->select('*')
+					  ->order_by('position', 'asc')
+					  ->limit('8')
+					  //->Offset($start)
+					  ->get('edutech_slider')
+	                  ->result_array();
+		//var_dump($query);
+		return $query;
+	}
+
+	function edutech_header_query()
+	{
+		$query = $this->db->select('*')
+						  ->order_by('id', 'asc')
+						  ->get('edutech_header')
+						  ->result_array();
+		return $query;
+	}
 
 
 

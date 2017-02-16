@@ -61,8 +61,8 @@ class Frontpage extends My_Controller {
 		$crud = new grocery_CRUD();
 		$crud->unset_jquery();
 		$crud->set_table('frontpage_slider');
-		$crud->columns('id','title','imagelink_lg');
-		$crud->display_as('id','ID')->display_as('imagelink_lg','Banner')->display_as('title','Title');
+		$crud->columns('id','name', 'position', 'imagelink_lg');
+		$crud->display_as('id','ID')->display_as('imagelink_lg','Banner')->display_as('name','Name');
 		$crud->set_field_upload('imagelink_lg','assets/uploads/slider'); 
 		$crud->set_field_upload('imagelink_sm_1','assets/uploads/slider'); 
 		$crud->set_field_upload('imagelink_sm_2','assets/uploads/slider'); 
@@ -123,6 +123,7 @@ class Frontpage extends My_Controller {
 		$crud = new grocery_CRUD();
 		$crud->unset_jquery();
 		$crud->unset_add();
+		$crud->unset_delete();
 		$crud->set_table('frontpage_whyus');
 		$crud->columns('id','title','details');
 		$crud->display_as('id','ID')->display_as('title','Title')->display_as('details','Info')->display_as('iconlink','Icon');
@@ -153,6 +154,8 @@ class Frontpage extends My_Controller {
 
 		$crud = new grocery_CRUD();
 		$crud->unset_jquery();
+		$crud->unset_add();
+		$crud->unset_delete();
 		$crud->set_table('frontpage_whatwedo');
 		$crud->columns('id','title','description', 'position');
 		$crud->display_as('id','ID')->display_as('title','Title')->display_as('description','Description')->display_as('position','Position');
@@ -182,9 +185,11 @@ class Frontpage extends My_Controller {
 
 		$crud = new grocery_CRUD();
 		$crud->unset_jquery();
+		$crud->unset_add();
+		$crud->unset_delete();
 		$crud->set_table('frontpage_whoweare');
-		$crud->columns('id','title','details', 'specialtext', 'imagelink');
-		$crud->display_as('id','ID')->display_as('title','Title')->display_as('details','Description')->display_as('specialtext','Quoted Text')->display_as('imagelink','Image');
+		$crud->columns('id','name','details', 'specialtext', 'imagelink');
+		$crud->display_as('id','ID')->display_as('name','Name')->display_as('details','Description')->display_as('specialtext','Quoted Text')->display_as('imagelink','Image');
 		$crud->set_field_upload('imagelink','assets/uploads/files'); 
 		$this->data['crud'] = $crud->render();
 

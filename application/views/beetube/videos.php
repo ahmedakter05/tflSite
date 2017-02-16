@@ -34,12 +34,12 @@
                             <div class="row secBg">
                                 <div class="large-12 columns">
                                     <div class="row column head-text clearfix">
-                                        <p class="pull-left">All Videos : <span>1,862 Videos posted</span></p>
-                                        <div class="grid-system pull-right show-for-large">
+                                        <p class="pull-left"><a href="<?php echo base_url() . 'edutech/videos/0'; ?>">All Videos : <span><?php echo $edutech_video_count; ?> Videos posted</span></a></p>
+                                        <!--div class="grid-system pull-right show-for-large">
                                             <a class="secondary-button grid-default" href="#"><i class="fa fa-th"></i></a>
                                             <a class="secondary-button current grid-medium" href="#"><i class="fa fa-th-large"></i></a>
                                             <a class="secondary-button list" href="#"><i class="fa fa-th-list"></i></a>
-                                        </div>
+                                        </div-->
                                     </div>
                                     <div class="tabs-content" data-tabs-content="newVideos">
                                         <div class="tabs-panel is-active" id="new-all">
@@ -48,14 +48,14 @@
                                                     <div class="item large-4 medium-6 columns grid-medium end">
                                                         <div class="post thumb-border">
                                                             <div class="post-thumb">
-                                                                <img src="<?php echo base_url(); ?>assets/beetube/images/video-thumbnail/1.jpg" alt="new video">
-                                                                <a href="single-video-v2.html" class="hover-posts">
+                                                                <img src="<?php echo base_url() . 'assets/uploads/edutech/' . $value['thumblink']; ?>" alt="new video">
+                                                                <a href="<?php echo base_url() . 'edutech/details/' . $value['id']; ?>" class="hover-posts">
                                                                     <span><i class="fa fa-play"></i>Watch Video</span>
                                                                 </a>
                                                                 
                                                             </div>
                                                             <div class="post-des">
-                                                                <h6><a href="<?php echo $value['id']; ?>"><?php echo $value['name']; ?></a></h6>
+                                                                <h6><a href="<?php echo base_url() . 'edutech/details/' . $value['id']; ?>"><?php echo $value['name']; ?></a></h6>
                                                                 <div class="post-stats clearfix">
                                                                     <p class="pull-left">
                                                                         <i class="fa fa-clock-o"></i>
@@ -67,7 +67,7 @@
                                                                     </p>
                                                                 </div>
                                                                 <div class="post-summary">
-                                                                    <?php echo $value['description']; ?>
+                                                                    <?php echo $value['summary']; ?>
                                                                 </div>
                                                                 <div class="post-button">
                                                                     <a href="<?php echo $value['id']; ?>" class="secondary-button"><i class="fa fa-play-circle"></i>watch video</a>
@@ -108,16 +108,9 @@
                                         </div>
                                         <div class="widgetContent clearfix">
                                             <ul>
-                                                <li class="cat-item"><a href="<?php echo base_url(); ?>assets/beetube/#">Entertainment &nbsp; (6)</a></li>
-                                                <li class="cat-item"><a href="<?php echo base_url(); ?>assets/beetube/#">Technology&nbsp;(4)</a></li>
-                                                <li class="cat-item"><a href="<?php echo base_url(); ?>assets/beetube/#">People&nbsp;(3)</a></li>
-                                                <li class="cat-item"><a href="<?php echo base_url(); ?>assets/beetube/#">Fashion &amp; Beauty&nbsp;(2)</a></li>
-                                                <li class="cat-item"><a href="<?php echo base_url(); ?>assets/beetube/#">Nature&nbsp;(1)</a></li>
-                                                <li class="cat-item"><a href="<?php echo base_url(); ?>assets/beetube/#">Automotive&nbsp;(5)</a></li>
-                                                <li class="cat-item"><a href="<?php echo base_url(); ?>assets/beetube/#">Foods &amp; Drinks&nbsp;(5)</a></li>
-                                                <li class="cat-item"><a href="<?php echo base_url(); ?>assets/beetube/#">Foods &amp; Drinks&nbsp;(10)</a></li>
-                                                <li class="cat-item"><a href="<?php echo base_url(); ?>assets/beetube/#">Animals&nbsp;(12)</a></li><li class="cat-item"><a href="<?php echo base_url(); ?>assets/beetube/#">Travel&nbsp;(2)</a></li>
-                                                <li class="cat-item"><a href="<?php echo base_url(); ?>assets/beetube/#">Transportation&nbsp;(3)</a></li>
+                                                <?php foreach ($edutech_side_category as $value): ?>
+                                                    <li class="cat-item"><a href="<?php echo base_url() . 'edutech/videos/' . $value['eid']; ?>"><?php echo $value['ename']; ?></a></li>
+                                                <?php endforeach; ?>
                                             </ul>
                                         </div>
                                     </div>
@@ -134,7 +127,7 @@
                                                 <div class="column row">
                                                     <div class="heading category-heading clearfix">
                                                         <div class="cat-head pull-left">
-                                                            <h4>slide videos</h4>
+                                                            <h4>Featured Videos</h4>
                                                         </div>
                                                         <div class="sidebar-video-nav">
                                                             <div class="navText pull-right">
@@ -146,84 +139,29 @@
                                                 </div>
                                                 <!-- slide Videos-->
                                                 <div id="owl-demo-video" class="owl-carousel carousel" data-car-length="1" data-items="1" data-loop="true" data-nav="false" data-autoplay="true" data-autoplay-timeout="3000" data-dots="false">
+                                                    <?php foreach ($edutech_slide_videos as $value): ?>
                                                     <div class="item item-video thumb-border">
                                                         <figure class="premium-img">
-                                                            <img src="<?php echo base_url(); ?>assets/beetube/images/widget-most2.png" alt="carousel">
-                                                            <a href="#" class="hover-posts">
+                                                            <img src="<?php echo base_url() . 'assets/uploads/edutech/' . $value['thumblink']; ?>" alt="carousel">
+                                                            <a href="<?php echo base_url() . 'edutech/details/' . $value['id']; ?>" class="hover-posts">
                                                                 <span><i class="fa fa-play"></i></span>
                                                             </a>
                                                         </figure>
                                                         <div class="video-des">
-                                                            <h6><a href="#">There are many variations of passage.</a></h6>
+                                                            <h6><a href="<?php echo base_url() . 'edutech/details/' . $value['id']; ?>"><?php echo $value['name']; ?></a></h6>
                                                             <div class="post-stats clearfix">
                                                                 <p class="pull-left">
-                                                                    <i class="fa fa-user"></i>
-                                                                    <span><a href="#">admin</a></span>
-                                                                </p>
-                                                                <p class="pull-left">
                                                                     <i class="fa fa-clock-o"></i>
-                                                                    <span>5 January 16</span>
+                                                                    <span><?php echo $value['updatetime']; ?></span>
                                                                 </p>
                                                                 <p class="pull-left">
                                                                     <i class="fa fa-eye"></i>
-                                                                    <span>1,862K</span>
+                                                                    <span><?php echo $value['viewcount']; ?></span>
                                                                 </p>
                                                             </div>
                                                         </div>
                                                     </div>
-
-                                                    <div class="item item-video thumb-border">
-                                                        <figure class="premium-img">
-                                                            <img src="<?php echo base_url(); ?>assets/beetube/images/widget-most1.png" alt="carousel">
-                                                            <a href="#" class="hover-posts">
-                                                                <span><i class="fa fa-play"></i></span>
-                                                            </a>
-                                                        </figure>
-                                                        <div class="video-des">
-                                                            <h6><a href="#">There are many variations of passage.</a></h6>
-                                                            <div class="post-stats clearfix">
-                                                                <p class="pull-left">
-                                                                    <i class="fa fa-user"></i>
-                                                                    <span><a href="#">admin</a></span>
-                                                                </p>
-                                                                <p class="pull-left">
-                                                                    <i class="fa fa-clock-o"></i>
-                                                                    <span>5 January 16</span>
-                                                                </p>
-                                                                <p class="pull-left">
-                                                                    <i class="fa fa-eye"></i>
-                                                                    <span>1,862K</span>
-                                                                </p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="item item-video thumb-border">
-                                                        <figure class="premium-img">
-                                                            <img src="<?php echo base_url(); ?>assets/beetube/images/widget-most3.png" alt="carousel">
-                                                            <a href="#" class="hover-posts">
-                                                                <span><i class="fa fa-play"></i></span>
-                                                            </a>
-                                                        </figure>
-                                                        <div class="video-des">
-                                                            <h6><a href="#">There are many variations of passage.</a></h6>
-                                                            <div class="post-stats clearfix">
-                                                                <p class="pull-left">
-                                                                    <i class="fa fa-user"></i>
-                                                                    <span><a href="#">admin</a></span>
-                                                                </p>
-                                                                <p class="pull-left">
-                                                                    <i class="fa fa-clock-o"></i>
-                                                                    <span>5 January 16</span>
-                                                                </p>
-                                                                <p class="pull-left">
-                                                                    <i class="fa fa-eye"></i>
-                                                                    <span>1,862K</span>
-                                                                </p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
+                                                    <?php endforeach; ?>
                                                 </div><!-- end carousel -->
                                             </div>
                                         </div>
@@ -237,70 +175,24 @@
                                             <h5>Recent post videos</h5>
                                         </div>
                                         <div class="widgetContent">
-                                            <div class="media-object stack-for-small">
-                                                <div class="media-object-section">
-                                                    <div class="recent-img">
-                                                        <img src="<?php echo base_url(); ?>assets/beetube/images/category/category4.png" alt="recent">
-                                                        <a href="#" class="hover-posts">
-                                                            <span><i class="fa fa-play"></i></span>
-                                                        </a>
+                                            <?php foreach ($edutech_slide_videos as $value): ?>
+                                                <div class="media-object stack-for-small">
+                                                    <div class="media-object-section">
+                                                        <div class="recent-img">
+                                                            <img src="<?php echo base_url() . 'assets/uploads/edutech/' . $value['thumblink']; ?>" alt="recent">
+                                                            <a href="#" class="hover-posts">
+                                                                <span><i class="fa fa-play"></i></span>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="media-object-section">
+                                                        <div class="media-content">
+                                                            <h6><a href="<?php echo base_url() . 'edutech/details/' . $value['id']; ?>"><strong><?php echo $value['name']; ?></strong></a></h6>
+                                                            <p><i class="fa fa-clock-o"></i><span><?php echo $value['updatetime']; ?></span></p>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                                <div class="media-object-section">
-                                                    <div class="media-content">
-                                                        <h6><a href="#">The lorem Ipsumbeen the industry's standard.</a></h6>
-                                                        <p><i class="fa fa-user"></i><span>admin</span><i class="fa fa-clock-o"></i><span>5 january 16</span></p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="media-object stack-for-small">
-                                                <div class="media-object-section">
-                                                    <div class="recent-img">
-                                                        <img src="<?php echo base_url(); ?>assets/beetube/images/category/category2.png" alt="recent">
-                                                        <a href="#" class="hover-posts">
-                                                            <span><i class="fa fa-play"></i></span>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <div class="media-object-section">
-                                                    <div class="media-content">
-                                                        <h6><a href="#">The lorem Ipsumbeen the industry's standard.</a></h6>
-                                                        <p><i class="fa fa-user"></i><span>admin</span><i class="fa fa-clock-o"></i><span>5 january 16</span></p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="media-object stack-for-small">
-                                                <div class="media-object-section">
-                                                    <div class="recent-img">
-                                                        <img src="<?php echo base_url(); ?>assets/beetube/images/sidebar-recent1.png" alt="recent">
-                                                        <a href="#" class="hover-posts">
-                                                            <span><i class="fa fa-play"></i></span>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <div class="media-object-section">
-                                                    <div class="media-content">
-                                                        <h6><a href="#">The lorem Ipsumbeen the industry's standard.</a></h6>
-                                                        <p><i class="fa fa-user"></i><span>admin</span><i class="fa fa-clock-o"></i><span>5 january 16</span></p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="media-object stack-for-small">
-                                                <div class="media-object-section">
-                                                    <div class="recent-img">
-                                                        <img src="<?php echo base_url(); ?>assets/beetube/images/sidebar-recent2.png" alt="recent">
-                                                        <a href="#" class="hover-posts">
-                                                            <span><i class="fa fa-play"></i></span>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <div class="media-object-section">
-                                                    <div class="media-content">
-                                                        <h6><a href="#">The lorem Ipsumbeen the industry's standard.</a></h6>
-                                                        <p><i class="fa fa-user"></i><span>admin</span><i class="fa fa-clock-o"></i><span>5 january 16</span></p>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            <?php endforeach; ?>
                                         </div>
                                     </div>
                                 </div><!-- End Recent post videos -->

@@ -111,6 +111,17 @@
                             <li><a href="<?php echo base_url(); ?>admin/query/serothers">Sidebar</a></li>
                         </ul>
                     </li>   
+                    <li>
+                        <a href="statistic.html" class="blblue">EduTech</a>
+                        <div class="open"></div>
+                        <ul>
+                            <li><a href="<?php echo base_url(); ?>admin/edutech/header">Edutech Header</a></li>
+                            <li><a href="<?php echo base_url(); ?>admin/edutech/slider">Slider</a></li>
+                            <li><a href="<?php echo base_url(); ?>admin/edutech/category">Categories</a></li>
+                            <li><a href="<?php echo base_url(); ?>admin/edutech/videos">Videos</a></li>
+
+                        </ul>
+                    </li>
                     <!--li>
                         <a href="statistic.html" class="blblue">Game Shop</a>
                         <div class="open"></div>

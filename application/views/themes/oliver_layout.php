@@ -132,12 +132,12 @@
                      <a href='<?php echo base_url() . "services"; ?>'><span>Services</span></a>
                      <ul>
                         <li>
-                           <a class="nav-sub" href='<?php echo base_url() . "solution"; ?>'><span>Solution</span></a>
+                           <a class="nav-sub" href='<?php echo base_url() . "services/page/1"; ?>'><span>Solution</span></a>
                         </li>
                         <li>
-                           <a href='installation'><span>Installation</span></a>
+                           <a href='<?php echo base_url() . "services/page/2"; ?>'><span>Installation</span></a>
                         </li>
-                        <li><a href='maintenance'><span>Maintenance</span></a></li>
+                        <li><a href='<?php echo base_url() . "services/page/3"; ?>'><span>Maintenance</span></a></li>
                      </ul>
                   </li>
                   <li class="<?php echo (isset($activepage) ? ($activepage=='New Features' ? 'active' : '') : '');?> has-sub">
@@ -207,8 +207,8 @@
 
 				<!-- Footer - About -->
 				<div class="col-md-3 footer-widget">
-					<h6><span>Newsletter/Subscription</span></h6>
-					<p>Lorem ipsum dolor slo onsec  tueraliquet Morbi nec In Curabitur lreaoreet nisl lorem in pellente e vidicus pannel</p>
+					<h6><span><?php echo $footerinfo['0']['name']; ?></span></h6>
+					<P><?php echo $footerinfo['0']['content1']; ?></P>
 					<div class="newsletter">
 						<form>
 							<div class="input-group">
@@ -219,28 +219,18 @@
 							</div>
 						</form>
 					</div>
-               <div class="newsletter" align="center">
-                  <form>
-                     <div class="input-group">
-                        
-                        <span class="input-group-btn">
-                           <button class="btn btn-default" type="button">Signup Now</button>
-                        </span>
-                     </div>
-                  </form>
-               </div>
 				</div>
 
 				<!-- Footer - Recent Tweets -->
 				<div class="col-md-3 footer-widget">
-					<h6><span>Recent Twittes</span></h6> <div id="tweets" class="tweet"></div>
+					<h6><span>Latest News</span></h6> <div id="tweets" class="tweet"></div>
 				</div>
 
             <!-- Footer - Tags -->
             <div class="col-md-3 footer-widget">
                <h6><span>Top Links</span></h6>
 
-               <ul class="footervmenu" Style="color: #a0a0a0 !important;">     
+               <ul class="footervmenu" Style="color: #a0a0a0 !important; list-style-type: none; padding-left: 10px;">     
                   <?php echo $footerinfo['1']['content1']; ?>
                </ul>
       
@@ -274,10 +264,10 @@
 				<p><?php echo $footerinfo['2']['content2'] . ' ';?><a href="<?php echo $footerinfo['2']['link']; ?>" target="blank"><?php echo $footerinfo['2']['content1']; ?></a></p>
 			</div>
 			<div class="col-md-6">
-				<ul class="top-contact">
+				<!--ul class="top-contact">
 					<li><i class="fa fa-phone"></i> <?php echo $footerinfo['3']['content1']; ?></li>
 					<li><i class="fa fa-envelope"></i> <?php echo $footerinfo['4']['content1']; ?></li>
-				</ul>
+				</ul-->
 			</div>
 		</div>
 	</div>

@@ -41,6 +41,8 @@ class Query extends My_Controller {
 			$this->session->set_userdata('last_page', current_url()); redirect('admin/cp/login', 'refresh');
 			//echo "Redirect to Login";
 		}
+
+		redirect('admin/cp/index', 'refresh');
 		
 	}
 
@@ -94,6 +96,11 @@ class Query extends My_Controller {
 		$crud->unset_delete();
 		$crud->set_table('header');
 		$crud->columns('id','name', 'content','imagelink');
+		$state_code = $crud->getState();
+        if($state_code == 'edit') 
+        {
+            $crud->field_type('name', 'readonly');
+        }
 		$crud->display_as('id','ID')->display_as('name','Name')->display_as('content','Content')->display_as('imagelink','Image & Icon');
 		$crud->set_field_upload('imagelink','assets/uploads/files'); 
 		$this->data['crud'] = $crud->render();
@@ -219,6 +226,8 @@ class Query extends My_Controller {
 
 		$crud = new grocery_CRUD();
 		$crud->unset_jquery();
+		$crud->unset_add();
+		$crud->unset_delete();
 		$crud->set_table('contactpage_info');
 		$crud->columns('id','name','description');
 		$crud->fields('id', 'name', 'description');

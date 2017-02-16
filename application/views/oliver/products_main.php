@@ -81,13 +81,6 @@
 
             <div class="clear"></div>
             <div class="space60"></div>
-            <div class="side-widget">
-                <h5><span>Blockquote</span></h5>
-                <blockquote>
-                    Sadintas velisur .Gorem ipsum dolor onsec nel tueraliquet  pannel impirus sadintas velisur moriaty novels. Vorem ipsum dolor slo onsec nel decidus tempus pastel novembus.
-                </blockquote>
-                <cite>John doe <span>Manager</span></cite>
-            </div>
         </div>
         <div class="col-md-8">
             <nav id='topnav' class='customnav1'>
@@ -153,23 +146,26 @@
                 <div class="tab-content">
                     <?php foreach ($products1 as $value): ?>
                     <div class="tab-pane fade active in clearfix media">
-                        <img class="pull-left" src="<?php echo base_url() . 'assets/uploads/files/' . $value['imageurl1']; ?>" width="20%" alt=""/>
-                        <h5 Style="margin-top: 0px !important;"> <?php echo anchor('products/details/'.$value['id'], $value['name'] .' '); ?> </h5>
-                        <p><?php $content = $value['details'];
-                        //echo "$content";
-                        $contentarr=explode(' ', $content); 
-                        $i = '1';
-                        foreach ($contentarr as $content) {
-                            if ($i <= '50'){
-                                echo " " . $content;
-                                $i++;
+                        <div class="col-lg-3"> 
+                            <img class="pull-left" src="<?php echo base_url() . 'assets/uploads/files/' . $value['imageurl1']; ?>" width="100%" alt=""/>
+                        </div>
+                        <div class="col-lg-9"> 
+                            <h5 Style="margin-top: 0px !important;"> <?php echo anchor('products/details/'.$value['id'], $value['name'] .' '); ?> </h5>
+                            <p><?php $content = $value['details'];
+                            //echo "$content";
+                            $contentarr=explode(' ', $content); 
+                            $i = '1';
+                            foreach ($contentarr as $content) {
+                                if ($i <= '50'){
+                                    echo " " . $content;
+                                    $i++;
+                                }
                             }
-                        }
-                        echo '&nbsp;&nbsp;&nbsp;' . anchor('products/details/'.$value['id'], 'View More');
-                        
+                        //echo '&nbsp;&nbsp;&nbsp;' . anchor('products/details/'.$value['id'], 'View More');
                         ?></p>
+                        </div>
                     </div>
-                    </br>
+                    <br></br>
                     <?php endforeach; ?>
                 </div>
             </div>

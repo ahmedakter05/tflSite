@@ -38,10 +38,10 @@ class Add extends My_Controller {
 		$this->data['message'] = $this->session->flashdata('message');
 		$this->load->view($this->template_dir.'error_404', $this->data);
 	}
-	public function category($page = 'client_add'){
+	public function client_add($page = 'client_add'){
 
 		$this->data['title'] = "TechFocus Ltd - Focusing on Technology" ;
-		$this->data['activepage'] = "Clients Page" ;
+		$this->data['activepage'] = "Clients Register" ;
 		
 
 		if (!$this->ion_auth->logged_in() || !$this->ion_auth->is_admin())
@@ -94,8 +94,20 @@ class Add extends My_Controller {
 			$this->data['message'] = validation_errors();//(validation_errors() ? validation_errors() : ($this->tfl_model->errors() ? $this->yapps_model->errors() : $this->session->flashdata('message')));
 
 			
-			$this->data['category_name'] = array(
-				'name'  => 'category_namecategory_name',
+			$this->data['clients_uname'] = array(
+				'name'  => 'category_name',
+				'id'    => 'category_name',
+				'type'  => 'text',
+				'value' => $this->form_validation->set_value('category_name'),
+			);
+			$this->data['clients_fname'] = array(
+				'name'  => 'category_name',
+				'id'    => 'category_name',
+				'type'  => 'text',
+				'value' => $this->form_validation->set_value('category_name'),
+			);
+			$this->data['clients_lname'] = array(
+				'name'  => 'category_name',
 				'id'    => 'category_name',
 				'type'  => 'text',
 				'value' => $this->form_validation->set_value('category_name'),

@@ -76,6 +76,21 @@ class MY_Controller extends CI_Controller
 		$this->data['activepage'] = $page;
 					
 	}
+
+	function get_edutech_common_param()
+	{		
+		$this->data['metainfo'] = $this->tfl_model->edutech_header_query();
+					
+	}
+
+	function get_edutech_sidebar()
+	{
+		
+		$this->data['edutech_side_category'] = $this->tfl_model->edutech_get_side_category();
+		$this->data['edutech_slide_videos'] = $this->tfl_model->edutech_get_slide_video();
+		$this->data['edutech_recent_videos'] = $this->tfl_model->edutech_get_recent_video();
+		$this->data['edutech_video_count'] = $this->tfl_model->edutech_count_video();
+	}
 	
 	function set_bc($pgname=NULL, $pgdir=NULL)
 	{
