@@ -434,6 +434,7 @@ class Tfl_model extends CI_Model
 	  $categories = array();
 	  $this->db->from('categories');
 	  $this->db->where('parentid', $parent_id);
+	  $this->db->order_by('cname');
 	  $result = $this->db->get()->result();
 	  foreach ($result as $mainCategory) {
 	    $category = array();

@@ -85,7 +85,7 @@
         <div class="col-md-8">
             <nav id='topnav' class='customnav1'>
                 <ul class="top-menu">
-                    <?php if(!empty($sub_category) && ($cid >= '3')){ ?>
+                    <?php if(!empty($sub_category) && ($cid >= '4')){ ?>
                     <?php foreach ($sub_category as $value): ?>
                     <li class='customnav1'>
                         <a href='<?php echo base_url() . "products/category/" . $value['id']; ?>'><span><?php echo $value['name']; ?></span></a>

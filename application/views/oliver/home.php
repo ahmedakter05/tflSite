@@ -36,7 +36,7 @@
 <div class="container home-works">
 	<div class="row">
       	<div class="col-lg-12">
-			<h2 class="section-title"><span>&nbsp;&nbsp;Our Clients</span></h2>
+			<h2 class="section-title"><span>&nbsp;&nbsp;Principles</span></h2>
       	</div>
 		<div id="client-content" class="owl-carousel">
 			<?php foreach ($clienticon as $print): ?>
@@ -52,9 +52,9 @@
 <!-- Services -->
 <div class="section" Style="padding: 40px 0;">
 	<div class="container">
-		<div class="col-lg-12">
+		<!--div class="col-lg-12">
 			<h2 class="section-title"><span>Why TechFocus?</span></h2>
-      	</div>
+      	</div-->
 		<?php foreach ($whyus as $print): ?>
 			<div class="col-lg-4 col-md-4">
 				<div class="services">

@@ -100,9 +100,9 @@
                         </li>
                         <li class="col-md-3">
                            <ul>
-                              <a href="<?php echo base_url() . 'products/category/2' ; ?>"><li class="sub-head">Industry</li></a>
+                              <a href="<?php echo base_url() . 'products/category/3' ; ?>"><li class="sub-head">Technology</li></a>
                               <?php $i=1; ?>
-                              <?php foreach ($products_industry as $print): ?>
+                              <?php foreach ($products_technology as $print): ?>
                               <li><a href="<?php echo base_url() . 'products/category/' . $print['id']; ?>"><?php echo $print['name']; ?></a></li>
                               <?php if($i==6) break; $i++;?>
                               <?php endforeach; ?>
@@ -110,9 +110,9 @@
                         </li>
                         <li class="col-md-3">
                            <ul>
-                              <a href="<?php echo base_url() . 'products/category/3' ; ?>"><li class="sub-head">Technology</li></a>
+                              <a href="<?php echo base_url() . 'products/category/2' ; ?>"><li class="sub-head">Industry</li></a>
                               <?php $i=1; ?>
-                              <?php foreach ($products_technology as $print): ?>
+                              <?php foreach ($products_industry as $print): ?>
                               <li><a href="<?php echo base_url() . 'products/category/' . $print['id']; ?>"><?php echo $print['name']; ?></a></li>
                               <?php if($i==6) break; $i++;?>
                               <?php endforeach; ?>

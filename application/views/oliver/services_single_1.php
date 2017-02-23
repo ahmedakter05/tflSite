@@ -1,4 +1,4 @@
-<?php// var_dump($sub_category); ?>
+<?php //var_dump($sub_category); ?>
 <?php //var_dump($featured_products); ?>
 <link href="<?php echo base_url(); ?>assets/tfl1/js/rs-plugin/css/settings.css" rel="stylesheet" />
 <link href="<?php echo base_url(); ?>assets/tfl1/js/flexslider/flexslider.css" rel="stylesheet">
