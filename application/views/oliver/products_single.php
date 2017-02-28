@@ -78,13 +78,13 @@
 	<div class="row">
 		<div class="col-md-12 no-padding">
 	            <div class="col-md-12 no-padding">
-	                <h2 class="section-title"><span>Why Choose Us</span></h2>
+	                <h2 class="section-title"><span>Extended Details</span></h2>
 	            </div>
 	            <div class="col-md-12 no-padding">
 	                <ul id="myTab" class="nav nav-tabs">
 	                    <li class="active"><a href="#tab1" data-toggle="tab">Description</a></li>
 	                    <li class=""><a href="#tab2" data-toggle="tab">Specification</a></li>
-	                    <li class=""><a href="#tab3" data-toggle="tab">Reviews</a></li>
+	                    <!--li class=""><a href="#tab3" data-toggle="tab">Reviews</a></li-->
 	                </ul>
 	                <div id="myTabContent" class="tab-content">
 	                    <div class="tab-pane fade active in clearfix media .sindesprod" id="tab1">
@@ -93,9 +93,9 @@
 	                    <div class="tab-pane fade clearfix media .sindesprod" id="tab2">
 							<?php echo $singleproduct['product']['specification']; ?>
 	                    </div>
-	                    <div class="tab-pane fade clearfix media .sindesprod" id="tab3">
+	                    <!--div class="tab-pane fade clearfix media .sindesprod" id="tab3">
 							<?php echo $singleproduct['product']['review']; ?>
-	                    </div>
+	                    </div-->
 	                </div>
 	            </div>
 	    

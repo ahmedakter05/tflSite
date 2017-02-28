@@ -22,8 +22,9 @@ $lang['error_csrf'] = 'This form post did not pass our security checks.';
 
 // Login
 $lang['login_heading']         = 'Login';
+$lang['logout_heading']         = '<div style="color: #FFF;">Logout</div>';
 $lang['login_subheading']      = 'Please login with your email/username and password below.';
-$lang['login_identity_label']  = 'Email/Username:';
+$lang['login_identity_label']  = 'Username:';
 $lang['login_password_label']  = 'Password:';
 $lang['login_remember_label']  = 'Remember Me:';
 $lang['login_submit_btn']      = 'Login';
@@ -40,9 +41,8 @@ $lang['index_status_th']         = 'Status';
 $lang['index_action_th']         = 'Action';
 $lang['index_active_link']       = 'Active';
 $lang['index_inactive_link']     = 'Inactive';
-$lang['index_create_user_link']  = 'Create a new user';
-$lang['logout_heading']  = 'Logout';
-$lang['index_create_group_link'] = 'Create a new group';
+$lang['index_create_user_link']  = '<div style="color: #FFF;">Create a new user</div>';
+$lang['index_create_group_link'] = '<div style="color: #FFF;">Create a new group</div>';
 
 // Deactivate User
 $lang['deactivate_heading']                  = 'Deactivate User';
@@ -58,8 +58,8 @@ $lang['create_user_heading']                           = 'Create User';
 $lang['create_user_subheading']                        = 'Please enter the user\'s information below.';
 $lang['create_user_fname_label']                       = 'First Name:';
 $lang['create_user_lname_label']                       = 'Last Name:';
+$lang['create_user_uname_label']                       = 'Username:';
 $lang['create_user_company_label']                     = 'Company Name:';
-$lang['create_user_identity_label']                    = 'Identity:';
 $lang['create_user_email_label']                       = 'Email:';
 $lang['create_user_phone_label']                       = 'Phone:';
 $lang['create_user_password_label']                    = 'Password:';
@@ -67,7 +67,7 @@ $lang['create_user_password_confirm_label']            = 'Confirm Password:';
 $lang['create_user_submit_btn']                        = 'Create User';
 $lang['create_user_validation_fname_label']            = 'First Name';
 $lang['create_user_validation_lname_label']            = 'Last Name';
-$lang['create_user_validation_identity_label']         = 'Identity';
+$lang['create_user_validation_uname_label']            = 'Username';
 $lang['create_user_validation_email_label']            = 'Email Address';
 $lang['create_user_validation_phone_label']            = 'Phone';
 $lang['create_user_validation_company_label']          = 'Company Name';

@@ -162,9 +162,9 @@ class Query extends My_Controller {
 		$crud->unset_jquery();
 		$crud->unset_delete();
 		$crud->set_table('services_page');
+		$crud->field_type('cid','dropdown', array('0' => 'Parent', '1' => 'Solution', '2' => 'Installation' , '3' => 'Maintenance'));
 		$crud->columns('id','title','description', 'imagelink', 'cid');
 		$crud->display_as('id','ID')->display_as('title','Title')->display_as('description','Description')->display_as('imagelink', 'Image')->display_as('cid', 'Parent');
-		$crud->field_type('cid','dropdown', array('0' => 'Parent', '1' => 'Solution', '2' => 'Installation' , '3' => 'Maintenance'));
 		$crud->set_field_upload('imagelink','assets/uploads/files'); 
 		$this->data['crud'] = $crud->render();
 

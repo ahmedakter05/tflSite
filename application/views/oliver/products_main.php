@@ -91,7 +91,7 @@
                         <a href='<?php echo base_url() . "products/category/" . $value['id']; ?>'><span><?php echo $value['name']; ?></span></a>
                     </li>
                     <?php endforeach; ?>
-                    <?php } else if(!empty($opt_category) && ($cid >= '3') && ($pid >= '3')){ ?>
+                    <?php } else if(!empty($opt_category) && ($cid >= '4') && ($pid >= '4')){ ?>
                     <?php foreach ($opt_category as $value): ?>
                     <li class='<?php if($value['id'] == $cid){echo 'active';}?> customnav1'>
                         <a href='<?php echo base_url() . "products/category/" . $value['id']; ?>'><span><?php echo $value['name']; ?></span></a>
@@ -169,10 +169,10 @@
                     <?php endforeach; ?>
                 </div>
             </div>
-                <!--/br>
+                </br>
             <div class="col-lg-12 no-padding">                
                 <div class="tab-content">
-                    <?php foreach ($products2 as $kv){ ?>
+                    <?php foreach ($products1 as $kv){ ?>
                         <?php foreach ($kv as $value): ?>
                         <div class="tab-pane fade active in clearfix media">
                             <img class="pull-left" src="<?php echo base_url() . 'assets/uploads/files/' . $value['imageurl1']; ?>" width="20%" alt=""/>

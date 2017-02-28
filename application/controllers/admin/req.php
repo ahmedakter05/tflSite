@@ -123,9 +123,9 @@ class Req extends My_Controller {
 		//$crud->fields('name', 'details', 'keyfeatures', 'description', 'specification', 'featured', 'imageurl1', 'imageurl2', 'imageurl3', 'imageurl4', 'categoryid', 'tags', 'code', 'updatetime');
 		//$crud->edit_fields('name','details','description', 'keyfeatures', 'specification', 'featured', 'imageurl1', 'imageurl2', 'imageurl3', 'imageurl4');
 		//$crud->add_fields('name','details','description', 'updatetime');
-
+		$crud->callback_before_update(array($this,'callback_update'));
 		$crud->set_relation('categoryid','categories','cname');
-		$crud->field_type('featured','dropdown', array('1' => 'Yes', '0' => 'No'));
+		$crud->field_type('featured','dropdown', array('1' => 'Yes', '0' => 'No'))->field_type('updatetime','invisible');
 		$crud->display_as('cid','ID')->display_as('cname','Category Name')->display_as('parentid','Parent Category')
 			 ->display_as('cinfo','Category Info')->display_as('imageurl1','Image')->display_as('categoryid','Category');
 		$crud->set_field_upload('imageurl1','assets/uploads/files'); 
@@ -142,7 +142,11 @@ class Req extends My_Controller {
 		//$this->data['message'] = $this->session->flashdata('message');
 		$this->load->view($this->template_dir.'crud_view', $this->data);
 	}
-	
+	function callback_update($post_array)
+	{
+	  $post_array['updatetime'] = date('Y-m-d H:i:s');
+	  return $post_array;
+	}
 	
 	
 

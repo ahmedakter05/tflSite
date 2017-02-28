@@ -90,7 +90,7 @@
 						</div>
 					</div>
 				</div>
-				<h4><?php echo substr($fvalue['name'], 0, 16); ?> <span><?php echo anchor('products/category/'.$fvalue['categories']['cid'], $fvalue['categories']['cname'] .' '); ?></span></h4>
+				<h4><?php echo substr($fvalue['name'], 0, 22); ?> <span><?php echo anchor('products/category/'.$fvalue['categories']['cid'], $fvalue['categories']['cname'] .' '); ?></span></h4>
 			</div>
 		<?php endforeach; ?>
 

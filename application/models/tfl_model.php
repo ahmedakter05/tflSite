@@ -156,7 +156,7 @@ class Tfl_model extends CI_Model
 
 	function products_view_featured($limit=NULL, $start=NULL)
 	{
-		$query = $this->db->select('*')
+		$query = $this->db->select('id, name, details, featured, imageurl1, categoryid, updatetime')
 						  ->order_by('updatetime', 'desc')
 						  ->where('featured', '1')
 						  ->limit(5)
@@ -167,7 +167,7 @@ class Tfl_model extends CI_Model
 			
 		$query[$key]['categories'] = $this->db->select('cid, cname')
 							    ->limit(10)
-							    ->where('cid', $value['id'])
+							    ->where('cid', $value['categoryid'])
 				                ->get('categories')
 				                ->row_array();
 		}
@@ -176,7 +176,7 @@ class Tfl_model extends CI_Model
 	}
 	function products_view_recent($limit=NULL, $start=NULL)
 	{
-		$query = $this->db->select('*')
+		$query = $this->db->select('id, name, details, featured, imageurl1, categoryid, updatetime')
 						  ->order_by('updatetime', 'desc')
 						  ->limit(8)
 		                  ->get('products_main')
@@ -186,7 +186,7 @@ class Tfl_model extends CI_Model
 			
 		$query[$key]['categories'] = $this->db->select('cid, cname')
 							    ->limit(10)
-							    ->where('cid', $value['id'])
+							    ->where('cid', $value['categoryid'])
 				                ->get('categories')
 				                ->row_array();
 		}
