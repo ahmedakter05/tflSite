@@ -13,10 +13,19 @@ class Aa_lib
 		//$CI->load->model('aa_model');
 	}
 
-	public function aa($data)
-	{
-		return $data;
-		//return $this->aa_model->test();
+	function nametourl($string = NULL) {
+    	$string = utf8_encode($string);
+	    $string = iconv('UTF-8', 'ASCII//TRANSLIT', $string);   
+	    $string = preg_replace('/[^a-z0-9- &]/i', '', $string);
+	    $string = str_replace(' ', '_', $string);
+	    $string = trim($string, '_');
+	    $string = strtolower($string);
+
+	    if (empty($string)) {
+	        return 'n-a';
+	    }
+
+	    return $string;
 	}
 
 

@@ -51,8 +51,8 @@
                         </div>
 
                         <div class="product-post-info">
-                            <h5><a href="<?php echo base_url() . 'products/details/' . $fvalue['id']; ?>"><?php echo $fvalue['name']; ?></a></h5>
-                            <p>Category: <?php echo anchor('products/category/'.$fvalue['categories']['cid'], $fvalue['categories']['cname'] .' '); ?></p>
+                            <h5><a href="<?php echo base_url() . 'products/details/' . $fvalue['url']; ?>"><?php echo $fvalue['name']; ?></a></h5>
+                            <p>Category: <?php echo anchor('products/category/'.$fvalue['categories']['curl'], $fvalue['categories']['cname'] .' '); ?></p>
                         </div>
                     </li> 
                     <?php endforeach; ?>                   
@@ -68,7 +68,7 @@
                     <ul class="slides">
                         <li>
                             <div class="fproduct-info">
-                                <img src="<?php echo base_url() . 'assets/uploads/files/' . $serviceothers['0']['imagelink1']; ?>" alt=""/>
+                                <a href="<?php echo base_url() . 'products/category/index'; ?>"><img src="<?php echo base_url() . 'assets/uploads/files/' . $serviceothers['0']['imagelink1']; ?>" alt=""/></a>
 
                                 <div class="fproduct-info-inner">
                                     <p></p>
@@ -77,7 +77,7 @@
                         </li>
                         <li>
                             <div class="fproduct-info">
-                                <img src="<?php echo base_url() . 'assets/uploads/files/' . $serviceothers['0']['imagelink2']; ?>" alt=""/>
+                                 <a href="<?php echo base_url() . 'products/category/index'; ?>"><img src="<?php echo base_url() . 'assets/uploads/files/' . $serviceothers['0']['imagelink2']; ?>" alt=""/></a>
 
                                 <div class="fproduct-info-inner">
                                     <p></p>
@@ -86,7 +86,7 @@
                         </li>
                         <li>
                             <div class="fproduct-info">
-                                <img src="<?php echo base_url() . 'assets/uploads/files/' . $serviceothers['0']['imagelink3']; ?>" alt=""/>
+                                 <a href="<?php echo base_url() . 'products/category/index'; ?>"><img src="<?php echo base_url() . 'assets/uploads/files/' . $serviceothers['0']['imagelink3']; ?>" alt=""/></a>
 
                                 <div class="fproduct-info-inner">
                                     <p></p>
@@ -107,7 +107,7 @@
                             <?php echo $serviceothers['1']['description']; ?>
                         <div class="quote-author">
                             <div class="quote-author-img">
-                                <img src="<?php echo $serviceothers['1']['imagelink1']; ?>" alt=""/>
+                                <img src="<?php echo base_url() . 'assets/uploads/files/' . $serviceothers['1']['imagelink1']; ?>" alt=""/>
                             </div>
                             <h5><?php echo $serviceothers['1']['xyzname']; ?> <span class="dblock"><?php echo $serviceothers['1']['designation']; ?></span></h5>
                         </div>

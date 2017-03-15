@@ -67,6 +67,17 @@ class Products extends My_Controller {
 	{
 		$page = 'Products';
 		$this->set_activepage($page);
+
+		if(!is_numeric($cid)){
+			if (!($this->tfl_model->products_cat_url_check($cid))) 
+			{
+				$this->session->set_flashdata('message', 'No Categories Found');
+				redirect('products/index', 'refresh');
+			}
+			$cid = $this->tfl_model->products_cat_getid($cid);
+			$cid = $cid['cid'];
+		}
+
 		$this->data['cid'] = $cid;
 		$pid = $this->tfl_model->getParentofcid($cid);
 		$this->data['pid'] = $pid['parentid'];
@@ -112,27 +123,38 @@ class Products extends My_Controller {
 		$this->data['message'] = $this->session->flashdata('message');
 		$this->load->view($this->template_dir.'products_main.php', $this->data);
 	}
-	/*public function industry($cid=NULL)
+	public function query($tname=NULL)
 	{
 		$page = 'Products';
 		$this->set_activepage($page);
-		$this->data['cid'] = $cid;
+		$this->data['cid'] = 0;
+		$this->data['root'] = 0;
 		$this->data['parent'] = "Industry";
-		$cid = ($this->tfl_model->products_cat_check('industry', $cid) ? $cid : '0');
-		if ($cid=='0') 
+
+		$tname = ($this->tfl_model->products_tags_check($tname) ? $tname : NULL);
+		
+		if (empty($tname)) 
 		{
-			$this->session->set_flashdata('message', 'No Industry Founds');
+			$this->session->set_flashdata('message', 'No Tags Found');
 			redirect('products/index', 'refresh');
 		}
-		
-		$this->data['industry_intro'] = $this->tfl_model->get_industry_intro($cid);
-		$this->data['products'] = $this->tfl_model->products_view_industry($cid);
-		//$this->data['clienticon'] = $this->tfl_model->frontpage_client_icon();
-		//var_dump($this->data);
+
+		$tid = $this->tfl_model->products_tags_getid($tname);
+		//redirect('products/index', 'refresh');
+		$this->data['new_category'] = $this->tfl_model->getCategoryTreeForParentId(0);
+		//$this->data['products1'] = array();//$this->tfl_model->products_view_all_new();
+		$this->data['products1'] = $this->tfl_model->products_view_tag($tid['tagsid']);
+		$this->data['category_intro']['cid'] = "0";
+		$this->data['category_intro']['cname'] = $tid['tagstitle']; 
+		$this->data['category_intro']['imageurl1'] = $tid['banner'];
+		$this->data['category_intro']['cinfo'] = $tid['details'];
+		$this->data['category_intro']['parentid'] = "";
+
+
 		$this->data['message'] = $this->session->flashdata('message');
-		$this->load->view($this->template_dir.'products_main_industry.php', $this->data);
+		$this->load->view($this->template_dir.'products_main.php', $this->data);
 	}
-	public function technology($cid=NULL)
+	/*public function technology($cid=NULL)
 	{
 		$page = 'Products';
 		$this->set_activepage($page);
@@ -152,7 +174,7 @@ class Products extends My_Controller {
 		$this->data['message'] = $this->session->flashdata('message');
 		$this->load->view($this->template_dir.'products_main_technology.php', $this->data);
 	}*/
-	public function details($pid=NULL)
+	public function details_backup($pid=NULL)
 	{
 		$page = 'Product';
 		$this->set_activepage($page);
@@ -160,6 +182,26 @@ class Products extends My_Controller {
 		$this->data['singleproduct'] = $this->tfl_model->products_view_single($pid);
 		//$this->data['clienticon'] = $this->tfl_model->frontpage_client_icon();
 		//var_dump($this->data['singleproduct']);
+		$this->data['message'] = $this->session->flashdata('message');
+		$this->load->view($this->template_dir.'products_single.php', $this->data);
+	}
+	public function details($pname=NULL)
+	{
+		$page = 'Products';
+		$this->set_activepage($page);
+		
+		$pname = ($this->tfl_model->products_check($pname) ? $pname : NULL);
+		
+		if (empty($pname)) 
+		{
+			$this->session->set_flashdata('message', 'No Products Found');
+			redirect('products/index', 'refresh');
+		}
+
+		$pid = $this->tfl_model->products_getid($pname);
+
+		$this->data['singleproduct'] = $this->tfl_model->products_view_single($pid['id']);
+
 		$this->data['message'] = $this->session->flashdata('message');
 		$this->load->view($this->template_dir.'products_single.php', $this->data);
 	}
@@ -202,6 +244,7 @@ class Products extends My_Controller {
 
 
 	}
+	/*
 	public function get_parent($cid) {
     	$page = 'Products';
 		$this->set_activepage($page);
@@ -250,7 +293,7 @@ class Products extends My_Controller {
             }
 			
 			//return $result; 
-    }
+    }*/
 
             
 }

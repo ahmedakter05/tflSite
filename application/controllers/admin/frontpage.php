@@ -62,10 +62,13 @@ class Frontpage extends My_Controller {
 		$crud->unset_jquery();
 		$crud->set_table('frontpage_slider');
 		$crud->columns('id','name', 'position', 'imagelink_lg');
-		$crud->display_as('id','ID')->display_as('imagelink_lg','Banner')->display_as('name','Name');
+		$crud->display_as('id','ID')->display_as('imagelink_lg','Banner (1620*530)')->display_as('name','Name');
+		$crud->field_type('updatedate','invisible');
 		$crud->set_field_upload('imagelink_lg','assets/uploads/slider'); 
 		$crud->set_field_upload('imagelink_sm_1','assets/uploads/slider'); 
 		$crud->set_field_upload('imagelink_sm_2','assets/uploads/slider'); 
+		$crud->callback_before_update(array($this,'callback_slider_update'));
+		$crud->callback_before_insert(array($this,'callback_slider_update'));
 		$this->data['crud'] = $crud->render();
 
 
@@ -199,5 +202,11 @@ class Frontpage extends My_Controller {
 
 		//$this->data['message'] = $this->session->flashdata('message');
 		$this->load->view($this->template_dir.'crud_view', $this->data);
+	}
+
+	function callback_slider_update($post_array)
+	{
+	  $post_array['updatedate'] = date('Y-m-d H:i:s');
+	  return $post_array;
 	}
 }

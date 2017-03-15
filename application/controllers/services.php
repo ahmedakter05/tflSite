@@ -48,6 +48,7 @@ class Services extends My_Controller {
 		$this->data['message'] = $this->session->flashdata('message');
 		$this->load->view($this->template_dir.'services_single_1', $this->data);
 	}
+	/*
 	public function installation()
 	{
 		$page = 'Services';
@@ -74,4 +75,5 @@ class Services extends My_Controller {
 		$this->data['message'] = $this->session->flashdata('message');
 		$this->load->view($this->template_dir.'services_main', $this->data);
 	}
+	*/
 }

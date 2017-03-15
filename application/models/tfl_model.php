@@ -154,9 +154,44 @@ class Tfl_model extends CI_Model
 		return $query;
 	}
 
+	function products_view_tag($tid=NULL) // working
+	{ 
+		$query = $this->db->select('products_main.id,products_main.url, products_main.name, products_main.details, products_main.featured, products_main.imageurl1, products_main.categoryid, products_main.updatetime')
+						  ->order_by('updatetime', 'desc')
+						  ->limit(30)
+						  ->join('tags_relation', 'tags_relation.id = products_main.id', 'inner')
+						  ->where('tags_relation.tagsid', $tid)
+						  //->group_by('products_main.id')
+		                  ->get('products_main')
+		                  ->result_array();
+
+		/*foreach ($query as $key => $value) {
+			
+		$query[$key]['tags'] = $this->db->select('tags.tagsid, tags.tagstitle')
+							   ->limit(10)
+							   ->join('tags', 'tags.tagsid = products_main.tagsid')
+							   ->where('products_main.tagsid', $value['id'])
+							    //->Offset($start)
+							    //->group_by('products_main.postid')
+			                  ->get('tags')
+				              ->row_array();
+		}*/
+
+		foreach ($query as $key => $value) {
+			
+		$query[$key]['categories'] = $this->db->select('*')
+							    ->limit(10)
+							    ->where('cid', $value['categoryid'])
+				                ->get('categories')
+				                ->row_array();
+		}
+		//var_dump($query);
+		return $query;
+	}
+
 	function products_view_featured($limit=NULL, $start=NULL)
 	{
-		$query = $this->db->select('id, name, details, featured, imageurl1, categoryid, updatetime')
+		$query = $this->db->select('id, url, name, details, featured, imageurl1, categoryid, updatetime')
 						  ->order_by('updatetime', 'desc')
 						  ->where('featured', '1')
 						  ->limit(5)
@@ -165,7 +200,7 @@ class Tfl_model extends CI_Model
 
 		foreach ($query as $key => $value) {
 			
-		$query[$key]['categories'] = $this->db->select('cid, cname')
+		$query[$key]['categories'] = $this->db->select('cid, cname, curl')
 							    ->limit(10)
 							    ->where('cid', $value['categoryid'])
 				                ->get('categories')
@@ -176,7 +211,7 @@ class Tfl_model extends CI_Model
 	}
 	function products_view_recent($limit=NULL, $start=NULL)
 	{
-		$query = $this->db->select('id, name, details, featured, imageurl1, categoryid, updatetime')
+		$query = $this->db->select('id, url, name, details, featured, imageurl1, categoryid, updatetime')
 						  ->order_by('updatetime', 'desc')
 						  ->limit(8)
 		                  ->get('products_main')
@@ -184,7 +219,7 @@ class Tfl_model extends CI_Model
 
 		foreach ($query as $key => $value) {
 			
-		$query[$key]['categories'] = $this->db->select('cid, cname')
+		$query[$key]['categories'] = $this->db->select('cid, cname, curl')
 							    ->limit(10)
 							    ->where('cid', $value['categoryid'])
 				                ->get('categories')
@@ -243,7 +278,7 @@ class Tfl_model extends CI_Model
 	function products_view_single($pid=NULL)
 	{	
 		//$query['product'] = $this->db->select('blog_post_category.*, blog_category.categoryname, blog_post.*, users.id as userid, users.username, users.first_name, users.last_name, users.email')
-		$query['product'] = $this->db->select('products_main.*, categories.cid as categoryid, categories.cname as categoryname')
+		$query['product'] = $this->db->select('products_main.*, categories.cid as categoryid, categories.cname as categoryname, categories.curl as categoryurl')
 						  ->order_by('updatetime', 'desc')
 						  ->where('products_main.id', $pid)
 						  ->limit(1)
@@ -414,6 +449,39 @@ class Tfl_model extends CI_Model
 		//if ($query > "0") { return TRUE; } else {return FALSE; }
 		return $query;				  
 	}
+	function products_cat_url_check($cname=NULL)
+	{
+		$query = $this->db->select('*')
+						  //->limit(10)
+						  ->where('curl', $cname)
+						  ->get('categories')
+						  ->num_rows() > '0';
+
+		//if ($query > "0") { return TRUE; } else {return FALSE; }
+		return $query;				  
+	}
+	function products_tags_check($tname=NULL)
+	{
+		$query = $this->db->select('*')
+						  //->limit(10)
+						  ->where('tagsname', $tname)
+						  ->get('tags')
+						  ->num_rows() > '0';
+
+		//if ($query > "0") { return TRUE; } else {return FALSE; }
+		return $query;				  
+	}
+	function products_check($pname=NULL)
+	{
+		$query = $this->db->select('*')
+						  //->limit(10)
+						  ->where('url', $pname)
+						  ->get('products_main')
+						  ->num_rows() > '0';
+
+		//if ($query > "0") { return TRUE; } else {return FALSE; }
+		return $query;				  
+	}
 
 	function custom_cat_view($catid)
 	{
@@ -441,7 +509,7 @@ class Tfl_model extends CI_Model
 	    $category['id'] = $mainCategory->cid;
 	    $category['name'] = $mainCategory->cname;
 	    $category['parent_id'] = $mainCategory->parentid;
-	    //$category['root'] = $mainCategory->root;
+	    $category['url'] = $mainCategory->curl;
 	    $category['sub_categories'] = $this->getCategoryTreeForParentId($category['id']);
 	    $categories[$mainCategory->cid] = $category;
 	  }
@@ -526,6 +594,17 @@ class Tfl_model extends CI_Model
 		return $query;
 	}
 
+	function get_service_title($cid=NULL)
+	{	
+		$query 			  = $this->db->select('*')
+						  ->where('id', $cid)
+						  ->limit(1)
+						  ->get('services_page')
+						  ->row_array();
+		return $query;
+
+	}
+
 	function get_service_others() 
 	{
 		$query = $this->db->select('*')
@@ -549,17 +628,6 @@ class Tfl_model extends CI_Model
 		return $_output;
 	}
 
-	function get_service_title($cid=NULL)
-	{	
-		$query 			  = $this->db->select('*')
-						  ->where('id', $cid)
-						  ->limit(1)
-						  ->get('services_page')
-						  ->row_array();
-		return $query;
-
-	}
-
 	function getParentofcid($cid=NULL)
 	{	
 		$query 			  = $this->db->select('parentid')
@@ -569,6 +637,151 @@ class Tfl_model extends CI_Model
 						  ->row_array();
 		return $query;
 
+	}
+
+	function products_tags_getid($tname=NULL)
+	{	
+		$query 			  = $this->db->select('*')
+						  ->where('tagsname', $tname)
+						  ->limit(1)
+						  ->get('tags')
+						  ->row_array();
+		//var_dump($query);
+		return $query;
+
+	}
+
+	function products_cat_getid($cname=NULL)
+	{	
+		$query 			  = $this->db->select('cid, curl')
+						  ->where('curl', $cname)
+						  ->limit(1)
+						  ->get('categories')
+						  ->row_array();
+		//var_dump($query);
+		return $query;
+
+	}
+
+	function products_getid($pname=NULL)
+	{	
+		$query 			  = $this->db->select('id, url')
+						  ->where('url', $pname)
+						  ->limit(1)
+						  ->get('products_main')
+						  ->row_array();
+		//var_dump($query);
+		return $query;
+
+	}
+	function products_menu_industry()
+	{	
+		$query 			  = $this->db->select('*')
+						  ->limit(6)
+						  ->where('menu', '1')
+						  ->get('tags')
+						  ->result_array();
+		//var_dump($query);
+		return $query;
+
+	}
+
+
+
+/***********************************************************************************
+Technology Blogs Boundary
+***********************************************************************************/
+
+	function get_blog_post() 
+	{
+		$query = $this->db->select('blog_page.*,tags.tagsname, tags.tagstitle, tags.tagsid')
+						  ->order_by('id', 'desc')
+						  ->limit(20)
+						  ->join('tags', 'tags.tagsname = blog_page.tagsname', 'inner')
+		                  ->get('blog_page')
+		                  ->result_array();
+		return $query;
+	}
+
+	function get_blog_post_single($tname=NULL) 
+	{
+		$query = $this->db->select('blog_page.*,tags.tagsname, tags.tagstitle, tags.tagsid')
+						  ->order_by('id', 'desc')
+						  ->limit(1)
+						  ->where('url', $tname)
+						  ->join('tags', 'tags.tagsname = blog_page.tagsname', 'inner')
+		                  ->get('blog_page')
+		                  ->row_array();
+		return $query;
+	}
+
+	function get_common_blog_tittle() 
+	{
+		$query = $this->db->select('id, full_name, url')
+						  ->order_by('id', 'desc')
+						  ->limit(20)
+		                  ->get('blog_page')
+		                  ->result_array();
+		return $query;
+	}
+
+	function blogs_post_check($tname=NULL)
+	{
+		$query = $this->db->select('*')
+						  //->limit(10)
+						  ->where('url', $tname)
+						  ->get('blog_page')
+						  ->num_rows() > '0';
+
+		//if ($query > "0") { return TRUE; } else {return FALSE; }
+		return $query;				  
+	}
+
+	function get_related_products($tid=NULL) // working
+	{ 
+		$query = $this->db->select('products_main.id,products_main.url, products_main.name, products_main.details, products_main.featured, products_main.imageurl1, products_main.categoryid, products_main.updatetime')
+						  ->order_by('updatetime', 'desc')
+						  ->limit(30)
+						  ->join('tags_relation', 'tags_relation.id = products_main.id', 'inner')
+						  ->where('tags_relation.tagsid', $tid)
+						  //->group_by('products_main.id')
+		                  ->get('products_main')
+		                  ->result_array();
+
+		/*foreach ($query as $key => $value) {
+			
+		$query[$key]['tags'] = $this->db->select('tags.tagsid, tags.tagstitle')
+							   ->limit(10)
+							   ->join('tags', 'tags.tagsid = products_main.tagsid')
+							   ->where('products_main.tagsid', $value['id'])
+							    //->Offset($start)
+							    //->group_by('products_main.postid')
+			                  ->get('tags')
+				              ->row_array();
+		}*/
+		foreach ($query as $key => $value) {
+			
+		$query[$key]['categories'] = $this->db->select('*')
+							    ->limit(10)
+							    ->where('cid', $value['categoryid'])
+				                ->get('categories')
+				                ->row_array();
+		}
+		//var_dump($query);
+		return $query;
+	}
+
+	function get_tags_name_admin($tid=NULL)
+	{
+		$query = $this->db->select('tagsname')
+						  ->limit(1)
+						  ->where('tagsid', $tid)
+						  ->get('tags')
+						  ->row_array;
+
+		//if ($query > "0") { return TRUE; } else {return FALSE; }
+						  var_dump($query);
+		return $query;				  
 	}
 
 
@@ -715,10 +928,35 @@ Edutech Boundary
 		return $query;
 	}
 
+/***********************************************************************************
+Gameshop Boundary
+***********************************************************************************/
 
+	function gameshop_slider()
+	{
+		$query = $this->db->select('*')
+						  ->order_by('position', 'asc')
+						  ->limit(10)
+						  ->get('gameshop_slider');
 
+						  //var_dump($query->result());
+		
+		return $query->result_array();
+	}
 
+	function gameshop_tags_menu()
+	{	
+		$query 			  = $this->db->select('*')
+						  ->limit(6)
+						  ->where('gameshop', '1')
+						  ->get('tags')
+						  ->result_array();
+		//var_dump($query);
+		return $query;
 
+	}
+
+	
 
 
 

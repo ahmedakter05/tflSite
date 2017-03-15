@@ -19,7 +19,7 @@
 						<p><?php echo $print->details; ?></p>
 					</div>
 					<?php if(!empty($print->button_text)){?>
-					<div class="tp-caption lfb carousel-caption-inner" data-x="30" data-y="310" data-speed="1300" data-start="1700" data-easing="easeInOutBack">
+					<div class="tp-caption lfb carousel-caption-inner" data-x="450" data-y="398" data-speed="1300" data-start="1700" data-easing="easeInOutBack">
 						<a href="<?php echo $print->button_href; ?>"><button type="button" class="button-blue" ><?php echo $print->button_text; ?></button></a>
 					</div>
 					<?php };?>
@@ -80,17 +80,12 @@
 			<?php foreach ($recent_products as $fvalue): ?>
 			<div class="item works-content">
 				<div class="works-overlay">
-			      	<img class="img-responsive" src="<?php echo base_url() . 'assets/uploads/files/' . $fvalue['imageurl1']; ?>" alt=""/>
+			      	<a href="<?php echo base_url() . 'products/details/' . $fvalue['url']; ?>"><img class="img-responsive" src="<?php echo base_url() . 'assets/uploads/files/' . $fvalue['imageurl1']; ?>" alt=""/></a>
 					<div>
-						<div class="zoom">
-							<div class="zoom-info">
-								<a class="lightbox-popup" href="<?php echo base_url() . 'assets/uploads/files/' . $fvalue['imageurl1']; ?>">View Larger</a>
-		                                    <a href="<?php echo base_url() . 'products/details/' . $fvalue['id']; ?>">View More</a>
-							</div>
-						</div>
+						
 					</div>
 				</div>
-				<h4><?php echo substr($fvalue['name'], 0, 22); ?> <span><?php echo anchor('products/category/'.$fvalue['categories']['cid'], $fvalue['categories']['cname'] .' '); ?></span></h4>
+				<h4 Style="font-size: 13px !important; padding-bottom: 20px !important;"><a href="<?php echo base_url() . 'products/details/' . $fvalue['url']; ?>" Style="color: #2e2e2e;"><?php echo substr($fvalue['name'], 0, 25); ?> ...</a> <span Style="margin-bottom: 5px;"><?php echo anchor('products/category/'.$fvalue['categories']['curl'], $fvalue['categories']['cname'] .' '); ?></span></h4>
 			</div>
 		<?php endforeach; ?>
 

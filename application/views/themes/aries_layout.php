@@ -86,6 +86,7 @@
                         <div class="open"></div>
                         <ul>
                             <li><a href="<?php echo base_url(); ?>admin/req/category">Category</a></li>
+                            <li><a href="<?php echo base_url(); ?>admin/req/tags">Tags</a></li>
                             <li><a href="<?php echo base_url(); ?>admin/req/products">Products</a></li>
                             <!--li><a href="<?php echo base_url(); ?>admins/add/product/<?php if (isset($this->session->userdata['user_id'])){ echo $this->session->userdata['user_id'];}?>">Update Client</a></li-->  
                             
@@ -103,6 +104,13 @@
                             <li><a href="<?php echo base_url(); ?>admin/query/socialshare">Social Share</a></li>
                         </ul>
                     </li>
+                    <li>
+                        <a href="statistic.html" class="blorange">Blogs Page</a>
+                        <div class="open"></div>
+                        <ul>
+                            <li><a href="<?php echo base_url(); ?>admin/query/blogs">Technology</a></li>
+                        </ul>
+                    </li>   
                     <li>
                         <a href="statistic.html" class="blgreen">Service Page</a>
                         <div class="open"></div>

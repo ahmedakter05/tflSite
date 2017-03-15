@@ -75,7 +75,7 @@
       <div class="col-md-12">
          <!-- Logo -->
          <div class="col-md-2">
-            <h1 class="logo"><a href="<?php echo base_url(); ?>"><img src="<?php echo base_url() . 'assets/uploads/files/' . $metainfo['6']['imagelink']; ?>" alt="" width="120%"/></a></h1>
+            <h1 class="logo"><a href="<?php echo base_url(); ?>"><img src="<?php echo base_url() . 'assets/uploads/files/' . $metainfo['6']['imagelink']; ?>" alt=""/></a></h1>
          </div>
          
         <!-- Navmenu -->
@@ -90,30 +90,30 @@
                      <ul class="full-sub">
                         <li class="col-md-3">
                            <ul>
-                              <a href="<?php echo base_url() . 'products/category/1' ; ?>"><li class="sub-head">Category</li></a>
+                              <a href="<?php echo base_url() . 'products/index' ; ?>"><li class="sub-head">Category</li></a>
                               <?php $i=1; ?>
                               <?php foreach ($products_category as $print): ?>
-                              <li><a href="<?php echo base_url() . 'products/category/' . $print['id']; ?>"><?php echo $print['name']; ?></a></li>
+                              <li><a href="<?php echo base_url() . 'products/category/' . $print['url']; ?>"><?php echo $print['name']; ?></a></li>
                               <?php if($i==6) break; $i++;?>
                               <?php endforeach; ?>
                            </ul>
                         </li>
                         <li class="col-md-3">
                            <ul>
-                              <a href="<?php echo base_url() . 'products/category/3' ; ?>"><li class="sub-head">Technology</li></a>
+                              <a href="<?php echo base_url() . 'blogs/index' ; ?>"><li class="sub-head">Technology</li></a>
                               <?php $i=1; ?>
-                              <?php foreach ($products_technology as $print): ?>
-                              <li><a href="<?php echo base_url() . 'products/category/' . $print['id']; ?>"><?php echo $print['name']; ?></a></li>
+                              <?php foreach ($blog_menu_item as $print): ?>
+                              <li><a href="<?php echo base_url() . 'blogs/detail/' . $print['url']; ?>"><?php echo $print['full_name']; ?></a></li>
                               <?php if($i==6) break; $i++;?>
                               <?php endforeach; ?>
                            </ul>
                         </li>
                         <li class="col-md-3">
                            <ul>
-                              <a href="<?php echo base_url() . 'products/category/2' ; ?>"><li class="sub-head">Industry</li></a>
+                              <a href="<?php echo base_url() . 'products/index' ; ?>"><li class="sub-head">Industry</li></a>
                               <?php $i=1; ?>
                               <?php foreach ($products_industry as $print): ?>
-                              <li><a href="<?php echo base_url() . 'products/category/' . $print['id']; ?>"><?php echo $print['name']; ?></a></li>
+                              <li><a href="<?php echo base_url() . 'products/query/' . $print['tagsname']; ?>"><?php echo $print['tagstitle']; ?></a></li>
                               <?php if($i==6) break; $i++;?>
                               <?php endforeach; ?>
                            </ul>
@@ -144,7 +144,7 @@
                        <a href='#'><span>New Features</span></a>
                        <ul>
                          <li><a href="<?php echo base_url(); ?>edutech/index">EduTech</a></li>
-                         <li><a href="<?php echo base_url(); ?>shop/games">Gameshop</a></li>
+                         <li><a href="<?php echo base_url(); ?>games">Gameshop</a></li>
                        </ul>
                   </li>
                   
@@ -156,9 +156,9 @@
          </div>
          <div class="col-md-2">
             <nav id='topnav'>
-               <ul class="top-menu">
+               <ul class="">
                   <li>
-                     <button onclick="location.href ='gshop';" type="button" class="btn btn-info">GameShop</button>
+                     <button onclick="location.href ='./games';" type="button" class="btn btn-info">GameShop</button>
                   </li>
                </ul>
             </nav>

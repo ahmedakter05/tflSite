@@ -57,16 +57,25 @@ class MY_Controller extends CI_Controller
 		$this->data['products_industry'] = $this->tfl_model->get_products_industry();
 		$this->data['products_technology'] = $this->tfl_model->get_products_technology(); */
 		
-		$this->data['products_category'] = $this->tfl_model->getCategoryTreeForParentId(1);
-		$this->data['products_industry'] = $this->tfl_model->getCategoryTreeForParentId(2);
-		$this->data['products_technology'] = $this->tfl_model->getCategoryTreeForParentId(3);	
+		$this->data['products_category'] = $this->tfl_model->getCategoryTreeForParentId(0);
+		$this->data['products_industry'] = $this->tfl_model->products_menu_industry();
+		$this->data['products_technology'] = array();//$this->tfl_model->products_menu_technology();	
 		$this->data['featured_products'] = $this->tfl_model->products_view_featured();	
-		$this->data['recent_products'] = $this->tfl_model->products_view_recent();			
+		$this->data['recent_products'] = $this->tfl_model->products_view_recent();
+		$this->data['blog_menu_item'] = $this->tfl_model->get_common_blog_tittle();	
+			
 	}
+	
 	function get_service_param()
 	{
 		$this->data['serviceothers'] = $this->tfl_model->get_service_others();
 		//var_dump($this->data['serviceothers']);			
+	}
+
+	function get_blogs_param()
+	{
+		//$this->data['blog_side_menu'] = $this->tfl_model->get_common_blog_tittle();	
+		//var_dump($this->data['blog_side_menu']);			
 	}
 	
 	
@@ -81,6 +90,12 @@ class MY_Controller extends CI_Controller
 	{		
 		$this->data['metainfo'] = $this->tfl_model->edutech_header_query();
 					
+	}
+
+	function get_gameshop_common_param()
+	{		
+		//$this->data['metainfo'] = $this->tfl_model->edutech_header_query();
+							
 	}
 
 	function get_edutech_sidebar()

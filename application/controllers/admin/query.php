@@ -210,6 +210,41 @@ class Query extends My_Controller {
 		$this->load->view($this->template_dir.'crud_view', $this->data);
 	}
 
+	public function blogs()
+	{
+		$page = 'Technology';
+		$this->set_activepage($page);
+		$this->data['title'] = "TechFocus Ltd - Focusing on Technology" ;
+
+		if (!$this->ion_auth->logged_in())
+		{
+			// redirect them to the login page
+			$this->session->set_userdata('last_page', current_url()); redirect('admin/cp/login', 'refresh');
+			//echo "Redirect to Login";
+		}
+
+		$crud = new grocery_CRUD();
+		$crud->unset_jquery();
+		$crud->unset_delete();
+		$crud->set_table('blog_page');
+		$crud->field_type('topmenu','dropdown', array('0' => 'No', '1' => 'Yes'));
+		$crud->set_relation('tagsname','tags','tagstitle');
+		$crud->columns('id','full_name','tagsname', 'topmenu', 'imagelink');
+		$crud->display_as('id','ID')->display_as('full_name','Title')->display_as('tagsname','Technology')->display_as('imagelink', 'Image')->display_as('topmenu', 'Menu Item');
+		$crud->set_field_upload('imagelink','assets/uploads/files'); 
+		$crud->set_primary_key('tagsname','tags');
+		$crud->callback_before_insert(array($this,'callback_blogs_ui'));
+		$crud->callback_before_update(array($this,'callback_blogs_ui'));
+		$this->data['crud'] = $crud->render();
+
+
+		 
+		//$this->_example_output($output);
+
+		//$this->data['message'] = $this->session->flashdata('message');
+		$this->load->view($this->template_dir.'crud_view', $this->data);
+	}
+
 	public function contactus()
 	{
 		$page = 'Contact Us';
@@ -240,6 +275,25 @@ class Query extends My_Controller {
 
 		//$this->data['message'] = $this->session->flashdata('message');
 		$this->load->view($this->template_dir.'crud_view', $this->data);
+	}
+
+	function callback_blogs_ui($post_array)
+	{
+	  if(empty($post_array['topmenu'])){
+	  	$post_array['topmenu'] = '0';
+	  }
+	  if(empty($post_array['url'])){
+	  	//$rstring = $this->generateRandomString('10');
+		$rstring = $this->aa_lib->nametourl($post_array['full_name']);
+	  	$post_array['url'] = $rstring;
+	  }
+	  if(is_numeric($post_array['tagsname'])){
+	  	//$rstring = $this->generateRandomString('10');
+	  	//$post_array['tagsname'] = "AA";
+	  	//$string = $this->tfl_model->get_tags_name_admin($post_array['tagsname']);
+	  	//$post_array['tagsname'] = $string['tagsname'];
+	  }
+	  return $post_array;
 	}
 
 

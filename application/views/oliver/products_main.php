@@ -37,19 +37,19 @@
     <div class="row">
         <div class="col-md-4 sidebar">
             <div class="side-widget">
-                <h5><span> Visit Here: <?php //echo (!empty($category_intro)) ? anchor('products/category/'.$category_intro['parentid'], $category_intro['cname'] . ' - Up') : 'Top Category'; ?> </span></h5>
+                <h5><span> Categories: <a href="<?php if(!empty($category_intro['parent']['name'])) { echo base_url() . 'products/category/' .  $category_intro['parentid']; ?>" Style="font-size: 13px;" ><?php echo $category_intro['parent']['name']; } else {echo '#">';}?></a></span></h5>
                 <ul class="category vertical menu" data-accordion-menu>                        
                         <?php if (!empty($new_category)) { ?>
                             <?php foreach ($new_category as $print): ?>
                                 <div class='<?php if($cid==$print["id"]){ echo "/*active*/cusact1";} ?>'>
-                                    <li><a  <?php if($print['id'] == $cid){ echo 'Style="color:#1c9dfb;"';}?> href="<?php echo base_url() . 'products/category/' . $print['id']; ?>"><?php echo $print['name']; ?></a></li>
-                                    <?php if ((!empty($print['sub_categories']) && ($print['id'] == $root)) /*|| (!empty($print['sub_categories']) && ($print['parent_id'] == $print['root']))*/){?>
-                                    <ul class="sub-category menu vertical nested">
-                                        <?php foreach ($print['sub_categories'] as $value): ?>
-                                        <li><a <?php if($value['id'] == $cid){ echo 'Style="color:#1c9dfb;"';}?> href="<?php echo base_url() . 'products/category/' . $value['id']; ?>"><?php echo $value['name']; ?></a></li>
-                                        <?php endforeach; ?>
-                                    </ul>
-                                    <?php } ?>
+                                    <li><a  <?php if($print['id'] == $cid){ echo 'Style="color:#1c9dfb;"';}?> href="<?php echo base_url() . 'products/category/' . $print['url']; ?>"><?php echo $print['name']; ?></a></li>
+                                        <?php if ((!empty($print['sub_categories']) && ($print['id'] == $root)) /*|| (!empty($print['sub_categories']) && ($print['parent_id'] == $print['root']))*/){?>
+                                        <ul class="sub-category menu vertical nested">
+                                            <?php foreach ($print['sub_categories'] as $value): ?>
+                                            <li><a <?php if($value['id'] == $cid){ echo 'Style="color:#1c9dfb;"';}?> href="<?php echo base_url() . 'products/category/' . $value['url']; ?>"><?php echo $value['name']; ?></a></li>
+                                            <?php endforeach; ?>
+                                        </ul>
+                                        <?php } ?>
                                 </div>
                             <?php endforeach; ?>
                         <?php } else { ?>
@@ -71,8 +71,8 @@
                         </div>
 
                         <div class="product-post-info">
-                            <h5><a href="<?php echo base_url() . 'products/details/' . $fvalue['id']; ?>"><?php echo $fvalue['name']; ?></a></h5>
-                            <p>Category: <?php if(!empty($fvalue['categories']['cname'])){ echo anchor('products/category/'.$fvalue['categories']['cid'], $fvalue['categories']['cname'] .' ');} ?></p>
+                            <h5><a href="<?php echo base_url() . 'products/details/' . $fvalue['url']; ?>"><?php echo $fvalue['name']; ?></a></h5>
+                            <p>Category: <?php if(!empty($fvalue['categories']['cname'])){ echo anchor('products/category/'.$fvalue['categories']['curl'], $fvalue['categories']['cname'] .' ');} ?></p>
                         </div>
                     </li> 
                     <?php endforeach; ?>                   
@@ -85,16 +85,16 @@
         <div class="col-md-8">
             <nav id='topnav' class='customnav1'>
                 <ul class="top-menu">
-                    <?php if(!empty($sub_category) && ($cid >= '4')){ ?>
+                    <?php if(!empty($sub_category) && ($cid >= '11')){ ?>
                     <?php foreach ($sub_category as $value): ?>
                     <li class='customnav1'>
-                        <a href='<?php echo base_url() . "products/category/" . $value['id']; ?>'><span><?php echo $value['name']; ?></span></a>
+                        <a href='<?php echo base_url() . "products/category/" . $value['url']; ?>'><span><?php echo $value['name']; ?></span></a>
                     </li>
                     <?php endforeach; ?>
-                    <?php } else if(!empty($opt_category) && ($cid >= '4') && ($pid >= '4')){ ?>
+                    <?php } else if(!empty($opt_category) && ($cid >= '11') && ($pid >= '11')){ ?>
                     <?php foreach ($opt_category as $value): ?>
                     <li class='<?php if($value['id'] == $cid){echo 'active';}?> customnav1'>
-                        <a href='<?php echo base_url() . "products/category/" . $value['id']; ?>'><span><?php echo $value['name']; ?></span></a>
+                        <a href='<?php echo base_url() . "products/category/" . $value['url']; ?>'><span><?php echo $value['name']; ?></span></a>
                     </li>
                     <?php endforeach; ?>
                     <?php } ?>
@@ -102,7 +102,7 @@
             </nav>
             
             <?php if (!empty($category_intro)){?>
-            <article class="post col-md-12">
+            <article class="post col-md-12" Style="margin-bottom: 10px;">
               <!--<?php if(!empty($message)){?>
                 <div class="error-wrap">
                     <h4><span>*</span>Ooops!!!</h4>
@@ -125,6 +125,7 @@
                   <h3><a href=""><?php echo $category_intro['cname']; ?></a></h3>
                   <p><?php if(!empty($category_intro['cinfo'])){ echo $category_intro['cinfo'];} ?></p>
               </div>
+              <?php if(!empty($category_intro['parent']['name'])) { ?>
               <div class="post-meta">
                   <div class="meta-right">
                   <div class="meta-info">
@@ -135,14 +136,15 @@
                   </div>
                   </div>
               </div>
+              <?php } ?>
             </article>
             <?php } ?>
 
-            <div class="col-md-12 no-padding">
+            <!--div class="col-md-12 no-padding">
                 <h2 class="section-title"><span>Products</span></h2>
-            </div>
+            </div-->
 
-            <div class="col-lg-12 no-padding">                
+            <!--div class="col-lg-12 no-padding">                
                 <div class="tab-content">
                     <?php foreach ($products1 as $value): ?>
                     <div class="tab-pane fade active in clearfix media">
@@ -169,8 +171,8 @@
                     <?php endforeach; ?>
                 </div>
             </div>
-                </br>
-            <div class="col-lg-12 no-padding">                
+            </br-->
+            <!--div class="col-lg-12 no-padding">                
                 <div class="tab-content">
                     <?php foreach ($products1 as $kv){ ?>
                         <?php foreach ($kv as $value): ?>
@@ -195,7 +197,30 @@
                         <?php endforeach; ?>
                     <?php } ?>
                 </div>
-            </div>
+            </div-->
+
+            <div class="portfolio-inner nport pwside">
+                    <div id="folio" class="isotope col-md-12 no-padding">
+                        <?php $count = '1'; ?>
+                        <?php foreach ($products1 as $print): ?>
+                        <div class="folio-item col-md-4 no-padding isotope-item web">
+                            <div class="item works-content">
+                                <div class="works-overlay">
+                                    <a href="<?php echo base_url() . 'products/details/' . $print['url']?>"><img class="img-responsive" src="<?php echo base_url() . 'assets/uploads/files/' . $print['imageurl1']; ?>" alt="<?php echo $print['name']; ?> "/></a>
+                                    <div>
+                                        <div class="shadow-left"></div>
+                                            
+                                    </div>
+                                </div>
+                                <h4><?php echo anchor('products/details/'.$print['url'], substr($print['name'], 0, 35) .' '); ?><!-- <span><?php foreach ($print['categories'] as $category){ echo anchor('products/category/'.$category['categoryid'], $category['categoryname'].' '); }; ?></span>--></h4>
+                            </div>
+                        </div>
+                        <?php if($count>'3'){ ?>
+                        <h4></h4>
+                        <?php $count='1';} else {$count++;}  ?>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
 
             
   

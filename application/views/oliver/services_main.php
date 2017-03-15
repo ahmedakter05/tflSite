@@ -53,8 +53,8 @@
                 <h5><span>Services</span></h5>
                 <ul class="category vertical menu" data-accordion-menu>                        
                 	<li><a href="<?php echo base_url() . 'services/page/1'; ?>">Solution</a></li>
-                	<li><a href="<?php echo base_url() . 'services/page/1'; ?>">Installation</a></li>
-                	<li><a href="<?php echo base_url() . 'services/page/1'; ?>">Maintenance</a></li>
+                	<li><a href="<?php echo base_url() . 'services/page/2'; ?>">Installation</a></li>
+                	<li><a href="<?php echo base_url() . 'services/page/3'; ?>">Maintenance</a></li>
                 </ul>
             </div>
             <div class="clear"></div>
@@ -69,8 +69,8 @@
                         </div>
 
                         <div class="product-post-info">
-                            <h5><a href="<?php echo base_url() . 'products/details/' . $fvalue['id']; ?>"><?php echo $fvalue['name']; ?></a></h5>
-                            <p>Category: <?php echo anchor('products/category/'.$fvalue['categories']['cid'], $fvalue['categories']['cname'] .' '); ?></p>
+                            <h5><a href="<?php echo base_url() . 'products/details/' . $fvalue['url']; ?>"><?php echo $fvalue['name']; ?></a></h5>
+                            <p>Category: <?php echo anchor('products/category/'.$fvalue['categories']['curl'], $fvalue['categories']['cname'] .' '); ?></p>
                         </div>
                     </li> 
                     <?php endforeach; ?>                   
@@ -125,7 +125,7 @@
                         	<?php echo $serviceothers['1']['description']; ?>
                         <div class="quote-author">
                             <div class="quote-author-img">
-                                <img src="<?php echo $serviceothers['1']['imagelink1']; ?>" alt=""/>
+                                <img src="<?php echo base_url() . 'assets/uploads/files/' . $serviceothers['1']['imagelink1']; ?>" alt=""/>
                             </div>
                             <h5><?php echo $serviceothers['1']['xyzname']; ?> <span class="dblock"><?php echo $serviceothers['1']['designation']; ?></span></h5>
                         </div>

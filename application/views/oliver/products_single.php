@@ -45,7 +45,7 @@
 	
 			<div class="product_details">
 				<div class="product_title"><?php echo $singleproduct['product']['name']; ?></div>
-				<div class="product_price"><h4><?php echo anchor('products/category/'.$singleproduct['product']['categoryid'], $singleproduct['product']['categoryname'].' '); ?></h4></div>
+				<div class="product_price"><h4><?php echo anchor('products/category/'.$singleproduct['product']['categoryurl'], $singleproduct['product']['categoryname'].' '); ?></h4></div>
 				<div class="line-sep"></div>
 
 				<?php echo $singleproduct['product']['details']; ?>
