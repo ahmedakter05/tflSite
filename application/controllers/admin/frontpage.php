@@ -35,7 +35,7 @@ class Frontpage extends My_Controller {
 
 		redirect('admin/req/category', 'refresh');
 
-		if (!$this->ion_auth->logged_in())
+		if (!$this->ion_auth->is_admin())
 		{
 			// redirect them to the login page
 			$this->session->set_userdata('last_page', current_url()); redirect('admin/cp/login', 'refresh');
@@ -51,7 +51,7 @@ class Frontpage extends My_Controller {
 		$this->data['title'] = "TechFocus Ltd - Focusing on Technology" ;
 		$this->data['activepage'] = $page;
 
-		if (!$this->ion_auth->logged_in())
+		if (!$this->ion_auth->is_admin())
 		{
 			// redirect them to the login page
 			$this->session->set_userdata('last_page', current_url()); redirect('admin/cp/login', 'refresh');
@@ -86,7 +86,7 @@ class Frontpage extends My_Controller {
 		$this->data['title'] = "TechFocus Ltd - Focusing on Technology" ;
 		$this->data['activepage'] = $page;
 
-		if (!$this->ion_auth->logged_in())
+		if (!$this->ion_auth->is_admin())
 		{
 			// redirect them to the login page
 			$this->session->set_userdata('last_page', current_url()); redirect('admin/cp/login', 'refresh');
@@ -116,7 +116,7 @@ class Frontpage extends My_Controller {
 		$this->data['title'] = "TechFocus Ltd - Focusing on Technology" ;
 		$this->data['activepage'] = $page;
 
-		if (!$this->ion_auth->logged_in())
+		if (!$this->ion_auth->is_admin())
 		{
 			// redirect them to the login page
 			$this->session->set_userdata('last_page', current_url()); redirect('admin/cp/login', 'refresh');
@@ -148,7 +148,7 @@ class Frontpage extends My_Controller {
 		$this->data['title'] = "TechFocus Ltd - Focusing on Technology" ;
 		$this->data['activepage'] = $page;
 
-		if (!$this->ion_auth->logged_in())
+		if (!$this->ion_auth->is_admin())
 		{
 			// redirect them to the login page
 			$this->session->set_userdata('last_page', current_url()); redirect('admin/cp/login', 'refresh');
@@ -179,7 +179,7 @@ class Frontpage extends My_Controller {
 		$this->data['title'] = "TechFocus Ltd - Focusing on Technology" ;
 		$this->data['activepage'] = "Categories" ;
 
-		if (!$this->ion_auth->logged_in())
+		if (!$this->ion_auth->is_admin())
 		{
 			// redirect them to the login page
 			$this->session->set_userdata('last_page', current_url()); redirect('admin/cp/login', 'refresh');

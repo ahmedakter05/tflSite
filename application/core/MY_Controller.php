@@ -7,6 +7,7 @@ class MY_Controller extends CI_Controller
 	public $template_dir = 'oliver/';
 
 	public $data = array();
+	public $group = 'members';
 
 	//public $data['bc']=array();
 
@@ -14,7 +15,7 @@ class MY_Controller extends CI_Controller
     {
         parent::__construct();
         
-		$this->load->library(array('aa_lib', 'session', 'ion_auth', 'MY_Session'));
+		$this->load->library(array('aa_lib', 'session', 'ion_auth', 'MY_Session', 'user_agent', 'email'));
 		$this->load->helper(array('cookie', 'url', 'language', 'date'));
 		$this->load->database();
 		//$this->lang->load('aa');
@@ -29,6 +30,19 @@ class MY_Controller extends CI_Controller
 			'About Us' => base_url().'about',
 			'Contact Us' => base_url().'contact', 
 			);
+		
+		if ($this->ion_auth->logged_in())
+		{
+			$this->data['userdata']['uid'] = $this->session->userdata('user_id'); 
+			$this->data['userdata']['username'] = $this->session->userdata('username'); 
+			$this->data['userdata']['email'] = $this->session->userdata('email'); 
+			$this->data['userdata']['first_name'] = $this->session->userdata('first_name'); 
+			$this->data['userdata']['last_name'] = $this->session->userdata('last_name'); 
+			$this->data['userdata']['phone'] = $this->session->userdata('phone'); 
+			$this->data['userdata']['company'] = $this->session->userdata('company'); 
+		}
+
+		//var_dump($this->data['userdata']);
 	}
 
 	function unset_template()
@@ -94,8 +108,8 @@ class MY_Controller extends CI_Controller
 
 	function get_gameshop_common_param()
 	{		
-		//$this->data['metainfo'] = $this->tfl_model->edutech_header_query();
-							
+		$this->data['gameshop_products_menu'] = $this->tfl_model->getmenuwithparent(0);
+		$this->data['random'] = array('label-success', 'label-warning', 'label-primary', 'label-danger');					
 	}
 
 	function get_edutech_sidebar()

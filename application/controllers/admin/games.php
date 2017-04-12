@@ -1,6 +1,6 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Req extends My_Controller {
+class Games extends My_Controller {
 
 	function __construct()
 	{
@@ -67,12 +67,12 @@ class Req extends My_Controller {
 		*/
 	}
 
-	public function category()
+	public function frontslider()
 	{
-		$page = 'Categories';
+		$page = 'Slider';
 		$this->set_activepage($page);
 		$this->data['title'] = "TechFocus Ltd - Focusing on Technology" ;
-		$this->data['activepage'] = "Categories" ;
+		$this->data['activepage'] = "Slider" ;
 
 		if (!$this->ion_auth->is_admin())
 		{
@@ -83,15 +83,13 @@ class Req extends My_Controller {
 
 		$crud = new grocery_CRUD();
 		$crud->unset_jquery();
-		$crud->set_table('categories');
-		$crud->columns('cid','cname','parentid','cinfo', 'imageurl1');
-		$crud->set_relation('parentid','categories','cname');
-		$crud->display_as('cid','ID')->display_as('cname','Category Name')->display_as('parentid','Parent Category')
-			 ->display_as('cinfo','Category Info')->display_as('imageurl1','Banner (960*270)')->display_as('curl','Url');
-		$crud->callback_before_insert(array($this,'callback_cat_ui'));
-		$crud->callback_before_update(array($this,'callback_cat_ui'));
-		$crud->set_field_upload('imageurl1','assets/uploads/files'); 
-		$crud->field_type('root','dropdown', array('0' => 'None', '1' => 'Category', '2' => 'Industry', '3' => 'Technology'));
+		$crud->set_table('gameshop_slider');
+		$crud->columns('id','name','title','position', 'imagebg');
+		$crud->display_as('id','ID')->display_as('name','Name')->display_as('title','Title')
+			 ->display_as('imagebg','Background Image');
+		$crud->callback_before_insert(array($this,'callback_slider_ui'));
+		$crud->callback_before_update(array($this,'callback_slider_ui'));
+		$crud->set_field_upload('imagebg','assets/uploads/files'); 
 		$this->data['crud'] = $crud->render();
 
 
@@ -249,16 +247,9 @@ class Req extends My_Controller {
 	  return $post_array;
 	}
 
-	function callback_cat_ui($post_array)
+	function callback_slider_ui($post_array)
 	{
-	  if(empty($post_array['parentid'])){
-	  	$post_array['parentid'] = '0';
-	  }
-	  if(empty($post_array['curl'])){
-	  	//$rstring = $this->generateRandomString('10');
-		$rstring = $this->aa_lib->nametourl($post_array['cname']);
-	  	$post_array['curl'] = $rstring;
-	  }
+	  $post_array['updatedate'] = now();
 	  return $post_array;
 	}
 

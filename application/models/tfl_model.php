@@ -944,6 +944,7 @@ Gameshop Boundary
 		return $query->result_array();
 	}
 
+/*	
 	function gameshop_tags_menu()
 	{	
 		$query 			  = $this->db->select('*')
@@ -955,26 +956,333 @@ Gameshop Boundary
 		return $query;
 
 	}
+*/
+	public function getmenuwithparent($parentid = 0) { ////// Most Charming main 
+	  $categories = array();
+	  $this->db->from('gameshop_categories');
+	  $this->db->where('parentid', $parentid);
+	  $this->db->order_by('cname');
+	  $result = $this->db->get()->result();
+	  foreach ($result as $mainCategory) {
+	    $category = array();
+	    $category['cid'] = $mainCategory->cid;
+	    $category['cname'] = $mainCategory->cname;
+	    $category['parentid'] = $mainCategory->parentid;
+	    $category['curl'] = $mainCategory->curl;
+	    $category['fontawesome'] = $mainCategory->fontawesome;
+	    $category['sub_categories'] = $this->getmenuwithparent($category['cid']);
+	    $categories[$mainCategory->cid] = $category;
+	  }
+	  return $categories;
+	}
 
+	function gameshop_cat_url_check($cname=NULL)
+	{
+		$query = $this->db->select('*')
+						  //->limit(10)
+						  ->where('curl', $cname)
+						  ->get('gameshop_categories')
+						  ->num_rows() > '0';
+
+		//if ($query > "0") { return TRUE; } else {return FALSE; }
+		return $query;				  
+	}
+
+	function gameshop_product_url_check($cname=NULL)
+	{
+		$query = $this->db->select('*')
+						  //->limit(10)
+						  ->where('url', $cname)
+						  ->get('gameshop_products')
+						  ->num_rows() > '0';
+
+		//if ($query > "0") { return TRUE; } else {return FALSE; }
+		return $query;				  
+	}
 	
+	function gameshop_cat_getid($cname=NULL)
+	{	
+		$query 			  = $this->db->select('cid, curl')
+						  ->where('curl', $cname)
+						  ->limit(1)
+						  ->get('gameshop_categories')
+						  ->row_array();
+		//var_dump($query);
+		return $query;
+
+	}
+
+	function gameshop_product_getid($name=NULL)
+	{	
+		$query 			  = $this->db->select('id, url')
+						  ->where('url', $name)
+						  ->limit(1)
+						  ->get('gameshop_products')
+						  ->row_array();
+		//var_dump($query);
+		return $query;
+
+	}
+
+	function gameshop_view_all($limit=NULL, $start=NULL)
+	{
+		$query = $this->db->select('gameshop_products.id, gameshop_products.url, gameshop_products.name, gameshop_products.details, gameshop_products.featured, gameshop_products.imageurl1, gameshop_products.categoryid, gameshop_products.price, gameshop_products.discount')
+						  ->order_by('updatetime', 'desc')
+						  ->limit(30)
+		                  ->get('gameshop_products')
+		                  ->result_array();
+
+		foreach ($query as $key => $value) {
+			
+		$query[$key]['categories'] = $this->db->select('*')
+							    ->limit(10)
+							    ->where('cid', $value['categoryid'])
+				                ->get('gameshop_categories')
+				                ->row_array();
+		}
+
+		return $query;
+	}
+
+	function gameshop_view_category($gid=NULL) 
+	{
+		$query = $this->db->select('gameshop_products.id, gameshop_products.url, gameshop_products.name, gameshop_products.details, gameshop_products.featured, gameshop_products.imageurl1, gameshop_products.categoryid, gameshop_products.price, gameshop_products.discount, gameshop_categories.*')
+						  ->order_by('updatetime', 'desc')
+						  ->limit(30)
+						  ->join('gameshop_categories', 'gameshop_categories.cid = gameshop_products.categoryid', 'left')
+						  ->where('categoryid', $gid)
+						  ->or_where('gameshop_categories.parentid', $gid)
+						  //->group_by('products_main.id')
+		                  ->get('gameshop_products')
+		                  ->result_array();
+
+		return $query;
+	}
+
+	function gameshop_product_view($pid=NULL)
+	{	
+		//$query['product'] = $this->db->select('blog_post_category.*, blog_category.categoryname, blog_post.*, users.id as userid, users.username, users.first_name, users.last_name, users.email')
+		$query = $this->db->select('gameshop_products.*, gameshop_categories.*')
+						  ->order_by('updatetime', 'desc')
+						  ->where('gameshop_products.id', $pid)
+						  ->limit(1)
+						  ->join('gameshop_categories', 'gameshop_categories.cid =  gameshop_products.categoryid', 'left')
+						  //->group_by('blog_post.postid')
+						  ->get('gameshop_products')
+						  ->row_array();
+												
+		return $query;
+	}
+
+	function gameshop_related_product($gid=NULL) 
+	{
+		$query = $this->db->select('gameshop_products.id, gameshop_products.url, gameshop_products.name, gameshop_products.details, gameshop_products.featured, gameshop_products.imageurl1, gameshop_products.categoryid, gameshop_products.price, gameshop_products.discount, gameshop_categories.*')
+						  ->order_by('updatetime', 'desc')
+						  ->limit(5)
+						  ->join('gameshop_categories', 'gameshop_categories.cid = gameshop_products.categoryid', 'left')
+						  ->where('categoryid', $gid)
+						  ->or_where('gameshop_categories.parentid', $gid)
+						  //->group_by('products_main.id')
+		                  ->get('gameshop_products')
+		                  ->result_array();
+
+		return $query;
+	}
+
+	function gameshop_latest_products($gid=NULL)
+	{
+		$query = $this->db->select('gameshop_products.id, gameshop_products.url, gameshop_products.name, gameshop_products.details, gameshop_products.featured, gameshop_products.imageurl1, gameshop_products.categoryid, gameshop_products.price, gameshop_products.discount')
+						  ->order_by('updatetime', 'desc')
+						  ->limit(6)
+						  ->join('gameshop_categories', 'gameshop_categories.cid = gameshop_products.categoryid', 'left')
+						  ->where('categoryid', $gid)
+						  ->or_where('gameshop_categories.parentid', $gid)
+		                  ->get('gameshop_products')
+		                  ->result_array();
+
+		foreach ($query as $key => $value) {
+			
+		$query[$key]['categories'] = $this->db->select('*')
+							    ->limit(10)
+							    ->where('cid', $value['categoryid'])
+				                ->get('gameshop_categories')
+				                ->row_array();
+		}
+
+		return $query;
+	}
+	
+	function gameshop_add_to_cart($cart=NULL)
+	{
+		$this->db->insert('gameshop_cart', $cart);
+
+		$this->db->where('month(gameshop_cart.datetime)<=', date("m")-1)
+				 ->delete('gameshop_cart');
+	}
+
+	function gameshop_cart_product_list($cart=NULL)
+	{
+		if (!empty($cart['userid'])) {
+			$this->db->set('userid', $cart['userid'])
+					 ->where('sessionid', $cart['sessionid'])
+					 ->update('gameshop_cart');
+		}
+		
+
+		$query = $this->db->select('gameshop_products.id, gameshop_products.url, gameshop_products.name, gameshop_products.imageurl1, gameshop_products.categoryid, gameshop_products.price, gameshop_products.discount, gameshop_categories.curl, gameshop_categories.cname')
+						  ->order_by('datetime', 'desc')
+						  ->where('gameshop_cart.sessionid', $cart['sessionid'])
+						  ->or_where('gameshop_cart.userid', $cart['userid'])
+						  ->join('gameshop_products', 'gameshop_products.id =  gameshop_cart.productid', 'left')
+						  ->join('gameshop_categories', 'gameshop_categories.cid =  gameshop_products.categoryid', 'left')
+						  //->group_by('blog_post.postid')
+						  ->get('gameshop_cart')
+						  ->result_array();
+
+						  //var_dump($query);
+		return $query;
+	}
+
+	function gameshop_cart_delete_item_session($cart=NULL)
+	{
+		if($this->db->delete('gameshop_cart', array('productid' => $cart['productid'], 'sessionid' => $cart['sessionid']))){
+			return TRUE;
+		} else {
+			return FALSE;
+		}
 
 
+	}
+	function gameshop_cart_delete_item_user($cart=NULL)
+	{
+		if($this->db->delete('gameshop_cart', array('productid' => $cart['productid'], 'userid' => $cart['userid']))){
+			return TRUE;
+		} else {
+			return FALSE;
+		}
 
 
+	}
 
+	function gameshop_get_cart_products($cart=NULL)
+	{
+		if (!empty($cart['userid'])) {
+			$this->db->set('userid', $cart['userid'])
+					 ->where('sessionid', $cart['sessionid'])
+					 ->update('gameshop_cart');
+		}
 
+		$query = $this->db->select('gameshop_products.id, gameshop_products.url, gameshop_products.name, gameshop_products.imageurl1, gameshop_products.categoryid, gameshop_products.price, gameshop_products.discount')
+						  ->order_by('datetime', 'desc')
+						  ->where('gameshop_cart.userid', $cart['userid'])
+						  ->join('gameshop_products', 'gameshop_products.id =  gameshop_cart.productid', 'left')
+						  //->group_by('blog_post.postid')
+						  ->get('gameshop_cart')
+						  ->result_array();
 
+						  //var_dump($query);
 
+		return $query;
 
+	}
 
+	function gameshop_check_cart_products($cart=NULL)
+	{
+		
+		$query = $this->db->select('id')
+						  ->order_by('datetime', 'desc')
+						  ->where('sessionid', $cart['sessionid'])
+						  ->or_where('userid', $cart['userid'])
+						  ->get('gameshop_cart')
+						  ->result_array();
 
+						  //var_dump($query);
 
+		return $query;
 
+	}
 
+	function gameshop_add_to_user($products = NULL)
+	{
+		foreach ($products as $value) {
+			$this->db->set('paymentid', $value['paymentid'])
+					 ->set('productid', $value['productid'])
+					 ->set('userid', $value['userid'])
+					 ->set('amount', $value['amount'])
+					 ->insert('gameshop_payments');
 
+			$this->db->set('productid', $value['productid'])
+					 ->set('userid', $value['userid'])
+					 ->insert('gameshop_licenses');
 
+			$this->db->set('orderdate', 'NOW()', FALSE)
+					 ->set('productid', $value['productid'])
+			 		 ->set('userid', $value['userid'])
+ 		 		 	 ->set('paymentid', $value['paymentid'])
+				 ->insert('gameshop_user_products');
+		}
+		
+		$uid = $this->session->userdata('user_id');
+		if($this->db->delete('gameshop_cart', array('userid' => $uid))){
+			return TRUE;
+		} else {
+			return FALSE;
+		}
+	}
 
+	function gameshop_get_buylist()
+	{
 
+		$query = $this->db->select('gameshop_user_products.orderdate, gameshop_user_products.paymentid, gameshop_user_products.userid, gameshop_user_products.licenseid, gameshop_products.id, gameshop_products.url, gameshop_products.name, gameshop_products.imageurl1, gameshop_products.categoryid, gameshop_products.price, gameshop_products.discount, gameshop_products.discountprice, gameshop_payments.paymentstatus, gameshop_payments.amount')
+						  ->order_by('orderdate', 'asc')
+						  ->where('gameshop_user_products.userid', $this->session->userdata('user_id'))
+						  ->join('gameshop_products', 'gameshop_products.id =  gameshop_user_products.productid', 'left')
+						  ->join('gameshop_payments', 'gameshop_payments.paymentid =  gameshop_user_products.paymentid', 'left')
+						  //->join('gameshop_payments', 'gameshop_payments.id =  gameshop_user_products.productid', 'left')
+						  ->group_by('gameshop_payments.paymentid')
+						  ->get('gameshop_user_products')
+						  ->result_array();
+
+						  var_dump($query);
+
+		return $query;
+
+	}
+
+	function gameshop_check_paymentid($payid=NULL)
+	{
+		$query = $this->db->select('*')
+						  //->limit(10)
+						  ->where('paymentid', $payid)
+						  ->get('gameshop_payments')
+						  ->num_rows() > '0';
+
+		//if ($query > "0") { return TRUE; } else {return FALSE; }
+		return $query;				  
+	}
+
+	function gameshop_get_payment_data($pid=NULL)
+	{
+		$query = $this->db->select('gameshop_payments.*, gameshop_products.name')
+						  //->limit(10)
+						  ->where('paymentid', $pid)
+						  ->join('gameshop_products', 'gameshop_products.id =  gameshop_payments.productid', 'inner')
+						  ->group_by('paymentid')
+						  ->get('gameshop_payments')
+						  ->row_array();
+
+	    //var_dump($query);
+		return $query;				  
+	}
+
+	function gameshop_update_payment($pid=NULL, $additional_data=NULL)
+	{
+		
+		$this->db->set('paymentdate', 'NOW()', FALSE)
+				 ->where('paymentid', $pid)
+				 ->update('gameshop_payments', $additional_data);
+		return true;
+	}
 
 
 

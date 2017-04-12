@@ -1,3 +1,8 @@
+<script>
+function myFunction(theUrl) {
+	document.getElementById("demo").style.color = "red";
+}
+</script>
 <!-- wrapper --> 
 	<div id="wrapper">	
 		<div id="full-carousel" class="ken-burns carousel slide full-carousel carousel-fade" data-ride="carousel">
@@ -67,7 +72,7 @@
 							<div class="card-img">
 								<img src="<?php echo base_url() . 'assets/uploads/files/' . $value['imageurl1']; ?>" alt="<?php echo $value['name']; ?>">
 								<div class="category"><span class="label <?php echo $random[array_rand($random)];?>">Price: <?php echo $value['price']; ?>TK</span></div>
-								<div class="meta"><a href="<?php echo base_url() . 'games/cart/' . $value['url']; ?>"><i class="fa fa-shopping-bag" Style="color:black;"></i> <span Style="color:black; font-weight: bold;">Buy Now</span></a></div>
+								<div class="meta" id="demo">Check<a <?php //href="<?php echo base_url() . 'games/buy/' . $value['url']; ? >" ?>onclick="myFunction('<?php echo base_url() . 'games/checkajax';?>')"><i class="fa fa-shopping-bag" Style="color:black;"></i> <span Style="color:black; font-weight: bold;">Buy Now</span></a></div>
 							</div>
 							<div class="caption">
 								<h3 class="card-title" Style="padding-bottom: 10px;"><a href="<?php echo base_url() . 'games/view/' . $value['url']; ?>"><?php echo substr($value['name'], 0, 25); ?> ...</a></h3>

@@ -32,9 +32,9 @@ class Games extends My_Controller {
 
 		
 		$this->data['slider'] = $this->tfl_model->gameshop_slider();
-		$this->data['gameshop_tags_menu'] = $this->tfl_model->gameshop_tags_menu();
-		$this->data['products'] = $this->tfl_model->gameshop_products_latest('2');
-		var_dump($this->data['products']);
+		//$this->data['gameshop_tags_menu'] = $this->tfl_model->gameshop_tags_menu();
+		//$this->data['products'] = $this->tfl_model->gameshop_products_latest('2');
+		//var_dump($this->data['products']);
 
 		$this->data['message'] = $this->session->flashdata('message');
 		$this->load->view($this->template_dir.'home', $this->data);

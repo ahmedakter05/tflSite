@@ -83,6 +83,9 @@ class Cp extends My_Controller {
 
 		if ($this->ion_auth->logged_in())
 		{
+			if (!$this->ion_auth->is_admin()){
+				redirect('games/index', 'refresh');
+			}
 			// redirect them to the login page
 			redirect('admin/cp/index', 'refresh');
 		}
@@ -604,101 +607,7 @@ class Cp extends My_Controller {
 		}
 	}
 
-	function register_esuser()
-	{
-		$this->data['title'] = "Create User";
-
-
-		$tables = $this->config->item('tables','ion_auth');
-
-		// validate form input
-		$this->form_validation->set_rules('first_name', $this->lang->line('create_user_validation_fname_label'), 'required');
-		$this->form_validation->set_rules('user_name', $this->lang->line('create_user_validation_uname_label'), 'required');
-		$this->form_validation->set_rules('last_name', $this->lang->line('create_user_validation_lname_label'), 'required');
-		$this->form_validation->set_rules('email', $this->lang->line('create_user_validation_email_label'), 'required|valid_email|is_unique['.$tables['users'].'.email]');
-		$this->form_validation->set_rules('phone', $this->lang->line('create_user_validation_phone_label'), 'required');
-		$this->form_validation->set_rules('company', $this->lang->line('create_user_validation_company_label'), 'required');
-		$this->form_validation->set_rules('password', $this->lang->line('create_user_validation_password_label'), 'required|min_length[' . $this->config->item('min_password_length', 'ion_auth') . ']|max_length[' . $this->config->item('max_password_length', 'ion_auth') . ']|matches[password_confirm]');
-		$this->form_validation->set_rules('password_confirm', $this->lang->line('create_user_validation_password_confirm_label'), 'required');
-
-		if ($this->form_validation->run() == true)
-		{
-			$username = strtolower($this->input->post('user_name'));
-			$email    = strtolower($this->input->post('email'));
-			$password = $this->input->post('password');
-
-			$additional_data = array(
-				'first_name' => $this->input->post('first_name'),
-				'last_name'  => $this->input->post('last_name'),
-				'company'    => $this->input->post('company'),
-				'phone'      => $this->input->post('phone'),
-			);
-		}
-		if ($this->form_validation->run() == true && $this->ion_auth->register($username, $password, $email, $additional_data))
-		{
-			// check to see if we are creating the user
-			// redirect them back to the admin page
-			$this->session->set_flashdata('message', $this->ion_auth->messages());
-			redirect("users/admin", 'refresh');
-		}
-		else
-		{
-			// display the create user form
-			// set the flash data error message if there is one
-			$this->data['message'] = (validation_errors() ? validation_errors() : ($this->ion_auth->errors() ? $this->ion_auth->errors() : $this->session->flashdata('message')));
-
-			$this->data['first_name'] = array(
-				'name'  => 'first_name',
-				'id'    => 'first_name',
-				'type'  => 'text',
-				'value' => $this->form_validation->set_value('first_name'),
-			);
-			$this->data['last_name'] = array(
-				'name'  => 'last_name',
-				'id'    => 'last_name',
-				'type'  => 'text',
-				'value' => $this->form_validation->set_value('last_name'),
-			);
-			$this->data['user_name'] = array(
-				'name'  => 'user_name',
-				'id'    => 'user_name',
-				'type'  => 'text',
-				'value' => $this->form_validation->set_value('user_name'),
-			);
-			$this->data['email'] = array(
-				'name'  => 'email',
-				'id'    => 'email',
-				'type'  => 'text',
-				'value' => $this->form_validation->set_value('email'),
-			);
-			$this->data['company'] = array(
-				'name'  => 'company',
-				'id'    => 'company',
-				'type'  => 'text',
-				'value' => $this->form_validation->set_value('company'),
-			);
-			$this->data['phone'] = array(
-				'name'  => 'phone',
-				'id'    => 'phone',
-				'type'  => 'text',
-				'value' => $this->form_validation->set_value('phone'),
-			);
-			$this->data['password'] = array(
-				'name'  => 'password',
-				'id'    => 'password',
-				'type'  => 'password',
-				'value' => $this->form_validation->set_value('password'),
-			);
-			$this->data['password_confirm'] = array(
-				'name'  => 'password_confirm',
-				'id'    => 'password_confirm',
-				'type'  => 'password',
-				'value' => $this->form_validation->set_value('password_confirm'),
-			);
-
-			$this->_render_page('aries_admin/users/create_user', $this->data);
-		}
-	}
+	
 
 	// edit a user
 	function edit_user($id)
@@ -707,7 +616,7 @@ class Cp extends My_Controller {
 
 		if (!$this->ion_auth->logged_in() || (!$this->ion_auth->is_admin() && !($this->ion_auth->user()->row()->id == $id)))
 		{
-			redirect('users/admin', 'refresh');
+			redirect('admin/cp/login', 'refresh');
 		}
 
 		$user = $this->ion_auth->user($id)->row();
@@ -776,7 +685,7 @@ class Cp extends My_Controller {
 				    $this->session->set_flashdata('message', $this->ion_auth->messages() );
 				    if ($this->ion_auth->is_admin())
 					{
-						redirect('users/admin', 'refresh');
+						redirect('admin/cp', 'refresh');
 					}
 					else
 					{
@@ -790,7 +699,7 @@ class Cp extends My_Controller {
 				    $this->session->set_flashdata('message', $this->ion_auth->errors() );
 				    if ($this->ion_auth->is_admin())
 					{
-						redirect('users/admin', 'refresh');
+						redirect('admin/cp', 'refresh');
 					}
 					else
 					{
@@ -858,7 +767,7 @@ class Cp extends My_Controller {
 
 		if (!$this->ion_auth->logged_in() || !$this->ion_auth->is_admin())
 		{
-			redirect('admin/cp/users', 'refresh');
+			redirect('admin/cp/login', 'refresh');
 		}
 
 		// validate form input
@@ -872,7 +781,7 @@ class Cp extends My_Controller {
 				// check to see if we are creating the group
 				// redirect them back to the admin page
 				$this->session->set_flashdata('message', $this->ion_auth->messages());
-				redirect("admin/cp/users", 'refresh');
+				redirect("admin/cp", 'refresh');
 			}
 		}
 		else
@@ -1015,4 +924,186 @@ class Cp extends My_Controller {
         return $pagin;
 
     }
+	
+	////////////////////////////////////////////////////
+	///////////////////////////////////////////////////\
+	//TFL User
+	///////////////////////////////////////////////////
+	//////////////////////////////////////////////////\
+	
+	function signup()
+	{
+		$this->output->set_template('gameforest_layout');
+		$this->set_panel('gameforest');
+		$this->get_gameshop_common_param();
+
+		$this->data['title'] = "Create User";
+
+		$tables = $this->config->item('tables','ion_auth');
+
+		// validate form input
+		$this->form_validation->set_rules('first_name', $this->lang->line('create_user_validation_fname_label'), 'required');
+		$this->form_validation->set_rules('user_name', $this->lang->line('create_user_validation_uname_label'), 'required');
+		$this->form_validation->set_rules('last_name', $this->lang->line('create_user_validation_lname_label'), 'required');
+		$this->form_validation->set_rules('email', $this->lang->line('create_user_validation_email_label'), 'required|valid_email|is_unique['.$tables['users'].'.email]');
+		$this->form_validation->set_rules('phone', $this->lang->line('create_user_validation_phone_label'), 'required');
+		//$this->form_validation->set_rules('company', $this->lang->line('create_user_validation_company_label'), 'required');
+		$this->form_validation->set_rules('password', $this->lang->line('create_user_validation_password_label'), 'required|min_length[' . $this->config->item('min_password_length', 'ion_auth') . ']|max_length[' . $this->config->item('max_password_length', 'ion_auth') . ']|matches[password_confirm]');
+		$this->form_validation->set_rules('password_confirm', $this->lang->line('create_user_validation_password_confirm_label'), 'required');
+
+		if ($this->form_validation->run() == true)
+		{
+			$username = strtolower($this->input->post('user_name'));
+			$email    = strtolower($this->input->post('email'));
+			$password = $this->input->post('password');
+
+			$additional_data = array(
+				'first_name' => $this->input->post('first_name'),
+				'last_name'  => $this->input->post('last_name'),
+				'company'    => 'Next',//$this->input->post('company'),
+				'phone'      => $this->input->post('phone'),
+			);
+		}
+		if ($this->form_validation->run() == true && $this->ion_auth->register($username, $password, $email, $additional_data))
+		{
+			// check to see if we are creating the user
+			// redirect them back to the admin page
+			$this->session->set_flashdata('message', $this->ion_auth->messages());
+			redirect("admin/cp/signin", 'refresh');
+		}
+		else
+		{
+			// display the create user form
+			// set the flash data error message if there is one
+			$this->data['message'] = (validation_errors() ? validation_errors() : ($this->ion_auth->errors() ? $this->ion_auth->errors() : $this->session->flashdata('message')));
+
+			$this->data['first_name'] = array(
+				'name'  => 'first_name',
+				'id'    => 'first_name',
+				'type'  => 'text',
+				'value' => $this->form_validation->set_value('first_name'),
+			);
+			$this->data['last_name'] = array(
+				'name'  => 'last_name',
+				'id'    => 'last_name',
+				'type'  => 'text',
+				'value' => $this->form_validation->set_value('last_name'),
+			);
+			$this->data['user_name'] = array(
+				'name'  => 'user_name',
+				'id'    => 'user_name',
+				'type'  => 'text',
+				'value' => $this->form_validation->set_value('user_name'),
+			);
+			$this->data['email'] = array(
+				'name'  => 'email',
+				'id'    => 'email',
+				'type'  => 'text',
+				'value' => $this->form_validation->set_value('email'),
+			);
+			$this->data['company'] = array(
+				'name'  => 'company',
+				'id'    => 'company',
+				'type'  => 'text',
+				'value' => $this->form_validation->set_value('company'),
+			);
+			$this->data['phone'] = array(
+				'name'  => 'phone',
+				'id'    => 'phone',
+				'type'  => 'text',
+				'value' => $this->form_validation->set_value('phone'),
+			);
+			$this->data['password'] = array(
+				'name'  => 'password',
+				'id'    => 'password',
+				'type'  => 'password',
+				'value' => $this->form_validation->set_value('password'),
+			);
+			$this->data['password_confirm'] = array(
+				'name'  => 'password_confirm',
+				'id'    => 'password_confirm',
+				'type'  => 'password',
+				'value' => $this->form_validation->set_value('password_confirm'),
+			);
+
+			$this->_render_page('gameforest/register', $this->data);
+		}
+	}
+
+	function signin($page = 'login'){
+				
+		$this->output->set_template('gameforest_layout');
+		$this->set_panel('gameforest');
+		$this->get_gameshop_common_param();
+
+		$data['title'] = "AA Planetica" ;
+		$data['activepage'] = "User Login" ;
+
+		if ($this->ion_auth->logged_in())
+		{
+			// redirect them to the login page
+			redirect($this->session->last_page(1), 'refresh');
+		}
+		//validate form input
+		$this->form_validation->set_rules('identity', 'Identity', 'required');
+		$this->form_validation->set_rules('password', 'Password', 'required');
+
+		if ($this->form_validation->run() == true)
+		{
+			// check to see if the user is logging in
+			// check for "remember me"
+			$remember = (bool) $this->input->post('remember');
+
+			if ($this->ion_auth->login($this->input->post('identity'), $this->input->post('password'), $remember))
+			{
+				//if the login is successful
+				//redirect them back to the home page
+				$this->session->set_flashdata('message', $this->ion_auth->messages());
+
+				//echo $this->session->userdata['last_page'];
+				//redirect((isset($this->session->userdata['last_page']) ? $this->session->userdata['last_page'] : 'games/all'), 'refresh');
+				redirect($this->session->last_page(2), 'refresh');
+			}
+			else
+			{
+				// if the login was un-successful
+				// redirect them back to the login page
+				$this->session->set_flashdata('message', $this->ion_auth->errors());
+				redirect('admin/cp/signin', 'refresh'); // use redirects instead of loading views for compatibility with MY_Controller libraries
+			}
+		}
+		else
+		{
+			// the user is not logging in so display the login page
+			// set the flash data error message if there is one
+			$this->data['message'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('message');
+
+			$this->data['identity'] = array('name' => 'identity',
+				'id' => 'identity',
+				'type' => 'text',
+				'value' => $this->form_validation->set_value('identity'),
+			);
+			$this->data['password'] = array('name' => 'password',
+				'id' => 'password',
+				'type' => 'password',
+			);
+
+			
+			$this->load->view('gameforest/login', $this->data);
+			
+
+			}
+	}
+
+	function signout()
+	{
+		$this->data['title'] = "Sign Out";
+
+		// log the user out
+		$logout = $this->ion_auth->logout();
+
+		// redirect them to the login page
+		$this->session->set_flashdata('message', $this->ion_auth->messages());
+		redirect('games/index', 'refresh');
+	}
 }

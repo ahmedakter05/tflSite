@@ -34,15 +34,15 @@
 	<header>
 		<div class="container">
 			<span class="bar hide"></span>
-			<a href="<?php echo base_url(); ?>assets/gameforest/index-2.html" class="logo"><img src="<?php echo base_url(); ?>assets/gameforest/img/logo.png" alt=""></a>
+			<a href="<?php echo base_url(); ?>games/" class="logo"><img src="<?php echo base_url(); ?>assets/gameforest/img/logo.png" alt=""></a>
 			<nav>
 				<div class="nav-control">
 					<ul>
 						<li>
-							<a href="<?php echo base_url(); ?>assets/gameforest/#" class="dropdown-toggle">Home</a>
+							<a href="<?php echo base_url(); ?>" class="dropdown-toggle">TechFocus</a>
 						</li>
 						<li class="dropdown mega-dropdown">
-							<a href="<?php echo base_url(); ?>assets/gameforest/games.html">Games</a>
+							<a href="<?php echo base_url(); ?>games">Games</a>
 							<ul class="dropdown-menu mega-dropdown-menu category">
 								<li class="col-md-3">
 									<a href="<?php echo base_url(); ?>assets/gameforest/games-single.html">
@@ -86,14 +86,59 @@
 								</li>
 							</ul>
 						</li>
+						<li class="dropdown">
+							<a href="<?php echo base_url(); ?>games/all" class="dropdown-toggle">Products</a>
+							<ul class="dropdown-menu default">
+								<?php foreach ($gameshop_products_menu as $value):?>
+								<li class="dropdown-submenu">
+									<a href="<?php echo base_url() . 'games/category/' . $value['curl'];?>"><?php echo $value['cname']?></a>
+									<?php if (!empty($value['sub_categories'])){?>
+										<ul class="dropdown-menu">
+											<?php foreach ($value['sub_categories'] as $value2):?>
+											<li><a href="<?php echo base_url() . 'games/category/' . $value2['curl'];?>"><?php echo $value2['cname']?></a></li>
+											<?php endforeach; ?>		
+										</ul>
+										<?php } ?>
+								</li>
+								<?php endforeach; ?>								
+							</ul>
+						</li>
 						
-						
-						<li><a href="<?php echo base_url(); ?>assets/gameforest/videos.html">Videos</a></li>
-						<li><a href="<?php echo base_url(); ?>assets/gameforest/gallery.html">Gallery</a></li>
-						<li><a href="<?php echo base_url(); ?>assets/gameforest/contact.html">Contact</a></li>
+						<!--li><a href="<?php echo base_url(); ?>assets/gameforest/gallery.html">Gallery</a></li>
+						<li><a href="<?php echo base_url(); ?>assets/gameforest/contact.html">Cart (0)</a></li-->
 					</ul>
 				</div>
 			</nav>
+			<div class="nav-right">
+				<?php if(!empty($userdata['uid'])){?>
+				<div class="nav-profile dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="<?php echo base_url(); ?>assets/gameforest/img/user/avatar.jpg" alt=""> <span><?php echo $userdata['first_name'] . ' ' . $userdata['last_name'];?></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="<?php echo base_url(); ?>games/buylist"><i class="fa fa-user"></i> Profile</a></li>
+						<li><a href="<?php echo base_url(); ?>games/buylist"><i class="fa fa-gamepad"></i> Games</a></li>
+						<li><a href="<?php echo base_url(); ?>games/buylist"><i class="fa fa-gear"></i> Settings</a></li>
+						<li class="divider"></li>
+						<li><a href="<?php echo base_url(); ?>admin/cp/signout"><i class="fa fa-power-off"></i> Sign Out</a></li>
+					</ul>
+				</div>
+				<?php } else { ?>
+				<div class="nav-profile">
+					<a href="<?php echo base_url(); ?>admin/cp/signin"> Sign In </a>
+				</div>
+				<?php } ?>
+				<div class="nav-dropdown dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-shopping-cart"></i> Cart &nbsp;&nbsp;<span class="label label-danger">1</span></a>
+					<ul class="dropdown-menu">
+						<li class="dropdown-header"><i class="fa fa-bell"></i> You added 1 things right now</li>
+						<li><a href="#">Alien Isolation</a></li>
+						<li><a href="#">Witcher 3 <span class="label label-success">XBOX</span></a></li>
+						<li><a href="#">Last of Us</a></li>
+						<li><a href="#">Uncharted 4 <span class="label label-primary">PS4</span></a></li>
+						<li><a href="#">GTA 5 <span class="label label-warning">PC</span></a></li>
+						<li class="dropdown-footer"><a href="<?php echo base_url(); ?>games/cart">Checkout</a></li>
+					</ul>
+				</div>
+			</div>
 		</div>
 	</header>
 	<!-- /header -->
@@ -106,45 +151,7 @@
 	
 	<!-- footer -->
 	<footer>
-		<div class="container">
-			<div class="widget row">
-				<div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
-					<h4 class="title">About GameForest</h4>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec pharetra mattis arcu, a congue leo malesuada eu. Nam nec mauris ut odio tristique varius et eu metus. Quisque massa purus, aliquet quis blandit et, <br /> <br />mollis sed lorem. Sed vel tincidunt elit. Phasellus at varius odio, sit amet fermentum mauris.</p>
-				</div>
-					
-				<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-					<h4 class="title">Categories</h4>
-					<div class="row">
-						<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">	
-							<ul class="nav">
-								<li><a href="<?php echo base_url(); ?>assets/gameforest/#">Playstation 4</a></li>
-								<li><a href="<?php echo base_url(); ?>assets/gameforest/#">XBOX ONE</a></li>
-								<li><a href="<?php echo base_url(); ?>assets/gameforest/#">PC</a></li>
-								<li><a href="<?php echo base_url(); ?>assets/gameforest/#">PS3</a></li>
-							</ul>
-						</div>
-						<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-							<ul class="nav">
-								<li><a href="<?php echo base_url(); ?>assets/gameforest/#">Gaming</a></li>
-								<li><a href="<?php echo base_url(); ?>assets/gameforest/#">Portfolio</a></li>
-								<li><a href="<?php echo base_url(); ?>assets/gameforest/#">Videos</a></li>
-								<li><a href="<?php echo base_url(); ?>assets/gameforest/#">Reviews</a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
 		
-				<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-					<h4 class="title">Email Newsletters</h4>
-					<p>Subscribe to our newsletter and get notification when new games are available.</p>
-					<form method="post" class="btn-inline form-inverse">
-						<input type="text" class="form-control" placeholder="Email..." />
-						<button type="submit" class="btn btn-link"><i class="fa fa-envelope"></i></button>
-					</form>
-				</div>
-			</div>
-		</div>
 		
 		<div class="footer-bottom">
 			<div class="container">	
@@ -154,7 +161,7 @@
 					<li><a href="<?php echo base_url(); ?>assets/gameforest/#" class="btn btn-circle btn-social-icon" data-toggle="tooltip" title="Follow us on Google"><i class="fa fa-google-plus"></i></a></li>
 					<li><a href="<?php echo base_url(); ?>assets/gameforest/#" class="btn btn-circle btn-social-icon" data-toggle="tooltip" title="Follow us on Steam"><i class="fa fa-steam"></i></a></li>
 				</ul>
-				&copy; 2016 Gameforest. All rights reserved.
+				&copy; 2017 Techfocus. All rights reserved.
 			</div>
 		</div>
 	</footer>	
@@ -201,6 +208,7 @@
 	<script src="<?php echo base_url(); ?>assets/gameforest/plugins/bootstrap/js/bootstrap.min.js"></script>
 	<script src="<?php echo base_url(); ?>assets/gameforest/js/core.min.js"></script>
 	<script src="<?php echo base_url(); ?>assets/gameforest/plugins/owl-carousel/owl.carousel.min.js"></script>
+	<script type='text/javascript' src='<?php echo base_url(); ?>assets/jscustom.js'></script>
 	<script>
 	(function($) {
 	"use strict";
