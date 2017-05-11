@@ -69,7 +69,7 @@
                         </div>
 
                         <div class="product-post-info">
-                            <h5><a href="<?php echo base_url() . 'products/details/' . $fvalue['url']; ?>"><?php echo $fvalue['name']; ?></a></h5>
+                            <h5 style="background: none;"><a href="<?php echo base_url() . 'products/details/' . $fvalue['url']; ?>"><?php echo substr($fvalue['name'], 0, 25); ?> ...</a></h5>
                             <p>Category: <?php echo anchor('products/category/'.$fvalue['categories']['curl'], $fvalue['categories']['cname'] .' '); ?></p>
                         </div>
                     </li> 
@@ -115,80 +115,7 @@
 				</div>
 			</div>
 
-            <div class="clear"></div>
-            <div class="space60"></div>
-            <div class="side-widget">
-                <h5><span><?php echo $serviceothers['1']['name']; ?></span></h5>
-                <div id="quoteslider">
-                    <div class="quote-wrap">
-                        <h6><?php echo $serviceothers['1']['title']; ?></h6>
-                        	<?php echo $serviceothers['1']['description']; ?>
-                        <div class="quote-author">
-                            <div class="quote-author-img">
-                                <img src="<?php echo base_url() . 'assets/uploads/files/' . $serviceothers['1']['imagelink1']; ?>" alt=""/>
-                            </div>
-                            <h5><?php echo $serviceothers['1']['xyzname']; ?> <span class="dblock"><?php echo $serviceothers['1']['designation']; ?></span></h5>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="clear"></div>
-            <div class="space60"></div>
-            <div class="side-widget">
-                <h5><span><?php echo $serviceothers['2']['name']; ?></span></h5>
-                <div class="akordeon">
-                    <div class="akordeon-item">
-                        <div class="akordeon-item-head first">
-                            <div class="akordeon-item-head-container">
-                                <div class="akordeon-heading"><?php echo $serviceothers['2']['title']; ?></div>
-                            </div>
-                        </div>
-                        <div class="akordeon-item-body">
-                            <div class="akordeon-item-content">
-                                <?php echo $serviceothers['2']['description']; ?>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="akordeon-item">
-                        <div class="akordeon-item-head">
-                            <div class="akordeon-item-head-container">
-                                <div class="akordeon-heading"><?php echo $serviceothers['3']['title']; ?></div>
-                            </div>
-                        </div>
-                        <div class="akordeon-item-body">
-                            <div class="akordeon-item-content">
-                                <?php echo $serviceothers['3']['description']; ?>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="akordeon-item">
-                        <div class="akordeon-item-head">
-                            <div class="akordeon-item-head-container">
-                                <div class="akordeon-heading"><?php echo $serviceothers['4']['title']; ?></div>
-                            </div>
-                        </div>
-                        <div class="akordeon-item-body">
-                            <div class="akordeon-item-content">
-                                <?php echo $serviceothers['4']['description']; ?>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="akordeon-item">
-                        <div class="akordeon-item-head">
-                            <div class="akordeon-item-head-container">
-                                <div class="akordeon-heading"><?php echo $serviceothers['5']['title']; ?></div>
-                            </div>
-                        </div>
-                        <div class="akordeon-item-body">
-                            <div class="akordeon-item-content">
-                                <?php echo $serviceothers['5']['description']; ?>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="clear"></div>
-            <div class="space60"></div>
+            
             
         </div>
     </div>

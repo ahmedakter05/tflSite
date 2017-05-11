@@ -190,7 +190,7 @@ class Req extends My_Controller {
 		}
 
 		$crud = new grocery_CRUD();
-
+		$crud->unset_jquery();
 		$crud->set_table('products_main');
 		$crud->set_relation_n_n('products_main', 'tags_relation', 'tags', 'id', 'tagsid', 'tagstitle');
 		$crud->set_relation('categoryid','categories','cname');
@@ -198,7 +198,7 @@ class Req extends My_Controller {
 		//$crud->fields('name', 'details', 'keyfeatures', 'description', 'specification', 'featured', 'imageurl1', 'imageurl2', 'imageurl3', 'imageurl4', 'categoryid', 'tags', 'code', 'updatetime');
 		//$crud->edit_fields('name','details','description', 'keyfeatures', 'specification', 'featured', 'imageurl1', 'imageurl2', 'imageurl3', 'imageurl4');
 		//$crud->add_fields('name','details','description', 'updatetime');
-		$crud->set_relation('categoryid','categories','cname');
+		//$crud->set_relation('categoryid','categories','cname');
 		$crud->field_type('featured','dropdown', array('1' => 'Yes', '0' => 'No'));
 		$crud->field_type('updatetime','invisible');
 		$crud->display_as('cid','ID')->display_as('cname','Category Name')->display_as('parentid','Parent Category')

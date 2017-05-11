@@ -41,14 +41,8 @@
         </div>
 
         <div class="col-md-4 sidebar">
-            <div class="side-widget">
-                <h5><span>Services</span></h5>
-                <ul class="category vertical menu" data-accordion-menu> 
-                    <?php foreach($blog_menu_item as $print):?>                
-                        <li><a href="<?php echo base_url() . 'blogs/detail/' . $print['url']; ?>"><?php echo $print['full_name']; ?></a></li>
-                    <?php endforeach; ?>
-                </ul>
-            </div>
+            
+            <?php $this->view('oliver/blogs_sidemenu_cat'); ?>
 
             <div class="clear"></div>
             <div class="space60"></div>
@@ -63,7 +57,7 @@
                         </div>
 
                         <div class="product-post-info">
-                            <h5><a href="<?php echo base_url() . 'products/details/' . $fvalue['url']; ?>"><?php echo $fvalue['name']; ?></a></h5>
+                            <h5 style="background: none;"><a href="<?php echo base_url() . 'products/details/' . $fvalue['url']; ?>"><?php echo substr($fvalue['name'], 0, 25); ?> ...</a></h5>
                             <p>Category: <?php echo anchor('products/category/'.$fvalue['categories']['cid'], $fvalue['categories']['cname'] .' '); ?></p>
                         </div>
                     </li> 

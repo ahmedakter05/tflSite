@@ -41,55 +41,11 @@
 						<li>
 							<a href="<?php echo base_url(); ?>" class="dropdown-toggle">TechFocus</a>
 						</li>
-						<li class="dropdown mega-dropdown">
-							<a href="<?php echo base_url(); ?>games">Games</a>
-							<ul class="dropdown-menu mega-dropdown-menu category">
-								<li class="col-md-3">
-									<a href="<?php echo base_url(); ?>assets/gameforest/games-single.html">
-										<img src="<?php echo base_url(); ?>assets/gameforest/img/game/menu-1.jpg" alt="">
-										<div class="caption">
-											<span class="label label-warning">Actions</span>
-											<h3>Assassin's Creed Syndicate</h3>
-											<p>Lorem ipsum dolor sit amet, adipise elit.</p>
-										</div>
-									</a>
-								</li>
-								<li class="col-md-3">
-									<a href="<?php echo base_url(); ?>assets/gameforest/games-single.html">
-										<img src="<?php echo base_url(); ?>assets/gameforest/img/game/menu-2.jpg" alt="">
-										<div class="caption">
-											<span class="label label-primary">Puzzles</span>
-											<h3>Last of Us Remastered</h3>
-											<p>Lorem ipsum dolor sit amet, adipise elit.</p>
-										</div>
-									</a>
-								</li>
-								<li class="col-md-3">
-									<a href="<?php echo base_url(); ?>assets/gameforest/games-single.html">
-										<img src="<?php echo base_url(); ?>assets/gameforest/img/game/menu-3.jpg" alt="">
-										<div class="caption">
-											<span class="label label-success">Strategic</span>
-											<h3>Max Payne 3</h3>
-											<p>Lorem ipsum dolor sit amet, adipise elit.</p>
-										</div>
-									</a>
-								</li>
-								<li class="col-md-3">
-									<a href="<?php echo base_url(); ?>assets/gameforest/games-single.html">
-										<img src="<?php echo base_url(); ?>assets/gameforest/img/game/menu-4.jpg" alt="">
-										<div class="caption">
-											<span class="label label-danger">Accessories</span>
-											<h3>Hitman Absolution</h3>
-											<p>Lorem ipsum dolor sit amet, adipise elit.</p>
-										</div>
-									</a>
-								</li>
-							</ul>
-						</li>
+						
 						<li class="dropdown">
-							<a href="<?php echo base_url(); ?>games/all" class="dropdown-toggle">Products</a>
+							<a href="<?php echo base_url(); ?>games/category/games" class="dropdown-toggle">Games</a>
 							<ul class="dropdown-menu default">
-								<?php foreach ($gameshop_products_menu as $value):?>
+								<?php foreach ($gameshop_products_menu_games as $value):?>
 								<li class="dropdown-submenu">
 									<a href="<?php echo base_url() . 'games/category/' . $value['curl'];?>"><?php echo $value['cname']?></a>
 									<?php if (!empty($value['sub_categories'])){?>
@@ -103,6 +59,59 @@
 								<?php endforeach; ?>								
 							</ul>
 						</li>
+						<li class="dropdown">
+							<a href="<?php echo base_url(); ?>games/category/accessories" class="dropdown-toggle">Accessories</a>
+							<ul class="dropdown-menu default">
+								<?php foreach ($gameshop_products_menu_accessories as $value):?>
+								<li class="dropdown-submenu">
+									<a href="<?php echo base_url() . 'games/category/' . $value['curl'];?>"><?php echo $value['cname']?></a>
+									<?php if (!empty($value['sub_categories'])){?>
+										<ul class="dropdown-menu">
+											<?php foreach ($value['sub_categories'] as $value2):?>
+											<li><a href="<?php echo base_url() . 'games/category/' . $value2['curl'];?>"><?php echo $value2['cname']?></a></li>
+											<?php endforeach; ?>		
+										</ul>
+										<?php } ?>
+								</li>
+								<?php endforeach; ?>								
+							</ul>
+						</li>
+
+						<li class="dropdown">
+							<a href="<?php echo base_url(); ?>games/category/toys" class="dropdown-toggle">Toys</a>
+							<ul class="dropdown-menu default">
+								<?php foreach ($gameshop_products_menu_toys as $value):?>
+								<li class="dropdown-submenu">
+									<a href="<?php echo base_url() . 'games/category/' . $value['curl'];?>"><?php echo $value['cname']?></a>
+									<?php if (!empty($value['sub_categories'])){?>
+										<ul class="dropdown-menu">
+											<?php foreach ($value['sub_categories'] as $value2):?>
+											<li><a href="<?php echo base_url() . 'games/category/' . $value2['curl'];?>"><?php echo $value2['cname']?></a></li>
+											<?php endforeach; ?>		
+										</ul>
+										<?php } ?>
+								</li>
+								<?php endforeach; ?>								
+							</ul>
+						</li>
+
+						<li class="dropdown mega-dropdown">
+							<a href="<?php echo base_url(); ?>games">| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Featured Item</a>
+							<ul class="dropdown-menu mega-dropdown-menu category">
+								<?php foreach ($gameshop_menu_latest_games as $value): ?>
+								<li class="col-md-3">
+									<a href="<?php echo base_url() . 'games/view/' . $value['url']; ?>">
+										<img src="<?php echo base_url() . 'assets/uploads/files/' . $value['imageurl1']; ?>" alt="<?php echo $value['name']; ?>">
+										<div class="caption">
+											<span class="label <?php echo $random[array_rand($random)];?>"><?php echo $value['categories']['cname']; ?></span>
+											<h3><?php echo substr($value['name'], 0, 25); ?> ...</h3>
+											
+										</div>
+									</a>
+								</li>
+								<?php endforeach; ?>
+							</ul>
+						</li>
 						
 						<!--li><a href="<?php echo base_url(); ?>assets/gameforest/gallery.html">Gallery</a></li>
 						<li><a href="<?php echo base_url(); ?>assets/gameforest/contact.html">Cart (0)</a></li-->
@@ -112,30 +121,33 @@
 			<div class="nav-right">
 				<?php if(!empty($userdata['uid'])){?>
 				<div class="nav-profile dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="<?php echo base_url(); ?>assets/gameforest/img/user/avatar.jpg" alt=""> <span><?php echo $userdata['first_name'] . ' ' . $userdata['last_name'];?></span></a>
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span><?php echo $userdata['first_name'] . ' ' . $userdata['last_name'];?></span></a>
 					<ul class="dropdown-menu">
-						<li><a href="<?php echo base_url(); ?>games/buylist"><i class="fa fa-user"></i> Profile</a></li>
-						<li><a href="<?php echo base_url(); ?>games/buylist"><i class="fa fa-gamepad"></i> Games</a></li>
-						<li><a href="<?php echo base_url(); ?>games/buylist"><i class="fa fa-gear"></i> Settings</a></li>
+						<li><a href="<?php echo base_url(); ?>games/edit_profile"><i class="fa fa-user"></i> Change Profile</a></li>
+						<li><a href="<?php echo base_url(); ?>games/manage_orders"><i class="fa fa-gamepad"></i> Order History</a></li>
+						<!--li><a href="<?php echo base_url(); ?>games/buylist"><i class="fa fa-gear"></i> Settings</a></li-->
 						<li class="divider"></li>
 						<li><a href="<?php echo base_url(); ?>admin/cp/signout"><i class="fa fa-power-off"></i> Sign Out</a></li>
 					</ul>
 				</div>
 				<?php } else { ?>
 				<div class="nav-profile">
-					<a href="<?php echo base_url(); ?>admin/cp/signin"> Sign In </a>
+					<a href="<?php echo base_url(); ?>games/login"> Signin / Signup</a>
+					<ul class="dropdown-menu">
+						<li><a href="<?php echo base_url(); ?>games/edit_profile"><i class="fa fa-user"></i> Register</a></li>
+					</ul>
 				</div>
 				<?php } ?>
 				<div class="nav-dropdown dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-shopping-cart"></i> Cart &nbsp;&nbsp;<span class="label label-danger">1</span></a>
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-shopping-cart"></i> Cart &nbsp;&nbsp;<span class="label label-danger"><?php echo count($gameshop_menu_cart); ?></span></a>
 					<ul class="dropdown-menu">
-						<li class="dropdown-header"><i class="fa fa-bell"></i> You added 1 things right now</li>
-						<li><a href="#">Alien Isolation</a></li>
-						<li><a href="#">Witcher 3 <span class="label label-success">XBOX</span></a></li>
-						<li><a href="#">Last of Us</a></li>
-						<li><a href="#">Uncharted 4 <span class="label label-primary">PS4</span></a></li>
-						<li><a href="#">GTA 5 <span class="label label-warning">PC</span></a></li>
-						<li class="dropdown-footer"><a href="<?php echo base_url(); ?>games/cart">Checkout</a></li>
+						<li class="dropdown-header"><i class="fa fa-bell"></i> You added <?php echo count($gameshop_menu_cart); ?> things in cart</li>
+						<?php $c = '1';?>
+						<?php foreach ($gameshop_menu_cart as $value): ?>
+						<li><a href="<?php echo base_url() . 'games/view/' . $value['url']; ?>"><?php echo $c . '.  ' . substr($value['name'], 0, 20); ?> ... <span class="label label-success"><?php echo $value['price'] . 'Tk'; ?></span></a></li>
+						<?php $c++; if($c >= '6'){break;} // add +1 for desire value?> 
+						<?php endforeach; ?>
+						<li class="dropdown-footer"><a href="<?php echo base_url(); ?>games/cart">View Cart</a></li>
 					</ul>
 				</div>
 			</div>

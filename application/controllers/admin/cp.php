@@ -1042,7 +1042,7 @@ class Cp extends My_Controller {
 		if ($this->ion_auth->logged_in())
 		{
 			// redirect them to the login page
-			redirect($this->session->last_page(1), 'refresh');
+			redirect(($this->session->userdata('last_page')) ? $this->session->userdata('last_page') : 'games/all', 'refresh');
 		}
 		//validate form input
 		$this->form_validation->set_rules('identity', 'Identity', 'required');

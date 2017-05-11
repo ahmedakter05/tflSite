@@ -71,7 +71,7 @@
                         </div>
 
                         <div class="product-post-info">
-                            <h5><a href="<?php echo base_url() . 'products/details/' . $fvalue['url']; ?>"><?php echo $fvalue['name']; ?></a></h5>
+                            <h5 style="background: none;"><a href="<?php echo base_url() . 'products/details/' . $fvalue['url']; ?>"><?php echo substr($fvalue['name'], 0, 25); ?> ...</a></h5>
                             <p>Category: <?php if(!empty($fvalue['categories']['cname'])){ echo anchor('products/category/'.$fvalue['categories']['curl'], $fvalue['categories']['cname'] .' ');} ?></p>
                         </div>
                     </li> 

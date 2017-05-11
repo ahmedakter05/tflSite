@@ -109,7 +109,14 @@ class MY_Controller extends CI_Controller
 	function get_gameshop_common_param()
 	{		
 		$this->data['gameshop_products_menu'] = $this->tfl_model->getmenuwithparent(0);
-		$this->data['random'] = array('label-success', 'label-warning', 'label-primary', 'label-danger');					
+		$this->data['gameshop_products_menu_games'] = $this->tfl_model->getmenuwithparent(1);
+		$this->data['gameshop_products_menu_accessories'] = $this->tfl_model->getmenuwithparent(4);
+		$this->data['gameshop_products_menu_toys'] = $this->tfl_model->getmenuwithparent(3);
+		$this->data['random'] = array('label-success', 'label-warning', 'label-primary', 'label-danger');	
+		$this->data['gameshop_menu_latest_games'] = $this->tfl_model->gameshop_featured_products(1);
+		$this->data['gameshop_menu_cart'] = $this->tfl_model->gameshop_get_menu_cart();
+		$this->data['gameshop_get_profile'] = $this->tfl_model->gameshop_get_profile_data();
+		//var_dump($this->data['gameshop_menu_cart']);
 	}
 
 	function get_edutech_sidebar()

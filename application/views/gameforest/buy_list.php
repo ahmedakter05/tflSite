@@ -31,7 +31,7 @@
 											<th>Payment Amount</th>
 											<th>Payment Status</th>
 											<th>License Info</th>
-											<th>Status</th>
+											<th>Delivery Status</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -40,11 +40,13 @@
 										<tr>
 											<td><?php echo $count; $count++;?></td>
 											<td class="hidden-xs"><b><?php echo $value['name']?></b></td>
-											<td><?php echo $value['orderdate']; ?></td>
+											<?php $ledate = strtotime( $value['orderdate']);
+												  $ledate = date( 'h:i:s A F d, Y', $ledate ); ?>
+											<td width="130px"><?php echo $ledate; ?></td>
 											<td><?php echo $value['amount']; ?>Tk</td>
 											<td><a href="<?php echo base_url() . 'games/payments/' . $value['paymentid']; ?>"><?php if($value['paymentstatus'] == '0'){echo 'Pending';} elseif($value['paymentstatus'] == '1'){echo 'Processing';} elseif($value['paymentstatus'] == '2'){echo 'Complete';}?></a></td>
-											<td><?php if(!($value['licenseid'] == '0')){ ?><a href="<?php echo base_url() . 'games/licenses/' . $value['licenseid']; ?>">View License</a><?php } ?></td>
-											<td><?php echo time().'-'.mt_rand(); ?></td>
+											<td><?php if(($value['licensestatus'] == '1')){ ?><a href="<?php echo base_url() . 'games/licenses/' . $value['licenseid']; ?>">View</a><?php } else { echo 'View';} ?></td>
+											<td><?php if($value['deliverystatus'] == '0'){echo 'Pending';} elseif($value['paymentstatus'] == '1'){echo 'Processing';} elseif($value['paymentstatus'] == '2'){echo 'Completed';}?></td>
 										</tr>
 										<?php endforeach; ?>
 									</tbody>

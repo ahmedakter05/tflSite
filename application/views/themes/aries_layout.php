@@ -118,7 +118,20 @@
                             <li><a href="<?php echo base_url(); ?>admin/query/services">Services</a></li>
                             <li><a href="<?php echo base_url(); ?>admin/query/serothers">Sidebar</a></li>
                         </ul>
-                    </li>   
+                    </li>  
+                    <li>
+                        <a href="#" class="blblue">Gameshop</a>
+                        <div class="open"></div>
+                        <ul>
+                            <li><a href="<?php echo base_url(); ?>admin/gameshop/slider">slider</a></li>
+                            <li><a href="<?php echo base_url(); ?>admin/gameshop/category">Category</a></li>
+                            <li><a href="<?php echo base_url(); ?>admin/gameshop/products">Products</a></li>
+                            <li><a href="<?php echo base_url(); ?>admin/gameshop/payments">Payments</a></li>
+                            <li><a href="<?php echo base_url(); ?>admin/gameshop/orders">Order History</a></li>
+
+
+                        </ul>
+                    </li> 
                     <li>
                         <a href="statistic.html" class="blblue">EduTech</a>
                         <div class="open"></div>

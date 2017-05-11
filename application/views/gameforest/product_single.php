@@ -114,7 +114,7 @@
 								
 								<div class="description">
 									<?php echo $product['details']; ?>
-									<a href="<?php echo base_url() . 'games/cart/' . $product['url']; ?>" class="btn btn-block btn-primary margin-top-40">Buy now <i class="fa fa-heart-o margin-left-10"></i></a>
+									<a href="<?php echo base_url() . 'games/addtocart/' . $product['url']; ?>" class="btn btn-block btn-primary margin-top-40">Buy now <i class="fa fa-heart-o margin-left-10"></i></a>
 								</div>
 							</div>
 						</div>
