@@ -36,4 +36,16 @@ class Home extends My_Controller {
 		$this->data['message'] = $this->session->flashdata('message');
 		$this->load->view($this->template_dir.'home', $this->data);
 	}
+	public function sendmail()
+	{
+		$this->email->from('ahmed.ngenit@gmail.com', 'ahmed.ngenit@gmail.com');
+		$this->email->to('ahmed.akter@ngenitltd.com');
+		$this->email->subject('Test email from CI and Gmail');
+		$this->email->message('This is a test.');
+		if($this->email->send()){
+			return show_error('Mail send successfully');
+		} else {
+			return show_error('Mail send unsuccessful');
+		}
+	}
 }
